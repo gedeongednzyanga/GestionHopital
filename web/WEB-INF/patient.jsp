@@ -180,7 +180,6 @@
                                             <br><span style="color: red"> <c:out value="${patientForm.erreurs['residance']}" />  </span>
                                         </div>
                                     </div>
-
                                     <div class="control-group">
                                         <label class="control-label" for="naissance">Fils/Fille de :</label>
                                         <div class="controls">
@@ -203,14 +202,14 @@
                                         </div>
                                     </div>
                                     <div class="form-actions ">
-                                        <button type="submit" class="btn btn-success">Enregistrer</button> <button type="submit" class="btn btn-danger">Supprimer</button>
+                                        <button type="submit" class="btn btn-success">Enregistrer</button> 
+                                        <button type="submit" class="btn btn-danger">Supprimer</button>
                                     </div>
 
                                 </form>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="row-fluid">
                     <div class="span12">

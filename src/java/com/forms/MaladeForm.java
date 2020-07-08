@@ -49,12 +49,6 @@ public class MaladeForm extends AbstractForm {
             getErreur(CHAMP_PRENOM, e.getMessage());
         }
         malade.setPrenom(prenom);
-        
-        try{
-            validateDesignation(sexe);
-        }catch(Exception e){
-            getErreur(CHAMP_SEXE, e.getMessage());
-        }
         malade.setSexe(sexe);
         malade.setNaissance(Date.valueOf(naissance));
         
