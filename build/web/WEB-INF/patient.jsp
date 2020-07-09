@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Gestion Hopital | Fournisseurs</title>
+        <title>Gestion Hopital | Patients</title>
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css" />" />
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
         <link rel="stylesheet" href="<c:url value="/assets/css/uniform.css" />" />
@@ -65,57 +65,75 @@
 
         <!--sidebar-menu-->
 
-        <div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
-            <ul>
-                <li><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-                <li><a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
-                <li><a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
-                <li class="active"><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
-                <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
-                <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span
-                            class="label label-important">3</span></a>
-                    <ul>
-                        <li><a href="form-common.html">Basic Form</a></li>
-                        <li><a href="form-validation.html">Form with Validation</a></li>
-                        <li><a href="form-wizard.html">Form with Wizard</a></li>
-                    </ul>
-                </li>
-                <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
-                <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
-                <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span
-                            class="label label-important">5</span></a>
-                    <ul>
-                        <li><a href="index2.html">Dashboard2</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="calendar.html">Calendar</a></li>
-                        <li><a href="chat.html">Chat option</a></li>
-                    </ul>
-                </li>
-                <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i> <span>Error</span> <span
-                            class="label label-important">4</span></a>
-                    <ul>
-                        <li><a href="error403.html">Error 403</a></li>
-                        <li><a href="error404.html">Error 404</a></li>
-                        <li><a href="error405.html">Error 405</a></li>
-                        <li><a href="error500.html">Error 500</a></li>
-                    </ul>
-                </li>
-                <li class="content"> <span>Monthly Bandwidth Transfer</span>
-                    <div class="progress progress-mini progress-danger active progress-striped">
-                        <div style="width: 77%;" class="bar"></div>
-                    </div>
-                    <span class="percent">77%</span>
-                    <div class="stat">21419.94 / 14000 MB</div>
-                </li>
-                <li class="content"> <span>Disk Space Usage</span>
-                    <div class="progress progress-mini active progress-striped">
-                        <div style="width: 87%;" class="bar"></div>
-                    </div>
-                    <span class="percent">87%</span>
-                    <div class="stat">604.44 / 4000 MB</div>
-                </li>
-            </ul>
-        </div>
+       <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+           <ul>
+               <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+               <li class="submenu"> <a href="#"><i class="icon icon-medkit"></i> <span>Médicaments</span> <span
+                           class="label label-important">4</span></a>
+                   <ul>
+                       <li><a href="<c:url value="/Stock" />">Stock</a></li>
+                       <li><a href="<c:url value="/Achat" />">Achats</a></li>
+                       <li><a href="sortie.html">Sorties</a></li>
+                       <li><a href="<c:url value="/Fournisseur" />">Fournisseurs</a></li>
+                   </ul>
+               </li>
+               <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Malades</span> <span class="label label-important">4</span></a>
+                   <ul>
+                       <li><a href="<c:url value="/Patient" />">Nouveau Malade</a></li>
+                       <li><a href="achat.html">Malade Interné</a></li>
+                       <li><a href="sortie.html">Sorties</a></li>
+                       <li><a href="fournisseur.html">Fournisseurs</a></li>
+                   </ul>
+               </li>
+               <li> <a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
+               <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
+               <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
+               <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
+               <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span
+                           class="label label-important">3</span></a>
+                   <ul>
+                       <li><a href="form-common.html">Basic Form</a></li>
+                       <li><a href="form-validation.html">Form with Validation</a></li>
+                       <li><a href="form-wizard.html">Form with Wizard</a></li>
+                   </ul>
+               </li>
+               <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
+               <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
+               <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span
+                           class="label label-important">5</span></a>
+                   <ul>
+                       <li><a href="index2.html">Dashboard2</a></li>
+                       <li><a href="gallery.html">Gallery</a></li>
+                       <li><a href="calendar.html">Calendar</a></li>
+                       <li><a href="invoice.html">Invoice</a></li>
+                       <li><a href="chat.html">Chat option</a></li>
+                   </ul>
+               </li>
+               <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i> <span>Error</span> <span
+                           class="label label-important">4</span></a>
+                   <ul>
+                       <li><a href="error403.html">Error 403</a></li>
+                       <li><a href="error404.html">Error 404</a></li>
+                       <li><a href="error405.html">Error 405</a></li>
+                       <li><a href="error500.html">Error 500</a></li>
+                   </ul>
+               </li>
+               <li class="content"> <span>Monthly Bandwidth Transfer</span>
+                   <div class="progress progress-mini progress-danger active progress-striped">
+                       <div style="width: 77%;" class="bar"></div>
+                   </div>
+                   <span class="percent">77%</span>
+                   <div class="stat">21419.94 / 14000 MB</div>
+               </li>
+               <li class="content"> <span>Disk Space Usage</span>
+                   <div class="progress progress-mini active progress-striped">
+                       <div style="width: 87%;" class="bar"></div>
+                   </div>
+                   <span class="percent">87%</span>
+                   <div class="stat">604.44 / 4000 MB</div>
+               </li>
+           </ul>
+       </div>
         <div id="content">
             <div id="content-header">
                 <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
@@ -126,7 +144,7 @@
             <div class="container-fluid">
                 <hr>
                 <div class="row-fluid">
-                    <div class="span12">
+                    <div class="span6">
                         <div class="widget-box">
                             <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
                                 <h5>Identité du patient</h5>
@@ -205,8 +223,14 @@
                                         <button type="submit" class="btn btn-success">Enregistrer</button> 
                                         <button type="submit" class="btn btn-danger">Supprimer</button>
                                     </div>
-
                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="widget-box">
+                            <div class="widget-content nopadding">
+                                <h1>Photos</h1>
                             </div>
                         </div>
                     </div>

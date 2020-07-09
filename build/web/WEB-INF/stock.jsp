@@ -70,63 +70,107 @@
 
     <!--sidebar-menu-->
 
-    <div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
-        <ul>
-            <li><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-            <li><a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
-            <li><a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
-            <li class="active"><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
-            <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
-            <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span
-                        class="label label-important">3</span></a>
-                <ul>
-                    <li><a href="form-common.html">Basic Form</a></li>
-                    <li><a href="form-validation.html">Form with Validation</a></li>
-                    <li><a href="form-wizard.html">Form with Wizard</a></li>
-                </ul>
-            </li>
-            <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
-            <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
-            <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span
-                        class="label label-important">5</span></a>
-                <ul>
-                    <li><a href="index2.html">Dashboard2</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="calendar.html">Calendar</a></li>
-                    <li><a href="chat.html">Chat option</a></li>
-                </ul>
-            </li>
-            <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i> <span>Error</span> <span
-                        class="label label-important">4</span></a>
-                <ul>
-                    <li><a href="error403.html">Error 403</a></li>
-                    <li><a href="error404.html">Error 404</a></li>
-                    <li><a href="error405.html">Error 405</a></li>
-                    <li><a href="error500.html">Error 500</a></li>
-                </ul>
-            </li>
-            <li class="content"> <span>Monthly Bandwidth Transfer</span>
-                <div class="progress progress-mini progress-danger active progress-striped">
-                    <div style="width: 77%;" class="bar"></div>
-                </div>
-                <span class="percent">77%</span>
-                <div class="stat">21419.94 / 14000 MB</div>
-            </li>
-            <li class="content"> <span>Disk Space Usage</span>
-                <div class="progress progress-mini active progress-striped">
-                    <div style="width: 87%;" class="bar"></div>
-                </div>
-                <span class="percent">87%</span>
-                <div class="stat">604.44 / 4000 MB</div>
-            </li>
-        </ul>
-    </div>
+        <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+           <ul>
+               <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+               <li class="submenu"> <a href="#"><i class="icon icon-medkit"></i> <span>Médicaments</span> <span
+                           class="label label-important">4</span></a>
+                   <ul>
+                       <li><a href="<c:url value="/Stock" />">Stock</a></li>
+                       <li><a href="<c:url value="/Achat" />">Achats</a></li>
+                       <li><a href="sortie.html">Sorties</a></li>
+                       <li><a href="<c:url value="/Fournisseur" />">Fournisseurs</a></li>
+                   </ul>
+               </li>
+               <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Malades</span> <span class="label label-important">4</span></a>
+                   <ul>
+                       <li><a href="<c:url value="/Patient" />">Nouveau Malade</a></li>
+                       <li><a href="achat.html">Malade Interné</a></li>
+                       <li><a href="sortie.html">Sorties</a></li>
+                       <li><a href="fournisseur.html">Fournisseurs</a></li>
+                   </ul>
+               </li>
+               <li> <a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
+               <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
+               <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
+               <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
+               <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span
+                           class="label label-important">3</span></a>
+                   <ul>
+                       <li><a href="form-common.html">Basic Form</a></li>
+                       <li><a href="form-validation.html">Form with Validation</a></li>
+                       <li><a href="form-wizard.html">Form with Wizard</a></li>
+                   </ul>
+               </li>
+               <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
+               <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
+               <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span
+                           class="label label-important">5</span></a>
+                   <ul>
+                       <li><a href="index2.html">Dashboard2</a></li>
+                       <li><a href="gallery.html">Gallery</a></li>
+                       <li><a href="calendar.html">Calendar</a></li>
+                       <li><a href="invoice.html">Invoice</a></li>
+                       <li><a href="chat.html">Chat option</a></li>
+                   </ul>
+               </li>
+               <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i> <span>Error</span> <span
+                           class="label label-important">4</span></a>
+                   <ul>
+                       <li><a href="error403.html">Error 403</a></li>
+                       <li><a href="error404.html">Error 404</a></li>
+                       <li><a href="error405.html">Error 405</a></li>
+                       <li><a href="error500.html">Error 500</a></li>
+                   </ul>
+               </li>
+               <li class="content"> <span>Monthly Bandwidth Transfer</span>
+                   <div class="progress progress-mini progress-danger active progress-striped">
+                       <div style="width: 77%;" class="bar"></div>
+                   </div>
+                   <span class="percent">77%</span>
+                   <div class="stat">21419.94 / 14000 MB</div>
+               </li>
+               <li class="content"> <span>Disk Space Usage</span>
+                   <div class="progress progress-mini active progress-striped">
+                       <div style="width: 87%;" class="bar"></div>
+                   </div>
+                   <span class="percent">87%</span>
+                   <div class="stat">604.44 / 4000 MB</div>
+               </li>
+           </ul>
+       </div>
     <div id="content">
         <div id="content-header">
             <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
                 <a href="#" class="tip-bottom">Médicaments</a>
                 <a href="#" class="current">Stock</a> </div>
-            <h1>Stock</h1>
+                <div class="row-fluid">
+                    <div class="span4">
+                        <h1>Stock</h1>
+                    </div>
+                    <div class="span8">
+                        <div class="row-fluid">
+                            <div class="span4">
+                                <div class="list-header">
+                                    <ul class="unstyled">
+                                        <li>Alert Stock : <span class="badge badge-important">200 Produits</span> </li>
+                                        <li>Produit envoi d'expiration : <span class="badge badge-warning">230 Produits</span></li>
+                                        <li>Produits expirés : <span class="badge badge-inverse">200 Produits</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                             <div class="span8">
+                                 <div class="list-header">
+                                     <span>Produits <span class="btn btn-mini btn-success" >Fiche de Stock</span> <br></span>
+                                     <li>Dernier entrée en Stock : 3000 produits le <time>23-06-2020 </time> </li>
+                                    <li>Dernier sortie en Stock : 240 produits le <time>23-06-2020 </time></li>
+    
+                                 </div>
+                                 
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
         <div class="container-fluid">
             <hr>
@@ -194,32 +238,34 @@
                     <div class="widget-box">
                         <div class="widget-title">
                           <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#tab1">Infos Produit</a></li>
+                            <li class="active"><a data-toggle="tab" href="#tab1">Produit</a></li>
                             <li><a data-toggle="tab" href="#tab2">Catégorie</a></li>
                             <li><a data-toggle="tab" href="#tab3">Sous-Catégorie</a></li>
                           </ul>
                         </div>
                         <div class="widget-content tab-content">
                             <div id="tab1" class="tab-pane active">
-                              
-                                <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end. </p>
-                                <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end. </p>
-                                <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end. </p>
-                                <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, </p>
-                          </div>
+                                <div style="height: 290px">
+                                    <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out
+                                        the comment.And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. 
+                                    </p>
+                                    <img src="<c:url value="/assets/img/demo/1.jpg" />" alt="demo-image" />
+                                </div>
+                            </div>
                             <div id="tab2" class="tab-pane">
-                                <div style="height: 300px">
+                                <div style="height: 290px">
                                     <form action="<c:url value="/Categories" />" method="POST" class="form-horizontal"> 
                                         <div class="control-group">
-                                            <label class="control-label" for="desigation">Désignation Catégorie :</label>
+                                            <label class="control-label" for="desigation">Catégorie :</label>
                                             <div class="controls">
-                                                <input type="text" class="span11" value="<c:out value="${Categorie.designation}" />" autocomplete="off" id="designation" name="designation" placeholder="Désignation Produit" />             
+                                                <input type="text" class="span11" value="<c:out value="${Categorie.designation}" />" autocomplete="off" id="designation" name="designation" placeholder="Désignation Catégorie" />             
                                                 <br><span style="color: red"><c:out value="${CategorieForm.erreurs['designation']}" /></span>
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <div class="controls">
-                                                <button type="submit" class="btn btn-success btn-small">Enregistrer</button>    
+                                                <button type="submit" class="btn btn-success btn-small">Enregistrer</button>   
+                                                <button type="submit" class="btn btn-warning btn-small">Voir Plus</button>  
                                             </div>
                                         </div>                             
                                     </form>  
@@ -235,7 +281,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:forEach var="categorie" items="${listeCategorie}">
+                                                    <c:forEach var="categorie" begin="0" end="3" step="1" items="${listeCategorie}">
                                                         <tr>
                                                             <td> <c:out value="${categorie.id}" /> </td>
                                                             <td> <i class="icon-ok-sign"></i>  <c:out value="${categorie.designation}" /> </td>
@@ -250,7 +296,7 @@
                                 </div>
                             </div>
                             <div id="tab3" class="tab-pane">
-                                <div style="height: 300px">
+                                <div style="height: 290px">
                                     <form action="<c:url value="/SousCategories" />" method="POST" class="form-horizontal">
                                       <div class="control-group">
                                           <label class="control-label" for="desigation">Sous-Catégorie :</label>
@@ -274,6 +320,7 @@
                                         <div class="control-group">
                                             <div class="controls">
                                                 <button type="submit" class="btn btn-success btn-small">Enregistrer</button>
+                                                <button type="submit" class="btn btn-warning btn-small">Voir Plus</button> 
                                             </div>
                                         </div>                             
                                     </form>
@@ -289,7 +336,7 @@
                                                   </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:forEach var="souscategorie" items="${listeSousCategorie}">
+                                                    <c:forEach var="souscategorie" begin="0" end="1" step="1" items="${listeSousCategorie}">
                                                         <tr>
                                                             <td> <c:out value="${souscategorie.id}" /> </td>
                                                             <td class="taskDesc"><i class="icon-info-sign"></i> <c:out value="${souscategorie.categorie['designation']}" /> </td>

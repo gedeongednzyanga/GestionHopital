@@ -1134,13 +1134,14 @@ form {
 }
 .form-horizontal .control-label {
 	padding-top: 15px;
-	width: 180px;
+	width: 120px;
 }
 .form-horizontal .controls {
-	margin-left: 200px;
-	padding: 10px 0;
+	margin-left: 140px;
+	padding: 9px 0;
 }
 .form-horizontal input[type=text], .form-horizontal input[type=password], .form-horizontal textarea {
+  
 }
 .row-fluid .span20 {
 	width:97.8%
@@ -1587,3 +1588,7 @@ div.dataTables_wrapper .ui-widget-header {
 }
 #sidebar .content{ display:none;}
 }
+.list-header{
+    margin-top: 10px;
+}
+

@@ -43,8 +43,7 @@ public class Stock extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        
+        response.setContentType("text/html;charset=UTF-8");
         //Attributs
         
         request.setAttribute(ATTR_CAT_LISTE, listeCategorie);

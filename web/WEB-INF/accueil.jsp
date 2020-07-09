@@ -78,8 +78,7 @@
                     <li><a href="<c:url value="/Fournisseur" />">Fournisseurs</a></li>
                 </ul>
             </li>
-            <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Malades</span> <span
-                        class="label label-important">4</spanS</a>
+            <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Malades</span> <span class="label label-important">4</span></a>
                 <ul>
                     <li><a href="<c:url value="/Patient" />">Nouveau Malade</a></li>
                     <li><a href="achat.html">Malade Interné</a></li>
