@@ -34,6 +34,7 @@ public class Achat extends HttpServlet {
     DAO<Fournisseurs> fournisseurDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getFournisseurDAO();
     List<Produit> listeProduit = produitDAO.getAll();
     List<Fournisseurs> listeFournisseur = fournisseurDAO.getAll();
+    List<Approvisionnement> listeAchat = approvisionnementDAO.getAll();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -48,6 +49,7 @@ public class Achat extends HttpServlet {
         
         request.setAttribute(ATTR_LISTEP, listeProduit);
         request.setAttribute(ATTR_LISTEF, listeFournisseur);
+        request.setAttribute(ATTR_LISTE, listeAchat);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
 
@@ -70,6 +72,7 @@ public class Achat extends HttpServlet {
         request.setAttribute(ATTR_APPROVFORM, form);
         request.setAttribute(ATTR_LISTEP, listeProduit);
         request.setAttribute(ATTR_LISTEF, listeFournisseur);
+        request.setAttribute(ATTR_LISTE, listeAchat);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
 

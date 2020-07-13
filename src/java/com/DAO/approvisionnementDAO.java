@@ -42,17 +42,19 @@ public class approvisionnementDAO extends DAO<Approvisionnement> {
     @Override
     public List getAll() {
         ArrayList<Approvisionnement> liste = new ArrayList<>();
+        int comp = 0;
         try{
             ps = this.connect.prepareStatement("CALL GET_APPROVISIONNEMENT()");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                liste.add(new Approvisionnement(Long.parseLong(rs.getString("detail_id")), 
+                comp++;
+                liste.add(new Approvisionnement(comp,Long.parseLong(rs.getString("detail_id")), 
                         Integer.parseInt(rs.getString("detail_quantite")), Double.parseDouble(rs.getString("detail_pua")), 
                         Date.valueOf(rs.getString("approv_date")), Date.valueOf(rs.getString("detail_dFabrication")),
                         Date.valueOf(rs.getString("detail_dExpiration")), 
                         new produitDAO().find(Integer.parseInt(rs.getString("produit_id"))), 
                         new fournisseurDAO().find(Integer.parseInt(rs.getString("fournisseur_id"))), 
-                        rs.getString("user_session")  ));
+                        rs.getString("user_session"), Date.valueOf(rs.getString("approv_dateEnreg"))  ));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());

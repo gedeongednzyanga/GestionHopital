@@ -17,15 +17,25 @@ public class Approvisionnement {
     private Date dateApprov;
     private Date dateFabrication;
     private Date dateExpiration;
+    private Date dateEnreg;
     private Produit produit;
     private Fournisseurs fournisseur;
     private String userSession;
+    private int compteur;
 
+    public int getCompteur() {
+        return compteur;
+    }
+
+    public void setCompteur(int compteur) {
+        this.compteur = compteur;
+    }
     public Approvisionnement() {
     }
 
-    public Approvisionnement(long id, int quantite, double prixAchatU, Date dateApprov, Date dateFabrication, 
-            Date dateExpiration, Produit produit, Fournisseurs fournisseur, String userSession) {
+    public Approvisionnement(int compteur, long id, int quantite, double prixAchatU, Date dateApprov, Date dateFabrication, 
+            Date dateExpiration, Produit produit, Fournisseurs fournisseur, String userSession, Date dateEnreg) {
+        this.compteur = compteur;
         this.id = id;
         this.quantite = quantite;
         this.prixAchatU = prixAchatU;
@@ -35,6 +45,7 @@ public class Approvisionnement {
         this.produit = produit;
         this.fournisseur = fournisseur;
         this.userSession = userSession;
+        this.dateEnreg = dateEnreg;
     }
 
     public long getId() {
@@ -123,6 +134,14 @@ public class Approvisionnement {
 
     public void setIdProduit(long idProduit) {
         this.idProduit = idProduit;
+    }
+
+    public Date getDateEnreg() {
+        return dateEnreg;
+    }
+
+    public void setDateEnreg(Date dateEnreg) {
+        this.dateEnreg = dateEnreg;
     }
     
 }

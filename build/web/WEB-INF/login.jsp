@@ -26,7 +26,7 @@
             <div class="control-group">
                 <div class="controls">
                     <div class="main_input_box">
-                        <span class="add-on bg_lg"><i class="icon-user"> </i></span><input type="text" value="<c:out value="${utilisateur.nomUtilisateur}" />" name="user_name" placeholder="Nom d'utilisateur" />
+                        <span class="add-on bg_lg"><i class="icon-user"> </i></span><input type="text" value="<c:out value="${utilisateur.nomUtilisateur}" />" name="user_name" autocomplete="off" placeholder="Nom d'utilisateur" />
                    
                     </div>
                 </div>
@@ -37,7 +37,6 @@
                         <span class="add-on bg_ly"><i class="icon-lock"></i></span><input type="password" value="<c:out value="${utilisateur.motdePasse}" />" name="mot_passe" placeholder="Mot de passe" />
                         <br><span style="color: #ffffff"><c:out value="${connexionForm.resultat}" /></span>
                     </div>
-                   
                 </div>
                
             </div>

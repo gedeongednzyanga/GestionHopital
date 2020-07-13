@@ -139,7 +139,33 @@
                 <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
                     <a href="#" class="tip-bottom">Patients</a>
                     <a href="#" class="current">Nouveau Patient</a> </div>
-                <h1>Patients</h1>
+                <div class="row-fluid">
+                    <div class="span4">
+                        <h1>Patients</h1>
+                    </div>
+                    <div class="span8">
+                        <div class="row-fluid">
+                            <div class="span4">
+                                <div class="list-header">
+                                    <ul class="unstyled">
+                                        <li>Alert Stock : <span class="badge badge-important">200 Produits</span> </li>
+                                        <li>Produit envoi d'expiration : <span class="badge badge-warning">230 Produits</span></li>
+                                        <li>Produits expirés : <span class="badge badge-inverse">200 Produits</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                             <div class="span8">
+                                 <div class="list-header">
+                                     <span>Produits <span class="btn btn-mini btn-success" >Fiche de Stock</span> <br></span>
+                                     <li>Dernier entrée en Stock : 3000 produits le <time>23-06-2020 </time> </li>
+                                    <li>Dernier sortie en Stock : 240 produits le <time>23-06-2020 </time></li>
+    
+                                 </div>
+                                 
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="container-fluid">
                 <hr>
@@ -201,14 +227,14 @@
                                     <div class="control-group">
                                         <label class="control-label" for="naissance">Fils/Fille de :</label>
                                         <div class="controls">
-                                            <input type="text" class="span11" id="naissance" value="<c:out value="${patient.pere}" />" name="pere" placeholder="Père" />
+                                            <input type="text" class="span11" id="naissance" value="<c:out value="${patient.pere}" />" name="pere" placeholder="Noms du Père" />
                                             <br><span style="color: red"> <c:out value="${patientForm.erreurs['pere']}" />  </span>
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="naissance">Et de :</label>
                                         <div class="controls">
-                                            <input type="text" class="span11" id="mere" name="mere" value="<c:out value="${patient.mere}" />" placeholder="Mère" />
+                                            <input type="text" class="span11" id="mere" name="mere" value="<c:out value="${patient.mere}" />" placeholder="Nom de la Mère" />
                                             <br><span style="color: red"> <c:out value="${patientForm.erreurs['mere']}" />  </span>
                                         </div>
                                     </div>
@@ -230,12 +256,17 @@
                     <div class="span6">
                         <div class="widget-box">
                             <div class="widget-content nopadding">
-                                <h1>Photos</h1>
+                                <div style=" margin: 5px">
+                                    <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment.</p>
+                                     <img src="<c:url value="/assets/img/demo/patient1.jpg" />" class="img-rounded" />
+                                    <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out   </p>
+                                    <img src="<c:url value="/assets/img/demo/patient2.jpg" />" class="img-rounded" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row-fluid">
+                <!--<div class="row-fluid">
                     <div class="span12">
                         <div class="widget-box">
                             <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>

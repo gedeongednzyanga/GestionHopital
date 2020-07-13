@@ -265,7 +265,7 @@
                                         <div class="control-group">
                                             <div class="controls">
                                                 <button type="submit" class="btn btn-success btn-small">Enregistrer</button>   
-                                                <button type="submit" class="btn btn-warning btn-small">Voir Plus</button>  
+                                                <button type="button" data-target="#myModal" data-toggle="modal" class="btn btn-warning btn-small">Voir Plus</button>  
                                             </div>
                                         </div>                             
                                     </form>  
@@ -320,7 +320,7 @@
                                         <div class="control-group">
                                             <div class="controls">
                                                 <button type="submit" class="btn btn-success btn-small">Enregistrer</button>
-                                                <button type="submit" class="btn btn-warning btn-small">Voir Plus</button> 
+                                                <button type="button" data-target="#myModal2" data-toggle="modal" class="btn btn-warning btn-small">Voir Plus</button> 
                                             </div>
                                         </div>                             
                                     </form>
@@ -346,10 +346,74 @@
                                                     <tr>
                                                     </c:forEach>
                                                 </tbody>
-                                          </table>
+                                            </table>
                                         </div>
                                     </div>  
                                  </div>      
+                            </div>
+                        </div>
+                    </div>
+                    <div id="myModal" class="modal fade">
+                        <div class="modal-header">
+                          <button data-dismiss="modal" class="close" type="button">×</button>
+                          <h3>Catégories</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row-fluid">
+                                <div class="spam12">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Désignation</th>
+                                                <th>Statut</th>
+                                                <th>Options</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="categorie" items="${listeCategorie}">
+                                                <tr>
+                                                    <td> <c:out value="${categorie.id}" /> </td>
+                                                    <td> <i class="icon-ok-sign"></i>  <c:out value="${categorie.designation}" /> </td>
+                                                    <td class="taskStatus"><span class="done">Ok</span></td>
+                                                    <td class="taskOptions"><a href="#" class="tip-top" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
+                                                </tr>
+                                            </c:forEach>                 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="myModal2" class="modal fade">
+                        <div class="modal-header">
+                            <button data-dismiss="modal" class="close" type="button">×</button>
+                            <h3>Sous-Catégories</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row-fluid">
+                                <div class="spam12">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                          <tr>
+                                            <th>#</th>
+                                            <th>Catégorie</th>
+                                            <th>Sous-Catégorie</th>
+                                            <th>Opts</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="souscategorie"  items="${listeSousCategorie}">
+                                                <tr>
+                                                    <td> <c:out value="${souscategorie.id}" /> </td>
+                                                    <td class="taskDesc"><i class="icon-info-sign"></i> <c:out value="${souscategorie.categorie['designation']}" /> </td>
+                                                    <td class="taskStatus"><span class="in-progress"><c:out value="${souscategorie.designation}" /></span></td>
+                                                    <td class="taskOptions"><a href="#" class="tip-top" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
