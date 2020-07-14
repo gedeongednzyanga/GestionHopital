@@ -199,7 +199,7 @@
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="pv">P.V Unitaire :</label>
+                                    <label class="control-label" for="prixVenteU">P.V Unitaire :</label>
                                     <div class="controls">
                                         <div class="input-append">
                                             <input type="number" placeholder="5.000" value="<c:out default="0.0" value="${produit.prixVenteU}" />" id="prixVenteU" name="prixVenteU" class="span11" />
@@ -218,8 +218,9 @@
                                 <div class="control-group">
                                     <label class="control-label" for="souscategorie">Type de Produit :</label>
                                     <div class="controls">
-                                        <select id="souscategorie" name="souscategorie">
+                                        <select id="souscategorie" name="souscategorie" required="">
                                             <c:forEach var="souscategorie" items="${listeSousCategorie}">
+                                               
                                                 <option value="<c:out value="${souscategorie.id}" />"> <c:out value="${souscategorie.designation}" /> 
                                                     (<c:out value="${souscategorie.categorie['designation']}" /> ) </option>
                                             </c:forEach>
@@ -227,8 +228,8 @@
                                     </div>
                                 </div>
                                 <div class="form-actions ">
-                                    <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Enregistrer</button> 
-                                    <button type="submit" class="btn btn-info"><i class="icon-edit"></i> Modifier</button>
+                                    <button type="submit" name="btnSave" value="save" class="btn btn-success"><i class="icon-ok"></i> Enregistrer</button> 
+                                    <button type="submit" name="btnSave" value="update" class="btn btn-info"><i class="icon-edit"></i> Modifier</button>
                                 </div>
                             </form>
                         </div>
@@ -256,9 +257,9 @@
                                 <div style="height: 290px">
                                     <form action="<c:url value="/Categories" />" method="POST" class="form-horizontal"> 
                                         <div class="control-group">
-                                            <label class="control-label" for="desigation">Catégorie :</label>
+                                            <label class="control-label" for="designationc">Catégorie :</label>
                                             <div class="controls">
-                                                <input type="text" class="span11" value="<c:out value="${Categorie.designation}" />" autocomplete="off" id="designation" name="designation" placeholder="Désignation Catégorie" />             
+                                                <input type="text" class="span11" value="<c:out value="${Categorie.designation}" />" autocomplete="off" id="designationc" name="designation" placeholder="Désignation Catégorie" />             
                                                 <br><span style="color: red"><c:out value="${CategorieForm.erreurs['designation']}" /></span>
                                             </div>
                                         </div>
@@ -361,7 +362,7 @@
                         <div class="modal-body">
                             <div class="row-fluid">
                                 <div class="spam12">
-                                    <table class="table table-striped table-bordered">
+                                    <table class="table table-striped table-bordered" id="table_categories">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -376,7 +377,7 @@
                                                     <td> <c:out value="${categorie.id}" /> </td>
                                                     <td> <i class="icon-ok-sign"></i>  <c:out value="${categorie.designation}" /> </td>
                                                     <td class="taskStatus"><span class="done">Ok</span></td>
-                                                    <td class="taskOptions"><a href="#" class="tip-top" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
+                                                    <td class="taskOptions"><a  class="tip-top" onclick="returnDataCategorie()" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
                                                 </tr>
                                             </c:forEach>                 
                                         </tbody>
@@ -426,11 +427,11 @@
                             <span class="label  label-info"><i class="icon icon-refresh"> </i></span>
                         </div>
                         <div class="widget-content nopadding">
-                            <table class="table table-bordered data-table">
+                            <table class="table table-bordered data-table" id="table_produit">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th style="display: none">Id</th>
+                                        <th style="display:none">Id</th>
                                         <th>Désignation</th>
                                         <th>Dosage</th>
                                         <th>Forme</th>
@@ -447,7 +448,7 @@
                                     <c:forEach var="produit" items="${listeProduit}" >
                                         <tr class="gradeX">
                                             <td> <c:out value="${produit.compteur}" /> </td>
-                                            <td style="display: none"> <c:out value="${produit.id}" /> </td>
+                                            <td style="display:none"> <c:out value="${produit.id}" /> </td>
                                             <td> <c:out value="${produit.designation}" /> </td>
                                             <td><c:out value="${produit.dosage}" /></td>
                                             <td> <c:out value="${produit.sousCategorie['designation']}" /> </td>
@@ -458,7 +459,7 @@
                                             <td> <c:out value="${produit.prixVenteT}" /> </td>
                                             <td> <c:out value="${produit.utilisateur}" /> </td>
                                             <td class="taskOptions">
-                                                <a href="#" class="tip-top" data-original-title="Modifier"><i class="icon-ok"></i></a> 
+                                                <a href="#" class="tip-top" onclick="retunDataProduct()" data-original-title="Modifier"><i class="icon-ok"></i></a> 
                                                 <a href="#" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
                                             </td>
                                         </tr>
@@ -484,5 +485,6 @@
     <script src="<c:url value="/assets/js/jquery.dataTables.min.js" />"></script>
     <script src="<c:url value="/assets/js/matrix.js" />"></script>
     <script src="<c:url value="/assets/js/matrix.tables.js" />"></script>
+    <script src="<c:url value="/assets/js/monScript.js" />"></script>
 </body>
 </html>

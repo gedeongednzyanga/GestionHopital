@@ -73,7 +73,11 @@ public class Stock extends HttpServlet {
         request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         if(form.getErreurs().isEmpty()){
-           produitDAO.operationIUD(1, produit) ;  
+            if(request.getParameter("btnSave").equals("save")){
+                 produitDAO.operationIUD(1, produit);  
+            }else if(request.getParameter("btnSave").equals("update")){
+                produitDAO.operationIUD(2, produit);  
+            }
         }
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
