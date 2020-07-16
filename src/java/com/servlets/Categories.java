@@ -5,6 +5,7 @@ import com.DAO.DAO;
 import com.Factory.AbstractDAOFactory;
 import com.Factory.FactoryType;
 import com.beans.Categorie;
+import com.beans.Produit;
 import com.beans.SousCategorie;
 import com.forms.CategorieForm;
 import java.io.IOException;
@@ -25,6 +26,9 @@ public class Categories extends HttpServlet {
     private static final String ATTR_CAT_FORM = "CategorieForm";
     private static final String ATTR_CAT_LISTE = "listeCategorie";
     private static final String ATTR_SOUSCAT_LISTE = "listeSousCategorie";
+    private static final String ATTR_PRODUIT_LISTE = "listeProduit";
+    DAO<Produit> produitDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getProduitDAO();
+    List<Produit> listeProduit = produitDAO.getAll();
     DAO<SousCategorie> souscategorieDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getSouscategorieDAO();
     DAO<Categorie> categorieDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getCategorieDAO();
     List<SousCategorie> listeSousCategorie = souscategorieDAO.getAll();
@@ -40,9 +44,16 @@ public class Categories extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        if(request.getParameter("id") != null){
+            Categorie categorie = new Categorie();
+            Long id =Long.parseLong(request.getParameter("id"));
+            categorie.setId(id);
+            categorieDAO.operationIUD(3, categorie);
+        }
        
         request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
         request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
+        request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
 
@@ -62,6 +73,7 @@ public class Categories extends HttpServlet {
         request.setAttribute(ATTR_CAT_FORM, formCat);
         request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
         request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
+         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         if(formCat.getErreurs().isEmpty()){
             if(request.getParameter("btnSave").equals("save")){
                 categorieDAO.operationIUD(1, categorie); 
@@ -71,5 +83,4 @@ public class Categories extends HttpServlet {
         }
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
-
 }

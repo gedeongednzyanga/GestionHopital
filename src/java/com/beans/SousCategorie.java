@@ -11,16 +11,19 @@ public class SousCategorie {
     private String designation;
     private long idcategorie;
     private Categorie categorie;
+    private int compteur;
 
     public SousCategorie() {
     }
 
     public SousCategorie(long id, String designation, long idcategorie) {
+        
         this.id = id;
         this.designation = designation;
         this.idcategorie = idcategorie;
     }
-     public SousCategorie(long id, String designation, Categorie categorie) {
+     public SousCategorie(int compteur,long id, String designation, Categorie categorie) {
+         this.compteur = compteur;
         this.id = id;
         this.designation = designation;
         this.categorie = categorie;
@@ -56,6 +59,14 @@ public class SousCategorie {
 
     public void setIdcategorie(long idcategorie) {
         this.idcategorie = idcategorie;
+    }
+
+    public int getCompteur() {
+        return compteur;
+    }
+
+    public void setCompteur(int compteur) {
+        this.compteur = compteur;
     }
     
 }

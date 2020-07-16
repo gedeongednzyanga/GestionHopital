@@ -2,7 +2,6 @@
 package com.DAO;
 
 import com.beans.SousCategorie;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,12 +49,14 @@ public class sousCategorieDAO extends DAO<SousCategorie> {
 
     @Override
     public List getAll() {
+        int compteur = 0;
         List<SousCategorie> liste = new ArrayList<>();
         try{
             ps = this.connect.prepareStatement("CALL GET_SOUSCATEGORIE()");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                liste.add(new SousCategorie(Long.parseLong(rs.getString("sousCat_id")), rs.getString("sousCat_designation"), 
+                compteur++;
+                liste.add(new SousCategorie(compteur, Long.parseLong(rs.getString("sousCat_id")), rs.getString("sousCat_designation"), 
                         new categorieDAO().find(Integer.parseInt(rs.getString("cat_id")))));
             }
         }catch(SQLException e){
