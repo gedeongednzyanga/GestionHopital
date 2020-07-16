@@ -25,7 +25,7 @@ public class SousCategorieForm extends AbstractForm {
         }catch(Exception e){
             getErreur(CHAMP_ID, e.getMessage());
         }
-      
+        souscategorie.setId(Long.parseLong(id));
         try{
             validateDesignation(designation);
         }catch(Exception e){

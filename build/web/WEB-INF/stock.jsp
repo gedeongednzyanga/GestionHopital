@@ -309,7 +309,7 @@
                                           <label class="control-label" for="desigation">Sous-Catégorie :</label>
                                           <div class="controls">
                                               <input type="hidden" name="idcat" id="idcat" value="0" />
-                                              <input type="text" class="span11" id="designation" autocomplete="off" value="<c:out value="${souscategorie.designation}"/>" name="designation" placeholder="Désignation Sous-Catégorie" /><br>
+                                              <input type="text" class="span11" id="designationsc" autocomplete="off" value="<c:out value="${souscategorie.designation}"/>" name="designation" placeholder="Désignation Sous-Catégorie" /><br>
                                               <span style="color: red"> <c:out value="${sousCategorieForm.erreurs['designation']}" /> </span>
                                           </div>
                                       </div>
@@ -326,18 +326,19 @@
                                         </div>
                                         <div class="control-group">
                                             <div class="controls">
-                                                <button type="submit" class="btn btn-success btn-small">Enregistrer</button>
+                                                <button type="submit" name="btnSave" value="save" class="btn btn-success btn-small">Enregistrer</button>
+                                                <button type="submit" name="btnSave" value="update" class="btn btn-info btn-small">Modifier</button>
                                                 <button type="button" data-target="#myModal2" data-toggle="modal" class="btn btn-warning btn-small">Voir Plus</button> 
                                             </div>
                                         </div>                             
                                     </form>
                                     <div class="widget-box">                   
                                         <div class="widget-content nopadding">
-                                            <table class="table table-striped table-bordered">
+                                            <table class="table table-striped table-bordered" id="table_scategories">
                                                 <thead>
                                                   <tr>
                                                     <th>#</th>
-                                                    <th>Id</th>
+                                                    <th class="identify">Id</th>
                                                     <th>Catégorie</th>
                                                     <th>Sous-Catégorie</th>
                                                     <th>Opts</th>
@@ -347,10 +348,12 @@
                                                     <c:forEach var="souscategorie" begin="0" end="1" step="1" items="${listeSousCategorie}">
                                                         <tr>
                                                             <td> <c:out value="${souscategorie.compteur}" /> </td>
-                                                            <td> <c:out value="${souscategorie.id}" /> </td>
+                                                            <td class="identify"> <c:out value="${souscategorie.id}" /> </td>
                                                             <td class="taskDesc"><c:out value="${souscategorie.categorie['designation']}" /> </td>
                                                             <td class="taskStatus"><span class="in-progress"><c:out value="${souscategorie.designation}" /></span></td>
-                                                            <td class="taskOptions"><a href="#" class="tip-top" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
+                                                            <td class="taskOptions"><a href="#" class="tip-top" onclick="returnDataSoucategorie()" data-original-title="Update"><i class="icon-ok"></i></a> 
+                                                                <a href="<c:url value="/SousCategories?id=${souscategorie.id}" />" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a>
+                                                            </td>
                                                         </tr>
                                                     </c:forEach>
                                                 </tbody>
@@ -405,11 +408,11 @@
                         <div class="modal-body">
                             <div class="row-fluid">
                                 <div class="spam12">
-                                    <table class="table table-striped table-bordered">
+                                    <table class="table table-striped table-bordered" id="table_scategories2">
                                         <thead>
                                           <tr>
-                                            <th>#</th>
-                                           
+                                              <th class="identify">#</th>
+                                            <th>Id</th>
                                             <th>Catégorie</th>
                                             <th>Sous-Catégorie</th>
                                             <th>Opts</th>
@@ -418,11 +421,13 @@
                                         <tbody>
                                             <c:forEach var="souscategorie"  items="${listeSousCategorie}">
                                                 <tr>
-                                                    
-                                                    <td> <c:out value="${souscategorie.id}" /> </td>
+                                                    <td> <c:out value="${souscategorie.compteur}" /> </td>
+                                                    <td class="identify"> <c:out value="${souscategorie.id}" /> </td>
                                                     <td class="taskDesc"><c:out value="${souscategorie.categorie['designation']}" /> </td>
                                                     <td class="taskStatus"><span class="in-progress"><c:out value="${souscategorie.designation}" /></span></td>
-                                                    <td class="taskOptions"><a href="#" class="tip-top" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
+                                                    <td class="taskOptions"><a href="#" class="tip-top" data-dismiss="modal" onclick="returnDataSoucategorie2()" data-original-title="Update"><i class="icon-ok"></i></a> 
+                                                        <a href="<c:url value="/SousCategories?id=${souscategorie.id}" />" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a>
+                                                    </td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>

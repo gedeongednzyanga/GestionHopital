@@ -5,6 +5,7 @@ import com.DAO.DAO;
 import com.Factory.AbstractDAOFactory;
 import com.Factory.FactoryType;
 import com.beans.Categorie;
+import com.beans.Produit;
 import com.beans.SousCategorie;
 import com.forms.SousCategorieForm;
 import java.io.IOException;
@@ -25,6 +26,9 @@ public class SousCategories extends HttpServlet {
     private static final String ATTR_CAT_LISTE = "listeCategorie";
     private static final String ATTR_SOUSCAT_FORM = "sousCategorieForm";
     private static final String ATTR_SOUSCATEGORIE = "souscategorie";
+    private static final String ATTR_PRODUIT_LISTE = "listeProduit";
+    DAO<Produit> produitDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getProduitDAO();
+    List<Produit> listeProduit = produitDAO.getAll();
     DAO<Categorie> categorieDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getCategorieDAO();
     DAO<SousCategorie> souscategorieDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getSouscategorieDAO();
     List<Categorie> listeCategorie = categorieDAO.getAll();
@@ -42,9 +46,15 @@ public class SousCategories extends HttpServlet {
         processRequest(request, response);
    
         //Attributs
-        
+        if(request.getParameter("id") != null){
+            SousCategorie souscategorie = new SousCategorie();
+            Long id = Long.parseLong(request.getParameter("id"));
+            souscategorie.setId(id);
+            souscategorieDAO.operationIUD(3, souscategorie);
+        }
         request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
         request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
+        request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
         
     }
@@ -65,9 +75,14 @@ public class SousCategories extends HttpServlet {
         request.setAttribute(ATTR_SOUSCATEGORIE, souscategorie);
         request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
         request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
+        request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         
         if(form.getErreurs().isEmpty()){
-            souscategorieDAO.operationIUD(1, souscategorie);
+            if(request.getParameter("btnSave").equals("save")){
+                souscategorieDAO.operationIUD(1, souscategorie);
+            }else if (request.getParameter("btnSave").equals("update")){
+                souscategorieDAO.operationIUD(2, souscategorie);
+            } 
         }
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
         

@@ -34,3 +34,25 @@ function returnDataCategorie2(){
         };
     }
 }
+function returnDataSoucategorie(){
+    var table = document.getElementById('table_scategories'),
+            rIndex;
+    for(let index =0; index < table.rows.length; index ++){
+        table.rows[index].onclick = function(){
+            rIndex = this.rowIndex;
+            document.getElementById('idcat').value = this.cells[1].textContent;
+            document.getElementById('designationsc').value = this.cells[3].textContent;
+        };
+    }
+}
+function returnDataSoucategorie2(){
+    var table = document.getElementById('table_scategories2'),
+            rIndex;
+    for(let index =0; index < table.rows.length; index ++){
+        table.rows[index].onclick = function(){
+            rIndex = this.rowIndex;
+            document.getElementById('idcat').value = this.cells[1].textContent;
+            document.getElementById('designationsc').value = this.cells[3].textContent;
+        };
+    }
+}
