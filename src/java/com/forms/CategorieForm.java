@@ -19,6 +19,12 @@ public final class CategorieForm extends AbstractForm {
         Categorie categorie = new Categorie();
         
         try{
+            validateId(Integer.parseInt(id));
+        }catch(Exception e){
+            getErreur(CHAMP_ID, e.getMessage());
+        }
+        categorie.setId(Long.parseLong(id));
+        try{
             validateDesignation(designation);
         }catch(Exception e){
             getErreur(CHAMP_DESIGNATION, e.getMessage());

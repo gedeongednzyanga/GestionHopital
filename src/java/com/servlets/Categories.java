@@ -63,9 +63,12 @@ public class Categories extends HttpServlet {
         request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
         request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
         if(formCat.getErreurs().isEmpty()){
-            categorieDAO.operationIUD(1, categorie);  
+            if(request.getParameter("btnSave").equals("save")){
+                categorieDAO.operationIUD(1, categorie); 
+            }else if(request.getParameter("btnSave").equals("update")){
+                categorieDAO.operationIUD(2, categorie); 
+            }    
         }
-        
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
 

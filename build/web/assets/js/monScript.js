@@ -18,7 +18,19 @@ function returnDataCategorie(){
     for(let index =0; index < table.rows.length; index ++){
         table.rows[index].onclick = function(){
             rIndex = this.rowIndex;
-            document.getElementById('designationc').value = this.cells[1].textContent;
+           document.getElementById('idc').value = this.cells[1].textContent;
+            document.getElementById('designationc').value = this.cells[2].textContent;
+        };
+    }
+}
+function returnDataCategorie2(){
+    var table = document.getElementById('table_categories2'),
+            rIndex;
+    for(let index =0; index < table.rows.length; index ++){
+        table.rows[index].onclick = function(){
+            rIndex = this.rowIndex;
+            document.getElementById('idc').value = this.cells[1].textContent;
+            document.getElementById('designationc').value = this.cells[2].textContent;
         };
     }
 }

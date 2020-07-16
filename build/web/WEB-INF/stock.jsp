@@ -259,23 +259,26 @@
                                         <div class="control-group">
                                             <label class="control-label" for="designationc">Catégorie :</label>
                                             <div class="controls">
+                                                <input type="hidden" name="id" id="idc" value="0" />
                                                 <input type="text" class="span11" value="<c:out value="${Categorie.designation}" />" autocomplete="off" id="designationc" name="designation" placeholder="Désignation Catégorie" />             
                                                 <br><span style="color: red"><c:out value="${CategorieForm.erreurs['designation']}" /></span>
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <div class="controls">
-                                                <button type="submit" class="btn btn-success btn-small">Enregistrer</button>   
+                                                <button type="submit" name="btnSave" value="save" class="btn btn-success btn-small">Enregistrer</button>   
+                                                <button type="submit" name="btnSave" value="update" class="btn btn-info btn-small">Modifier</button>  
                                                 <button type="button" data-target="#myModal" data-toggle="modal" class="btn btn-warning btn-small">Voir Plus</button>  
                                             </div>
                                         </div>                             
                                     </form>  
                                     <div class="widget-box">  
                                         <div class="widget-content nopadding">
-                                            <table class="table table-striped table-bordered">
+                                            <table class="table table-striped table-bordered" id="table_categories2">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
+                                                        <th class="identify">Id</th>
                                                         <th>Désignation</th>
                                                         <th>Statut</th>
                                                         <th>Options</th>
@@ -284,10 +287,11 @@
                                                 <tbody>
                                                     <c:forEach var="categorie" begin="0" end="3" step="1" items="${listeCategorie}">
                                                         <tr>
-                                                            <td> <c:out value="${categorie.id}" /> </td>
-                                                            <td> <i class="icon-ok-sign"></i>  <c:out value="${categorie.designation}" /> </td>
+                                                            <td> <c:out value="${categorie.compteur}" /> </td>
+                                                            <td class="identify"> <c:out value="${categorie.id}" /> </td>
+                                                            <td><c:out value="${categorie.designation}" /> </td>
                                                             <td class="taskStatus"><span class="done">Ok</span></td>
-                                                            <td class="taskOptions"><a href="#" class="tip-top" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
+                                                            <td class="taskOptions"><a href="#" class="tip-top" onclick="returnDataCategorie2()" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
                                                         </tr>
                                                     </c:forEach>                 
                                                 </tbody> 
@@ -366,6 +370,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th class="identify">Id</th>
                                                 <th>Désignation</th>
                                                 <th>Statut</th>
                                                 <th>Options</th>
@@ -374,10 +379,11 @@
                                         <tbody>
                                             <c:forEach var="categorie" items="${listeCategorie}">
                                                 <tr>
-                                                    <td> <c:out value="${categorie.id}" /> </td>
+                                                    <td> <c:out value="${categorie.compteur}" /> </td>
+                                                    <td class="identify"> <c:out value="${categorie.id}" /> </td>
                                                     <td> <i class="icon-ok-sign"></i>  <c:out value="${categorie.designation}" /> </td>
                                                     <td class="taskStatus"><span class="done">Ok</span></td>
-                                                    <td class="taskOptions"><a  class="tip-top" onclick="returnDataCategorie()" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
+                                                    <td class="taskOptions"><a  class="tip-top" data-dismiss="modal" onclick="returnDataCategorie()" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
                                                 </tr>
                                             </c:forEach>                 
                                         </tbody>
@@ -419,6 +425,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             <div class="row-fluid">
                 <div class="span12">
                     <div class="widget-box">
@@ -460,7 +467,7 @@
                                             <td> <c:out value="${produit.utilisateur}" /> </td>
                                             <td class="taskOptions">
                                                 <a href="#" class="tip-top" onclick="retunDataProduct()" data-original-title="Modifier"><i class="icon-ok"></i></a> 
-                                                <a href="#" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
+                                                <a href="<c:url value="/Stock?id=${produit.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>

@@ -46,10 +46,15 @@ public class Stock extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //Attributs
         
-       
+        if(request.getParameter("id") != null){
+            Produit produit = new Produit();
+            Long id = Long.parseLong(request.getParameter("id"));
+            produit.setId(id);
+            produitDAO.operationIUD(3, produit);
+        }
+        
         request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
         request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
-        
         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
        
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);

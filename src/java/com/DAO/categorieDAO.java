@@ -48,12 +48,14 @@ public class categorieDAO  extends DAO<Categorie> {
 
     @Override
     public List getAll() {
+        int compteur =0;
        ArrayList<Categorie> categorieList = new ArrayList<>();
        try{
            ps = this.connect.prepareStatement("CALL GET_CATEGORIE()");
            ResultSet rs = ps.executeQuery();
            while(rs.next()){
-               categorieList.add(new Categorie(Long.parseLong(rs.getString("cat_id")), rs.getString("cat_designation")));
+               compteur++;
+               categorieList.add(new Categorie(compteur,Long.parseLong(rs.getString("cat_id")), rs.getString("cat_designation")));
            }
        }catch(NumberFormatException | SQLException e){
            System.out.println(e.getMessage());
