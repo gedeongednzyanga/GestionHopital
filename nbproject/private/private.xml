@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/src/java/com/servlets/Stock.java</file>
+            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/src/java/com/beans/Approvisionnement.java</file>
             <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/web/WEB-INF/stock.jsp</file>
+            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/src/java/com/DAO/approvisionnementDAO.java</file>
+            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/web/WEB-INF/accueil.jsp</file>
         </group>
     </open-files>
 </project-private>

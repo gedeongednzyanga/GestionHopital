@@ -2,8 +2,10 @@
 package com.servlets;
 
 import com.DAO.DAO;
+import com.DAO.approvisionnementDAO;
 import com.Factory.AbstractDAOFactory;
 import com.Factory.FactoryType;
+import com.beans.Approvisionnement;
 import com.beans.Categorie;
 import com.beans.Produit;
 import com.beans.SousCategorie;
@@ -27,12 +29,16 @@ public class Stock extends HttpServlet {
     private static final String ATTR_PRODUIT ="produit";
     private static final String ATTR_PRODUIT_FORM ="produitForm";
     private static final String ATTR_PRODUIT_LISTE = "listeProduit";
+    private static final String ATTR_APPROVINNEMENT = "approvisionnement";
     DAO<Produit> produitDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getProduitDAO();
     DAO<Categorie> categorieDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getCategorieDAO();
     DAO<SousCategorie> souscategorieDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getSouscategorieDAO();
+    
     List<Produit> listeProduit = produitDAO.getAll();
     List<Categorie> listeCategorie = categorieDAO.getAll();
     List<SousCategorie> listeSousCategorie = souscategorieDAO.getAll();
+    Approvisionnement approvi = new approvisionnementDAO().getLastApprovionnement();
+   
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -56,6 +62,7 @@ public class Stock extends HttpServlet {
         request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
         request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
+        request.setAttribute(ATTR_APPROVINNEMENT, approvi);
        
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }

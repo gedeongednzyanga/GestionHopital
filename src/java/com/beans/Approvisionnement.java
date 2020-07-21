@@ -13,7 +13,16 @@ public class Approvisionnement {
     private long idFournisseur;
     private long idProduit;
     private int quantite;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
     private double prixAchatU;
+    private String date;
     private Date dateApprov;
     private Date dateFabrication;
     private Date dateExpiration;

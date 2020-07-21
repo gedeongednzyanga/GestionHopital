@@ -502,7 +502,7 @@
                         </div>
                         <div class="widget-content tab-content">
                             <div id="tab1" class="tab-pane active">
-                                <p>And <h4><c:out value="${sessionScope.sessionUtilisateur.nom} ${sessionScope.sessionUtilisateur.prenom}" /></h4> is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out
+                                <p>And <h4 id="user_session"><c:out value="${sessionScope.sessionUtilisateur.nom} ${sessionScope.sessionUtilisateur.prenom}" /></h4> is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out
                                     the comment. </p>
                                 <img src="img/demo/demo-image1.jpg" alt="demo-image" />
                             </div>

@@ -61,7 +61,19 @@ public class approvisionnementDAO extends DAO<Approvisionnement> {
         }
         return liste;
     }
-
-  
+    public Approvisionnement getLastApprovionnement(){
+        Approvisionnement approv = new Approvisionnement();
+        try{
+            ps = this.connect.prepareStatement("CALL GET_LASTAPPROV()");
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                approv.setQuantite(Integer.parseInt(rs.getString("quantite")));
+                approv.setDate((rs.getString("datederniere")));
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return approv;
+    }
     
 }
