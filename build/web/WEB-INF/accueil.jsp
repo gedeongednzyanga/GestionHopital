@@ -74,7 +74,7 @@
                 <ul>
                     <li><a href="<c:url value="/Stock" />">Stock</a></li>
                     <li><a href="<c:url value="/Achat" />">Achats</a></li>
-                    <li><a href="sortie.html">Sorties</a></li>
+                    <li><a href="<c:url value="/Sorties" />">Sorties</a></li>
                     <li><a href="<c:url value="/Fournisseur" />">Fournisseurs</a></li>
                 </ul>
             </li>

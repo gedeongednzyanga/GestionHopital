@@ -11,6 +11,7 @@ public class SortieMalade extends Sortie {
     private long id;
     private Malade malade;
     private String usersession;
+    private int maladeid;
 
     public SortieMalade() {
     }
@@ -51,6 +52,14 @@ public class SortieMalade extends Sortie {
 
     public void setUsersession(String usersession) {
         this.usersession = usersession;
+    }
+
+    public int getMaladeid() {
+        return maladeid;
+    }
+
+    public void setMaladeid(int maladeid) {
+        this.maladeid = maladeid;
     }
     
 }

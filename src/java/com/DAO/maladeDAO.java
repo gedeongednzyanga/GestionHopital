@@ -62,12 +62,12 @@ public class maladeDAO  extends DAO<Malade> {
     public List getAll() {
         ArrayList liste = new ArrayList<>();
         try{
-            ps = this.connect.prepareStatement("CALL ");
+            ps = this.connect.prepareStatement("CALL GET_MALADE()");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                liste.add(new Malade(Long.parseLong(rs.getString("")),rs.getString(""), rs.getString(""),
-                rs.getString(""),Date.valueOf(rs.getString("")), rs.getString(""), rs.getString(""), 
-                rs.getString(""), rs.getString(""), rs.getString("")));
+                liste.add(new Malade(Long.parseLong(rs.getString("malade_id")),rs.getString("malade_nom"), rs.getString("malade_prenom"),
+                rs.getString("malade_sexe"),Date.valueOf(rs.getString("malade_naissance")), rs.getString("malade_lieu"), rs.getString("malade_residance"), 
+                rs.getString("malade_pere"), rs.getString("malade_mere"), rs.getString("malade_motif")));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
