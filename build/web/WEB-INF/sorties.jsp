@@ -164,13 +164,11 @@
                                      <span>Produits <span class="btn btn-mini btn-success" >Fiche de Stock</span> <br></span>
                                      <li>Dernier entrée en Stock : <c:out value="${approvisionnement.quantite}" /> produits le <time><c:out value="${approvisionnement.date}" /> </time> </li>
                                     <li>Dernier sortie en Stock : 240 produits le <time>23-06-2020 </time></li>
-    
                                  </div>
-                                 
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>                  
         </div>
         <div class="container-fluid">
             <hr>
@@ -204,22 +202,28 @@
                                                                     <option value="<c:out value="${malade.id}" />"> <c:out value="${malade.nom} ${malade.prenom}" /></option>
                                                                 </c:forEach>
                                                             </select>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label class="control-label">Date Sortie :</label>
+                                                        <div class="controls">
+                                                            <input type="date" name="datesortiem" id="datesortiem"  required="" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
                                                         </div>
                                                         <div class="controls">
                                                             <button type="submit" name="factureCreate" class="btn btn-warning btn-small">Créer Facture</button>
-                                                        </div>   
+                                                        </div> 
                                                     </div>
                                                 </form>
-                                                <form action="<c:url value="/Stock" />" method="POST" class="form-horizontal">
+                                                <form action="<c:url value="/Sorties" />" method="POST" class="form-horizontal">
                                                     <div class="control-group">
                                                         <label class="control-label" for="souscategorie">Produit :</label>
                                                         <div class="controls">
                                                             <input type="hidden" name="id" id="id" value="0" />
-                                                            <input type="hidden" name="utilisateur" value="<c:out value="${sessionScope.sessionUtilisateur.nom} ${sessionScope.sessionUtilisateur.prenom}" />" />
+                                                            
                                                             <select id="produit" name="produit" required="">
-                                                                <c:forEach var="souscategorie" items="${listeSousCategorie}">
-                                                                    <option value="<c:out value="${souscategorie.id}" />"> <c:out value="${souscategorie.designation}" /> 
-                                                                        (<c:out value="${souscategorie.categorie['designation']}" /> ) </option>
+                                                                <c:forEach var="produit" items="${listeProduit}">
+                                                                    <option value="<c:out value="${produit.id}" />"> <c:out value="${produit.designation} ${produit.dosage} (${produit.sousCategorie['designation']})" /> 
+                                                                    </option>                                                                                                           
                                                                 </c:forEach>
                                                             </select>
                                                         </div>
@@ -227,12 +231,10 @@
                                                     <div class="control-group">
                                                         <label class="control-label" for="designation">Quantité :</label>
                                                         <div class="controls">
-                                                            <input type="number" class="span11" id="quantite" value="<c:out value="${produit.designation}" />" name="quantite" autocomplete="off" placeholder="Quantité" />
-                                                            <br><span style="color: red"><c:out value="${produitForm.erreurs['designation']}" /></span>
+                                                            <input type="number" required="" class="span11" id="quantite" value="<c:out value="${sortiem.quantite}" />" name="quantite" autocomplete="off" placeholder="Quantité" />
+                                                            <br><span style="color: red"><c:out value="${sortieMForm.erreurs['quantite']}" /></span>
                                                         </div>
                                                     </div>
-                                                   
-                                                 
                                                     <div class="control-group">
                                                         <label class="control-label" for="stockAlert">Reste Stock :</label>
                                                         <div class="controls">
@@ -242,7 +244,7 @@
                                                     </div>
                                                    
                                                     <div class="form-actions ">
-                                                        <button type="submit" name="btnSave" value="save" class="btn btn-success"><i class="icon-ok"></i> Ajouter</button> 
+                                                        <button type="submit" name="btnSaveS" value="saveS" class="btn btn-success"><i class="icon-ok"></i> Ajouter</button> 
                                                         <button type="submit" name="btnSave" value="update" class="btn btn-info"><i class="icon-edit"></i> Modifier</button>
                                                     </div>
                                                 </form>

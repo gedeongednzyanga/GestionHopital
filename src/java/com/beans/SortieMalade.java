@@ -12,14 +12,16 @@ public class SortieMalade extends Sortie {
     private Malade malade;
     private String usersession;
     private int maladeid;
-
+    private int idproduit;
+    
     public SortieMalade() {
     }
 
-    public SortieMalade(long id, Malade malade, String usersession) {
+    public SortieMalade(long id, Malade malade, String usersession, Date dateSortie) {
         this.id = id;
         this.malade = malade;
         this.usersession = usersession;
+        
     }
 
     public SortieMalade(long id, Malade malade, String usersession, int quantite, double prixVenteU, Date dateSortie) {
@@ -60,6 +62,14 @@ public class SortieMalade extends Sortie {
 
     public void setMaladeid(int maladeid) {
         this.maladeid = maladeid;
+    }
+
+    public int getIdproduit() {
+        return idproduit;
+    }
+
+    public void setIdproduit(int idproduit) {
+        this.idproduit = idproduit;
     }
     
 }

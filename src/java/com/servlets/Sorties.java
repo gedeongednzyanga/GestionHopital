@@ -10,6 +10,7 @@ import com.Factory.FactoryType;
 import com.beans.Approvisionnement;
 import com.beans.Categorie;
 import com.beans.Malade;
+import com.beans.Produit;
 import com.beans.SortieMalade;
 
 import com.beans.SousCategorie;
@@ -29,19 +30,19 @@ public class Sorties extends HttpServlet {
 
     private static final String VUE = "/WEB-INF/sorties.jsp" ;
 
-    private static final String ATTR_SOUSCAT_LISTE = "listeSousCategorie";
-    private static final String ATTR_CAT_LISTE = "listeCategorie";
+    private static final String ATTR_FORM_SM = "sortieMForm";
+    private static final String ATTR_SORTIEM = "sortiem";
     private static final String ATTR_MALADE ="malade";
     private static final String ATTR_PRODUIT_FORM ="produitForm";
     private static final String ATTR_PRODUIT_LISTE = "listeProduit";
     private static final String ATTR_APPROVINNEMENT = "approvisionnement";
     DAO<Malade> maladeDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getMaladeDAO();
-    DAO<Categorie> categorieDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getCategorieDAO();
-    DAO<SousCategorie> souscategorieDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getSouscategorieDAO();
+    DAO<Produit> produitDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getProduitDAO();
+    DAO<SortieMalade> sortieMaladeDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getSortieMaladeDAO();
     
     List<Malade> listeMalade =maladeDAO.getAll();
-    List<Categorie> listeCategorie = categorieDAO.getAll();
-    List<SousCategorie> listeSousCategorie = souscategorieDAO.getAll();
+    List<Produit> listeProduit = produitDAO.getAll();
+//    List<SousCategorie> listeSousCategorie = souscategorieDAO.getAll();
     Approvisionnement approvi = new approvisionnementDAO().getLastApprovionnement();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -54,8 +55,7 @@ public class Sorties extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
-        request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
-        request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
+        request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         request.setAttribute(ATTR_MALADE, listeMalade);
         request.setAttribute(ATTR_APPROVINNEMENT, approvi);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
@@ -71,12 +71,19 @@ public class Sorties extends HttpServlet {
             FactureForm formS = new FactureForm();
             SortieMalade sm = formS.createFacture(request);
             new sortieMaladeDAO().createFacture(1,sm);
+        }else if (request.getParameter("btnSaveS") != null){
+            FactureForm form = new FactureForm();
+            SortieMalade smal = form.addToFacture(request);
+            if(form.getErreurs().isEmpty()){
+                sortieMaladeDAO.operationIUD(1, smal);
+            }
+             request.setAttribute(ATTR_FORM_SM, form);
+             request.setAttribute(ATTR_SORTIEM, smal);
         }
         
-        request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
-        request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
+        request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         request.setAttribute(ATTR_MALADE, listeMalade);
-        request.setAttribute(ATTR_APPROVINNEMENT, approvi);
+        
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
 

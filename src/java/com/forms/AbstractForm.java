@@ -52,4 +52,10 @@ public abstract class AbstractForm {
         else if(prix < 0)
             throw new Exception("Nombre invalide.");
     }
+    
+    protected void validateQuantite(int quantite) throws Exception{
+        if(quantite < 0){
+            throw new Exception ("La quantite ne doit pas être inférieure à zéro.");
+        }
+    }
 }
