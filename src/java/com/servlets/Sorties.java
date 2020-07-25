@@ -5,16 +5,19 @@ package com.servlets;
 import com.DAO.DAO;
 import com.DAO.approvisionnementDAO;
 import com.DAO.sortieMaladeDAO;
+import com.DAO.sortieServiceDAO;
 import com.Factory.AbstractDAOFactory;
 import com.Factory.FactoryType;
 import com.beans.Approvisionnement;
-import com.beans.Categorie;
+
 import com.beans.Malade;
 import com.beans.Produit;
+import com.beans.Service;
 import com.beans.SortieMalade;
+import com.beans.SortieService;
 
-import com.beans.SousCategorie;
 import com.forms.FactureForm;
+import com.forms.FormRequisition;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -33,16 +36,19 @@ public class Sorties extends HttpServlet {
     private static final String ATTR_FORM_SM = "sortieMForm";
     private static final String ATTR_SORTIEM = "sortiem";
     private static final String ATTR_MALADE ="malade";
-    private static final String ATTR_PRODUIT_FORM ="produitForm";
+    private static final String ATTR_FORM_SS = "sortieSForm";
+    private static final String ATTR_SORTIES = "sorties";
+    private static final String ATTR_SERVICE ="services";
     private static final String ATTR_PRODUIT_LISTE = "listeProduit";
     private static final String ATTR_APPROVINNEMENT = "approvisionnement";
     DAO<Malade> maladeDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getMaladeDAO();
     DAO<Produit> produitDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getProduitDAO();
+    DAO<Service> serviceDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getServiceDAO();
     DAO<SortieMalade> sortieMaladeDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getSortieMaladeDAO();
-    
+    DAO<SortieService> sortieServiceDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getSortieServiceDAO();
     List<Malade> listeMalade =maladeDAO.getAll();
     List<Produit> listeProduit = produitDAO.getAll();
-//    List<SousCategorie> listeSousCategorie = souscategorieDAO.getAll();
+    List<Service> listeService = serviceDAO.getAll();
     Approvisionnement approvi = new approvisionnementDAO().getLastApprovionnement();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -57,6 +63,7 @@ public class Sorties extends HttpServlet {
         
         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         request.setAttribute(ATTR_MALADE, listeMalade);
+        request.setAttribute(ATTR_SERVICE, listeService);
         request.setAttribute(ATTR_APPROVINNEMENT, approvi);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
@@ -79,11 +86,23 @@ public class Sorties extends HttpServlet {
             }
              request.setAttribute(ATTR_FORM_SM, form);
              request.setAttribute(ATTR_SORTIEM, smal);
+        }else if(request.getParameter("factureRec") != null){
+            FormRequisition formR = new FormRequisition();
+            SortieService ss = formR.createRequisition(request);
+            new sortieServiceDAO().createRequisition(1, ss);
+        }else if(request.getParameter("btnSaveSS") != null){
+            FormRequisition form = new FormRequisition();
+            SortieService ssl = form.addToRecquisition(request);
+            if(form.getErreurs().isEmpty()){
+                sortieServiceDAO.operationIUD(1, ssl);
+            }
+            request.setAttribute(ATTR_FORM_SS, form);
+            request.setAttribute(ATTR_SORTIES, ssl);
         }
         
         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         request.setAttribute(ATTR_MALADE, listeMalade);
-        
+        request.setAttribute(ATTR_SERVICE, listeService);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
 

@@ -12,7 +12,8 @@ public class SortieService extends Sortie{
     private long id;
     private Service service;
     private String usersession;
-
+    private int serviceid;
+    private int produitId;
     public SortieService() {
     }
 
@@ -51,6 +52,22 @@ public class SortieService extends Sortie{
 
     public void setUsersession(String usersession) {
         this.usersession = usersession;
+    }
+
+    public int getServiceid() {
+        return serviceid;
+    }
+
+    public void setServiceid(int serviceid) {
+        this.serviceid = serviceid;
+    }
+
+    public int getProduitId() {
+        return produitId;
+    }
+
+    public void setProduitId(int produitId) {
+        this.produitId = produitId;
     }
     
     
