@@ -42,15 +42,16 @@ public class maladeDAO  extends DAO<Malade> {
     public Malade find(int id) {
         Malade malade = new Malade();
         try{
-            ps = this.connect.prepareStatement("CALL ");
+            ps = this.connect.prepareStatement("CALL GET_ONEMALADE (?)");
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                malade.setId(id); malade.setNom(rs.getString("")); 
-                malade.setPrenom(rs.getString("")); malade.setSexe(rs.getString("")); 
-                malade.setNaissance(Date.valueOf(rs.getString("")));
-                malade.setLieu(rs.getString("")); malade.setResidance(rs.getString(""));
-                malade.setPere(rs.getString("")); malade.setMere(rs.getString(""));
-                malade.setMotif(rs.getString("")); 
+                malade.setId(id); malade.setNom(rs.getString("malade_nom")); 
+                malade.setPrenom(rs.getString("malade_prenom")); malade.setSexe(rs.getString("malade_sexe")); 
+                malade.setNaissance(Date.valueOf(rs.getString("malade_naissance")));
+                malade.setLieu(rs.getString("malade_lieu")); malade.setResidance(rs.getString("malade_residance"));
+                malade.setPere(rs.getString("malade_pere")); malade.setMere(rs.getString("malade_mere"));
+                malade.setMotif(rs.getString("malade_motif")); 
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());

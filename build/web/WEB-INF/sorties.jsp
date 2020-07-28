@@ -220,7 +220,7 @@
                                                         <label class="control-label" for="souscategorie">Produit :</label>
                                                         <div class="controls">
                                                             <input type="hidden" name="id" id="id" value="0" />
-                                                            
+                                                            <input type="hidden" name="maladeid" id="maladeid" value="<c:out default="0" value="${sessionScope.sessionMalade.id}" />" />
                                                             <select id="produit" name="produit" required="">
                                                                 <c:forEach var="produit" items="${listeProduit}">
                                                                     <option value="<c:out value="${produit.id}" />"> <c:out value="${produit.designation} ${produit.dosage} (${produit.sousCategorie['designation']})" /> 
@@ -254,7 +254,7 @@
                                      <div class="span6">
                                        <div class="widget-box">
                                             <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-                                                <h5>Panier du client</h5>
+                                                <h5>Panier du client : <c:out value="${sessionScope.sessionMalade.id} ${sessionScope.sessionMalade.nom} ${sessionScope.sessionMalade.prenom}" /></h5>
                                                 <span class="label label-info">Featured</span>
                                             </div>
                                             <div class="widget-content nopadding">
@@ -269,14 +269,31 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <c:forEach var="panier" items="${panierClient}">
+                                                            <tr>
+                                                                <td><c:out value="${panier.id}" /></td>
+                                                                <td>steave Teves</td>
+                                                                <td>marki</td>
+                                                                <td>@hahas</td>
+                                                                <td>@hahas</td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                        
                                                         <tr>
-                                                            <td>1</td>
-                                                            <td>steave</td>
-                                                            <td>marki</td>
-                                                            <td>@hahas</td>
+                                                            <td>2</td>
+                                                            <td>john</td>
+                                                            <td>deo</td>
+                                                            <td>@john</td>
                                                             <td>@hahas</td>
                                                         </tr>
-                                                        <tr>
+                                                         <tr>
+                                                            <td>2</td>
+                                                            <td>john</td>
+                                                            <td>deo</td>
+                                                            <td>@john</td>
+                                                            <td>@hahas</td>
+                                                        </tr>
+                                                         <tr>
                                                             <td>2</td>
                                                             <td>john</td>
                                                             <td>deo</td>

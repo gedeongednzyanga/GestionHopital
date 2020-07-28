@@ -1,10 +1,13 @@
 
 package com.DAO;
 
+import com.beans.Malade;
 import com.beans.SortieMalade;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,6 +51,23 @@ public class sortieMaladeDAO extends DAO<SortieMalade> {
     @Override
     public SortieMalade find(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public List getPanier(int id){
+        ArrayList<SortieMalade> liste = new ArrayList<>();
+        try{
+            ps = this.connect.prepareStatement("CALL GET_ONESORTIEMALADE (?)");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                liste.add(new SortieMalade (Long.parseLong(rs.getString("sortiem_id")), new maladeDAO().find(Integer.parseInt(rs.getString("malade_id"))),
+                rs.getString("user_session"), Integer.parseInt(rs.getString("quantite")), Double.parseDouble(rs.getString("sortie_pvu")),
+                Date.valueOf(rs.getString("date_sortie")), new produitDAO().find(Integer.parseInt(rs.getString("ref_produit")))));
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return liste;
     }
 
     @Override

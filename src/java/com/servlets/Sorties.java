@@ -24,6 +24,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -41,6 +42,8 @@ public class Sorties extends HttpServlet {
     private static final String ATTR_SERVICE ="services";
     private static final String ATTR_PRODUIT_LISTE = "listeProduit";
     private static final String ATTR_APPROVINNEMENT = "approvisionnement";
+    private static final String ATTR_SESSION_MALADE = "sessionMalade";
+    private static final String ATTR_PANIER_CLIENT = "panierClient";
     DAO<Malade> maladeDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getMaladeDAO();
     DAO<Produit> produitDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getProduitDAO();
     DAO<Service> serviceDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getServiceDAO();
@@ -73,19 +76,22 @@ public class Sorties extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        HttpSession session = request.getSession();
         
         if(request.getParameter("factureCreate") != null){
             FactureForm formS = new FactureForm();
             SortieMalade sm = formS.createFacture(request);
             new sortieMaladeDAO().createFacture(1,sm);
+            session.setAttribute(ATTR_SESSION_MALADE, maladeDAO.find(Integer.parseInt(request.getParameter("malade"))));
         }else if (request.getParameter("btnSaveS") != null){
             FactureForm form = new FactureForm();
             SortieMalade smal = form.addToFacture(request);
             if(form.getErreurs().isEmpty()){
                 sortieMaladeDAO.operationIUD(1, smal);
             }
-             request.setAttribute(ATTR_FORM_SM, form);
-             request.setAttribute(ATTR_SORTIEM, smal);
+            
+            request.setAttribute(ATTR_FORM_SM, form);
+            request.setAttribute(ATTR_SORTIEM, smal);
         }else if(request.getParameter("factureRec") != null){
             FormRequisition formR = new FormRequisition();
             SortieService ss = formR.createRequisition(request);
