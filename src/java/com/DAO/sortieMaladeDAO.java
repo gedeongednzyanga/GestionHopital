@@ -60,8 +60,8 @@ public class sortieMaladeDAO extends DAO<SortieMalade> {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                liste.add(new SortieMalade (Long.parseLong(rs.getString("sortiem_id")), new maladeDAO().find(Integer.parseInt(rs.getString("malade_id"))),
-                rs.getString("user_session"), Integer.parseInt(rs.getString("quantite")), Double.parseDouble(rs.getString("sortie_pvu")),
+                liste.add(new SortieMalade(Long.parseLong(rs.getString("sortiem_id")), new maladeDAO().find(Integer.parseInt(rs.getString("malade_id"))),
+                rs.getString("user_session"), Integer.parseInt(rs.getString("sortie_quantite")), Double.parseDouble(rs.getString("sortie_pvu")),
                 Date.valueOf(rs.getString("date_sortie")), new produitDAO().find(Integer.parseInt(rs.getString("ref_produit")))));
             }
         }catch(SQLException e){

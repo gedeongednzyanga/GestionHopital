@@ -219,7 +219,7 @@
                                                     <div class="control-group">
                                                         <label class="control-label" for="souscategorie">Produit :</label>
                                                         <div class="controls">
-                                                            <input type="hidden" name="id" id="id" value="0" />
+                                                            <input type="hidden" name="id" id="id" value="0" /> 
                                                             <input type="hidden" name="maladeid" id="maladeid" value="<c:out default="0" value="${sessionScope.sessionMalade.id}" />" />
                                                             <select id="produit" name="produit" required="">
                                                                 <c:forEach var="produit" items="${listeProduit}">
@@ -266,45 +266,24 @@
                                                             <th>Quantité</th>
                                                             <th>Prix Unitaire</th>
                                                             <th>Prix Total</th>
+                                                            <th>#</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <c:forEach var="panier" items="${panierClient}">
                                                             <tr>
                                                                 <td><c:out value="${panier.id}" /></td>
-                                                                <td>steave Teves</td>
-                                                                <td>marki</td>
-                                                                <td>@hahas</td>
-                                                                <td>@hahas</td>
+                                                                <td> <c:out value="${panier.produit['designation']} ${panier.produit['dosage']}" /> </td>
+                                                                <td><c:out value="${panier.quantite}" /></td>
+                                                                <td><c:out value="${panier.prixVenteU}" /> </td>
+                                                                <td> <c:out value="${panier.prixVenteU * panier.quantite}" /> </td>
+                                                                <td> <a href="#" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a> </td>
                                                             </tr>
                                                         </c:forEach>
-                                                        
                                                         <tr>
-                                                            <td>2</td>
-                                                            <td>john</td>
-                                                            <td>deo</td>
-                                                            <td>@john</td>
-                                                            <td>@hahas</td>
-                                                        </tr>
-                                                         <tr>
-                                                            <td>2</td>
-                                                            <td>john</td>
-                                                            <td>deo</td>
-                                                            <td>@john</td>
-                                                            <td>@hahas</td>
-                                                        </tr>
-                                                         <tr>
-                                                            <td>2</td>
-                                                            <td>john</td>
-                                                            <td>deo</td>
-                                                            <td>@john</td>
-                                                            <td>@hahas</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>3</td>
-                                                            <td>@hahas</td>
-                                                            <td colspan="2">Total à payer</td>
-                                                            <td>@twitter</td>
+                                                            <td>#</td>
+                                                            <td colspan="3"> <b>Total à payer</b> </td>
+                                                            <td colspan="2"> <b><c:out value="${panier.prixVenteU * panier.quantite}" /></b> </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -400,7 +379,7 @@
                                                         <label class="control-label" for="souscategorie">Produit :</label>
                                                         <div class="controls">
                                                             <input type="hidden" name="id" id="id" value="0" />
-                                                            
+                                                            <input type="hidden" name="serviceid" value="<c:out value="${sessionScope.sessionService.id}" />" />
                                                             <select id="produit" name="produit" required="">
                                                                 <c:forEach var="produit" items="${listeProduit}">
                                                                     <option value="<c:out value="${produit.id}" />"> <c:out value="${produit.designation} ${produit.dosage} (${produit.sousCategorie['designation']})" /> 
@@ -434,7 +413,7 @@
                                      <div class="span6">
                                        <div class="widget-box">
                                             <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-                                                <h5>Panier du client</h5>
+                                                <h5>Panier du Service : <c:out value="${sessionScope.sessionService.designation}" /> </h5>
                                                 <span class="label label-info">Featured</span>
                                             </div>
                                             <div class="widget-content nopadding">
@@ -449,25 +428,20 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <c:forEach var="panierService" items="${panierService}">
+                                                            <tr>
+                                                                <td> <c:out value="${panierService.id}" /> </td>
+                                                                <td> <c:out value="${panierService.produit['designation']} ${panierService.produit['dosage']}" /> </td>
+                                                                <td> <c:out value="${panierService.quantite}" /> </td>
+                                                                <td> <c:out value="${panierService.prixVenteU}" /> </td>
+                                                                <td> <c:out value="${panierService.prixVenteU * panierService.quantite}" /> </td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                        
                                                         <tr>
-                                                            <td>1</td>
-                                                            <td>steave</td>
-                                                            <td>marki</td>
-                                                            <td>@hahas</td>
-                                                            <td>@hahas</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>2</td>
-                                                            <td>john</td>
-                                                            <td>deo</td>
-                                                            <td>@john</td>
-                                                            <td>@hahas</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>3</td>
-                                                            <td>@hahas</td>
-                                                            <td colspan="2">Total à payer</td>
-                                                            <td>@twitter</td>
+                                                            <td>#</td>
+                                                            <td colspan="3"> <b>Total à payer</b> </td>
+                                                            <td><b>12900</b></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

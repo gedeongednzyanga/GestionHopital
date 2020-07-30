@@ -41,12 +41,13 @@ public class produitDAO  extends DAO<Produit> {
     public Produit find(int id) {
         Produit produit = new Produit();
         try{
-            ps = this.connect.prepareStatement("CALL GET_ONEPRODUIT (?) ");
+            ps = this.connect.prepareStatement("CALL GET_ONEPRODUIT (?)");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 produit.setId(id);
                 produit.setDesignation(rs.getString("produit_designation"));
+                produit.setDosage(rs.getString("dosage"));
                 produit.setPrixVenteU(Integer.parseInt(rs.getString("produit_pvu")));
                 produit.setStockAlert(Integer.parseInt(rs.getString("produit_sts")));
                 

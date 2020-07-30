@@ -4,7 +4,9 @@ package com.DAO;
 import com.beans.SortieService;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,6 +53,24 @@ public class sortieServiceDAO extends DAO<SortieService>{
     @Override
     public List getAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public List getPanier(int id){
+        ArrayList<SortieService> liste = new ArrayList<>();
+        try{
+            ps = this.connect.prepareStatement("CALL GET_ONESORTIESERVICE (?)");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                liste.add(new SortieService(Long.parseLong(rs.getString("sortie_id")), new serviceDAO().find(Integer.parseInt(rs.getString("ref_service"))),
+                rs.getString("user_session"), Integer.parseInt(rs.getString("sortie_quantite")), Double.parseDouble(rs.getString("sortie_pvu")),
+                Date.valueOf(rs.getString("date_sortie_s")), new produitDAO().find(Integer.parseInt(rs.getString("ref_produit")))));
+                
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return liste;
     }
     
 }

@@ -2,6 +2,8 @@
 package com.DAO;
 
 import com.beans.Service;
+import com.beans.SortieService;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,8 +37,24 @@ public class serviceDAO extends DAO<Service>{
 
     @Override
     public Service find(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Service service = new Service();
+        try{
+            ps = this.connect.prepareStatement("CALL GET_ONESERVICE (?)");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                service.setId(Long.parseLong(rs.getString("service_id")));
+                service.setDesignation(rs.getString("service_designation"));
+                service.setDescription(rs.getString("service_detail"));
+                service.setResonsable(rs.getString("service_responsable"));
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return service;
     }
+    
+
 
     @Override
     public List getAll() {

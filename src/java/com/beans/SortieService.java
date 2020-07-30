@@ -11,6 +11,7 @@ public class SortieService extends Sortie{
     
     private long id;
     private Service service;
+    private Produit produit;
     private String usersession;
     private int serviceid;
     private int produitId;
@@ -23,11 +24,12 @@ public class SortieService extends Sortie{
         this.usersession = usersession;
     }
 
-    public SortieService(long id, Service service, String usersession, int quantite, double prixVenteU, Date dateSortie) {
+    public SortieService(long id, Service service, String usersession, int quantite, double prixVenteU, Date dateSortie, Produit produit) {
         super(quantite, prixVenteU, dateSortie);
         this.id = id;
         this.service = service;
         this.usersession = usersession;
+        this.produit = produit;
     }
 
     public long getId() {
@@ -68,6 +70,14 @@ public class SortieService extends Sortie{
 
     public void setProduitId(int produitId) {
         this.produitId = produitId;
+    }
+
+    public Produit getProduit() {
+        return produit;
+    }
+
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
     
     
