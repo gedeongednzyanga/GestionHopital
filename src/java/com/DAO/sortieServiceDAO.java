@@ -52,8 +52,19 @@ public class sortieServiceDAO extends DAO<SortieService>{
 
     @Override
     public List getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<SortieService> liste = new ArrayList<>();
+        try{
+            ps = this.connect.prepareStatement("");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                System.out.println("Pas encore.");
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return liste;
     }
+    
     
     public List getPanier(int id){
         ArrayList<SortieService> liste = new ArrayList<>();
