@@ -34,6 +34,15 @@ public class Categories extends HttpServlet {
     List<SousCategorie> listeSousCategorie = souscategorieDAO.getAll();
     List<Categorie> listeCategorie = categorieDAO.getAll();
     
+    void loadData(){
+       listeProduit.clear();
+       listeCategorie.clear();
+       listeSousCategorie.clear();
+       listeCategorie = categorieDAO.getAll();
+       listeSousCategorie = souscategorieDAO.getAll();
+       listeProduit = produitDAO.getAll();
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -44,13 +53,14 @@ public class Categories extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
         if(request.getParameter("id") != null){
             Categorie categorie = new Categorie();
             Long id =Long.parseLong(request.getParameter("id"));
             categorie.setId(id);
             categorieDAO.operationIUD(3, categorie);
         }
-       
+        loadData();
         request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
         request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
@@ -67,13 +77,6 @@ public class Categories extends HttpServlet {
         CategorieForm formCat = new CategorieForm();
         Categorie categorie = formCat.createCategorie(request);
         
-        //Attributs
-       
-        request.setAttribute(ATTR_CATEGORIE, categorie);
-        request.setAttribute(ATTR_CAT_FORM, formCat);
-        request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
-        request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
-         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         if(formCat.getErreurs().isEmpty()){
             if(request.getParameter("btnSave").equals("save")){
                 categorieDAO.operationIUD(1, categorie); 
@@ -81,6 +84,14 @@ public class Categories extends HttpServlet {
                 categorieDAO.operationIUD(2, categorie); 
             }    
         }
+        //Attributs
+       loadData();
+        request.setAttribute(ATTR_CATEGORIE, categorie);
+        request.setAttribute(ATTR_CAT_FORM, formCat);
+        request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
+        request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
+         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
+        
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
 }

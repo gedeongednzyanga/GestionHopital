@@ -67,8 +67,14 @@ public class approvisionnementDAO extends DAO<Approvisionnement> {
             ps = this.connect.prepareStatement("CALL GET_LASTAPPROV()");
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                approv.setQuantite(Integer.parseInt(rs.getString("quantite")));
-                approv.setDate((rs.getString("datederniere")));
+                if(rs.getString("quantite").isEmpty()){
+                    approv.setQuantite(0);
+                    approv.setDate((rs.getString("2030-12-12")));
+                }else{
+                    approv.setQuantite(Integer.parseInt(rs.getString("quantite")));
+                    approv.setDate((rs.getString("datederniere")));
+                }
+               
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());

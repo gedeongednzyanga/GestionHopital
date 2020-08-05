@@ -18,10 +18,11 @@ public class categorieDAO  extends DAO<Categorie> {
     @Override
     public Categorie operationIUD(int actionU, Categorie obj) {
         try{
-            ps = this.connect.prepareStatement("CALL IUD_CATEGORIE (?,?,?)");
+            ps = this.connect.prepareStatement("CALL IUD_CATEGORIE (?,?,?,?)");
             ps.setInt(1, actionU);
             ps.setLong(2, obj.getId());
             ps.setString(3, obj.getDesignation());
+            ps.setString(4, obj.getUtilisateur());
             ps.executeUpdate();
         }catch(SQLException e){
             System.out.println(e.getMessage());

@@ -34,7 +34,14 @@ public class SousCategories extends HttpServlet {
     List<Categorie> listeCategorie = categorieDAO.getAll();
     List<SousCategorie> listeSousCategorie = souscategorieDAO.getAll();
    
-    
+    void loadData(){
+       listeProduit.clear();
+       listeCategorie.clear();
+       listeSousCategorie.clear();
+       listeCategorie = categorieDAO.getAll();
+       listeSousCategorie = souscategorieDAO.getAll();
+       listeProduit = produitDAO.getAll();
+    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");        
@@ -44,7 +51,7 @@ public class SousCategories extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-   
+        loadData();
         //Attributs
         if(request.getParameter("id") != null){
             SousCategorie souscategorie = new SousCategorie();
@@ -69,14 +76,6 @@ public class SousCategories extends HttpServlet {
         SousCategorieForm form = new SousCategorieForm();
         SousCategorie souscategorie = form.createSousCategorie(request);
         
-    //Attributs
-        
-        request.setAttribute(ATTR_SOUSCAT_FORM, form);
-        request.setAttribute(ATTR_SOUSCATEGORIE, souscategorie);
-        request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
-        request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
-        request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
-        
         if(form.getErreurs().isEmpty()){
             if(request.getParameter("btnSave").equals("save")){
                 souscategorieDAO.operationIUD(1, souscategorie);
@@ -84,6 +83,16 @@ public class SousCategories extends HttpServlet {
                 souscategorieDAO.operationIUD(2, souscategorie);
             } 
         }
+        
+    //Attributs
+        loadData();
+        request.setAttribute(ATTR_SOUSCAT_FORM, form);
+        request.setAttribute(ATTR_SOUSCATEGORIE, souscategorie);
+        request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
+        request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
+        request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
+        
+        
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
         
     }

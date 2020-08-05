@@ -9,6 +9,7 @@ public class Categorie {
     private long id = 0;
     private String designation;
     private int compteur;
+    private String utilisateur;
 
     public Categorie() {
     }
@@ -42,5 +43,13 @@ public class Categorie {
 
     public void setCompteur(int compteur) {
         this.compteur = compteur;
+    }
+
+    public String getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(String utilisateur) {
+        this.utilisateur = utilisateur;
     }
 }

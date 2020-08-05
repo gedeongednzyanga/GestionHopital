@@ -34,30 +34,30 @@
     <div id="user-nav" class="navbar navbar-inverse">
         <ul class="nav">
             <li class="dropdown" id="profile-messages"><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i> <span
-                        class="text">Welcome User</span><b class="caret"></b></a>
+                        class="text"> <c:out value="${sessionScope.sessionUtilisateur.nom} ${sessionScope.sessionUtilisateur.prenom}" /> </span><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
+                    <li><a href="#"><i class="icon-user"></i> Mon Profil</a></li>
                     <li class="divider"></li>
                     <li><a href="#"><i class="icon-check"></i> My Tasks</a></li>
                     <li class="divider"></li>
-                    <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+                    <li><a href="<c:url value="/Deconnexion" />"><i class="icon-key"></i> Déconnexion</a></li>
                 </ul>
             </li>
             <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span
                         class="label label-important">5</span> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> new message</a></li>
+                    <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> Nouveau message</a></li>
                     <li class="divider"></li>
-                    <li><a class="sInbox" title="" href="#"><i class="icon-envelope"></i> inbox</a></li>
+                    <li><a class="sInbox" title="" href="#"><i class="icon-envelope"></i> Boîte de reception</a></li>
                     <li class="divider"></li>
-                    <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> outbox</a></li>
+                    <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> Brouillon</a></li>
                     <li class="divider"></li>
-                    <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> trash</a></li>
+                    <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> Messages Supprimées</a></li>
                 </ul>
             </li>
             <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-            <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span
-                        class="text">Logout</span></a></li>
+            <li class=""><a title="" href="<c:url value="/Deconnexion" />"><i class="icon icon-share-alt"></i> <span
+                        class="text">Déconnexion</span></a></li>
         </ul>
     </div>
 
@@ -192,10 +192,11 @@
                     </div>
                 </div>
                 <div class="span6">
+                    
                     <div class="widget-box">
                         <div class="widget-title">
                           <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#tab1">Produit</a></li>
+                            <li class="active" ><a data-toggle="tab" href="#tab1">Produit</a></li>
                             <li><a data-toggle="tab" href="#tab2">Catégorie</a></li>
                             <li><a data-toggle="tab" href="#tab3">Sous-Catégorie</a></li>
                           </ul>
@@ -216,6 +217,7 @@
                                             <label class="control-label" for="designationc">Catégorie :</label>
                                             <div class="controls">
                                                 <input type="hidden" name="id" id="idc" value="0" />
+                                                <input type="hidden" name="utilisateur" value="<c:out value="${sessionScope.sessionUtilisateur.nom} ${sessionScope.sessionUtilisateur.prenom}" />" />
                                                 <input type="text" class="span11" value="<c:out value="${Categorie.designation}" />" autocomplete="off" id="designationc" name="designation" placeholder="Désignation Catégorie" />             
                                                 <br><span style="color: red"><c:out value="${CategorieForm.erreurs['designation']}" /></span>
                                             </div>
@@ -254,6 +256,42 @@
                                                     </c:forEach>                 
                                                 </tbody> 
                                             </table>
+                                        </div>
+                                    </div>
+                                    <div id="myModal" class="modal fade">
+                                        <div class="modal-header">
+                                          <button data-dismiss="modal" class="close" type="button">×</button>
+                                          <h3>Catégories</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row-fluid">
+                                                <div class="spam12">
+                                                    <table class="table table-striped table-bordered" id="table_categories">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th class="identify">Id</th>
+                                                                <th>Désignation</th>
+                                                                <th>Statut</th>
+                                                                <th>Options</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <c:forEach var="categorie" items="${listeCategorie}">
+                                                                <tr>
+                                                                    <td> <c:out value="${categorie.compteur}" /> </td>
+                                                                    <td class="identify"> <c:out value="${categorie.id}" /> </td>
+                                                                    <td><c:out value="${categorie.designation}" /></td>
+                                                                    <td class="taskStatus"><span class="done">Ok</span></td>
+                                                                    <td class="taskOptions"><a  class="tip-top" data-dismiss="modal" onclick="returnDataCategorie()" data-original-title="Update"><i class="icon-ok"></i></a> 
+                                                                        <a href="<c:url value="/Categories?id=${categorie.id}" />" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>                 
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -316,84 +354,49 @@
                                             </table>
                                         </div>
                                     </div>  
-                                 </div>      
+                                    <div id="myModal2" class="modal fade">
+                                        <div class="modal-header">
+                                            <button data-dismiss="modal" class="close" type="button">×</button>
+                                            <h3>Sous-Catégories</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row-fluid">
+                                                <div class="spam12">
+                                                    <table class="table table-striped table-bordered" id="table_scategories2">
+                                                        <thead>
+                                                          <tr>
+                                                              <th class="identify">#</th>
+                                                            <th>Id</th>
+                                                            <th>Catégorie</th>
+                                                            <th>Sous-Catégorie</th>
+                                                            <th>Opts</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <c:forEach var="souscategorie"  items="${listeSousCategorie}">
+                                                                <tr>
+                                                                    <td> <c:out value="${souscategorie.compteur}" /> </td>
+                                                                    <td class="identify"> <c:out value="${souscategorie.id}" /> </td>
+                                                                    <td class="taskDesc"><c:out value="${souscategorie.categorie['designation']}" /> </td>
+                                                                    <td class="taskStatus"><span class="in-progress"><c:out value="${souscategorie.designation}" /></span></td>
+                                                                    <td class="taskOptions"><a href="#" class="tip-top" data-dismiss="modal" onclick="returnDataSoucategorie2()" data-original-title="Update"><i class="icon-ok"></i></a> 
+                                                                        <a href="<c:url value="/SousCategories?id=${souscategorie.id}" />" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>      
                             </div>
                         </div>
-                    </div>
-                    <div id="myModal" class="modal fade">
-                        <div class="modal-header">
-                          <button data-dismiss="modal" class="close" type="button">×</button>
-                          <h3>Catégories</h3>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row-fluid">
-                                <div class="spam12">
-                                    <table class="table table-striped table-bordered" id="table_categories">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th class="identify">Id</th>
-                                                <th>Désignation</th>
-                                                <th>Statut</th>
-                                                <th>Options</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:forEach var="categorie" items="${listeCategorie}">
-                                                <tr>
-                                                    <td> <c:out value="${categorie.compteur}" /> </td>
-                                                    <td class="identify"> <c:out value="${categorie.id}" /> </td>
-                                                    <td><c:out value="${categorie.designation}" /></td>
-                                                    <td class="taskStatus"><span class="done">Ok</span></td>
-                                                    <td class="taskOptions"><a  class="tip-top" data-dismiss="modal" onclick="returnDataCategorie()" data-original-title="Update"><i class="icon-ok"></i></a> 
-                                                        <a href="<c:url value="/Categories?id=${categorie.id}" />" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>                 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="myModal2" class="modal fade">
-                        <div class="modal-header">
-                            <button data-dismiss="modal" class="close" type="button">×</button>
-                            <h3>Sous-Catégories</h3>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row-fluid">
-                                <div class="spam12">
-                                    <table class="table table-striped table-bordered" id="table_scategories2">
-                                        <thead>
-                                          <tr>
-                                              <th class="identify">#</th>
-                                            <th>Id</th>
-                                            <th>Catégorie</th>
-                                            <th>Sous-Catégorie</th>
-                                            <th>Opts</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:forEach var="souscategorie"  items="${listeSousCategorie}">
-                                                <tr>
-                                                    <td> <c:out value="${souscategorie.compteur}" /> </td>
-                                                    <td class="identify"> <c:out value="${souscategorie.id}" /> </td>
-                                                    <td class="taskDesc"><c:out value="${souscategorie.categorie['designation']}" /> </td>
-                                                    <td class="taskStatus"><span class="in-progress"><c:out value="${souscategorie.designation}" /></span></td>
-                                                    <td class="taskOptions"><a href="#" class="tip-top" data-dismiss="modal" onclick="returnDataSoucategorie2()" data-original-title="Update"><i class="icon-ok"></i></a> 
-                                                        <a href="<c:url value="/SousCategories?id=${souscategorie.id}" />" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
+            <hr>
             <div class="row-fluid">
                 <div class="span12">
                     <div class="widget-box">

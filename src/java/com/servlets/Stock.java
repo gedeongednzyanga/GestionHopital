@@ -33,12 +33,19 @@ public class Stock extends HttpServlet {
     DAO<Produit> produitDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getProduitDAO();
     DAO<Categorie> categorieDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getCategorieDAO();
     DAO<SousCategorie> souscategorieDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getSouscategorieDAO();
-    
     List<Produit> listeProduit = produitDAO.getAll();
-    List<Categorie> listeCategorie = categorieDAO.getAll();
+    List<Categorie> listeCategorie= categorieDAO.getAll();
     List<SousCategorie> listeSousCategorie = souscategorieDAO.getAll();
     Approvisionnement approvi = new approvisionnementDAO().getLastApprovionnement();
    
+    void loadData(){
+       listeProduit.clear();
+       listeCategorie.clear();
+       listeSousCategorie.clear();
+       listeCategorie = categorieDAO.getAll();
+       listeSousCategorie = souscategorieDAO.getAll();
+       listeProduit = produitDAO.getAll();
+    }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,7 +58,7 @@ public class Stock extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //Attributs
-        
+        loadData();
         if(request.getParameter("id") != null){
             Produit produit = new Produit();
             Long id = Long.parseLong(request.getParameter("id"));
@@ -76,14 +83,6 @@ public class Stock extends HttpServlet {
         
         ProduitForm form = new ProduitForm();
         Produit produit = form.createProduit(request);
-        
-       //Attributs
-        
-        request.setAttribute(ATTR_PRODUIT_FORM, form);
-        request.setAttribute(ATTR_PRODUIT, produit);
-        request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
-        request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
-        request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         if(form.getErreurs().isEmpty()){
             if(request.getParameter("btnSave").equals("save")){
                  produitDAO.operationIUD(1, produit);  
@@ -91,6 +90,14 @@ public class Stock extends HttpServlet {
                 produitDAO.operationIUD(2, produit);  
             }
         }
+       //Attributs
+        loadData();
+        request.setAttribute(ATTR_PRODUIT_FORM, form);
+        request.setAttribute(ATTR_PRODUIT, produit);
+        request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
+        request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
+        request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
+        
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
 
