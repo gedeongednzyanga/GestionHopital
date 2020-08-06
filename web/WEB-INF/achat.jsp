@@ -136,112 +136,71 @@
                 <div class="row-fluid">
                     <div class="span6">
                         <div class="widget-box">
-                            <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span>
-                              <h5>Pop-up dialogs</h5>
+                            <div class="widget-title"> <span class="icon"> <i class="icon-user"></i> </span>
+                              <h5>Fournisseurs</h5>
                             </div>
                             <div class="widget-content"> 
-                                <a href="#myModal" data-toggle="modal" class="btn btn-success">Get Fournisseur</a> <a href="#myAlert" data-toggle="modal" class="btn btn-warning">Alert</a> <a href="#myModal2" data-toggle="modal" class="btn btn-info">image Popup</a>
-                              <div id="myModal" class="modal fade">
-                                <div class="modal-header">
-                                  <button data-dismiss="modal" class="close" type="button">×</button>
-                                  <h3>Nouveau</h3>
-                                </div>
-                                <div class="modal-body">
+                                 <form action="<c:url value="/Achat" />" method="POST" class="">
+                                    <input type="hidden" name="id" id="id" value="0" />
+                                    <input type="hidden" name="utilisateur" id="utilisateur" value="<c:out value="${sessionScope.sessionUtilisateur.nom} ${sessionScope.sessionUtilisateur.prenom}" />" />
                                     <div class="row-fluid">
-                                        <div class="spam12">
-                                            <div class="widget-box">
-                                        <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="icon-chevron-down"></i></span>
-                                          <h5>Nouveau</h5>
-                                        </div>
-                                        <div class="widget-content nopadding collapse in" id="collapseG2">
-                                            <form action="<c:url value="/Achat" />" method="POST" class="form-horizontal">
-                                                 <input type="hidden" name="id" id="id" value="0" />
-                                                 <input type="hidden" name="utilisateur" id="utilisateur" value="<c:out value="${sessionScope.sessionUtilisateur.nom} ${sessionScope.sessionUtilisateur.prenom}" />" />
-                                                <div class="control-group">
-                                                    <label class="control-label">Fournisseur :</label>
-                                                    <div class="controls">
-                                                        <select name="fournisseur" id="fournisseur">
-                                                            <c:forEach var="fournisseur" items="${listeFournisseur}">
-                                                                <option value="<c:out value="${fournisseur.id}" />"> <c:out value="${fournisseur.nom} ${fournisseur.prenom}" /> </option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </div>
+                                        <div class="span7">
+                                            <div class="control-group">
+                                                <label class="control-label"><b>Fournisseur</b></label>
+                                                <div class="controls">
+                                                    <select name="fournisseur" id="fournisseur" class="span11">
+                                                        <c:forEach var="fournisseur" items="${listeFournisseur}">
+                                                            <option value="<c:out value="${fournisseur.id}" />"> <c:out value="${fournisseur.nom} ${fournisseur.prenom}" /> </option>
+                                                        </c:forEach>
+                                                    </select>
+                                                    <a href="<c:url value="/Fournisseur" />" class="btn btn-warning btn-small">Créer <i class="icon icon-user"></i></a>
                                                 </div>
-
-                                                <div class="control-group">
-                                                    <label class="control-label">Date Achat :</label>
-                                                    <div class="controls">
-                                                        <input type="date" name="dateapprov" id="dateapprov" required="" value="<c:out value="${approvisionnement.dateApprov}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
-                                                    </div>
-                                                    <div class="form-actions pull-right">
-                                                        <button type="submit" class="btn btn-success" name="btn" value="btnNouveauApprovisionnement">Enregistrer</button>
-                                                        <button type="submit" class="btn btn-info">Modifier</button>
-                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="span5">
+                                            <div class="control-group">
+                                                <label class="control-label">Date Achat :</label>
+                                                <div class="controls">
+                                                    <input type="text" name="dateapprov" id="dateapprov" required="" value="<c:out value="${approvisionnement.dateApprov}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
                                                 </div>
-
-                                            </form>
+                                            </div>
+                                            <div class="pull-left">
+                                                <button type="submit" class="btn btn-success btn-small" name="btn" value="btnNouveauApprovisionnement">Enregistrer</button>
+                                                <button type="submit" class="btn btn-info btn-small">Modifier</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                        </div>
-                                    </div>
-                                   <!--<div class="widget-box">
-                                        <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="icon-chevron-down"></i></span>
-                                          <h5>Nouveau</h5>
-                                        </div>
-                                        <div class="widget-content nopadding collapse in" id="collapseG2">
-                                            <form action="<c:url value="/Achat" />" method="POST" class="form-horizontal">
-                                                 <input type="hidden" name="id" id="id" value="0" />
-                                                 <input type="hidden" name="utilisateur" id="utilisateur" value="<c:out value="${sessionScope.sessionUtilisateur.nom} ${sessionScope.sessionUtilisateur.prenom}" />" />
-                                                <div class="control-group">
-                                                    <label class="control-label">Fournisseur :</label>
-                                                    <div class="controls">
-                                                        <select name="fournisseur" id="fournisseur">
-                                                            <c:forEach var="fournisseur" items="${listeFournisseur}">
-                                                                <option value="<c:out value="${fournisseur.id}" />"> <c:out value="${fournisseur.nom} ${fournisseur.prenom}" /> </option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="control-group">
-                                                    <label class="control-label">Date Achat :</label>
-                                                    <div class="controls">
-                                                        <input type="date" name="dateapprov" id="dateapprov" required="" value="<c:out value="${approvisionnement.dateApprov}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
-                                                    </div>
-                                                    <div class="form-actions pull-right">
-                                                        <button type="submit" class="btn btn-success" name="btn" value="btnNouveauApprovisionnement">Enregistrer</button>
-                                                        <button type="submit" class="btn btn-info">Modifier</button>
-                                                    </div>
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                    </div>-->
-                                </div>
-                              </div>
-                              <div id="myModal2" class="modal hide">
-                                <div class="modal-header">
-                                  <button data-dismiss="modal" class="close" type="button">×</button>
-                                  <h3>Alert modal</h3>
-                                </div>
-                                <div class="modal-body">
-                                  <p><img src="images/gallery/imgbox3.jpg"/></p>
-                                </div>
-                                <div class="modal-footer"><a data-dismiss="modal" class="btn btn-inverse" href="#">Cancel</a> </div>
-                              </div>
-                              <div id="myAlert" class="modal hide">
-                                <div class="modal-header">
-                                  <button data-dismiss="modal" class="close" type="button">×</button>
-                                  <h3>Alert modal</h3>
-                                </div>
-                                <div class="modal-body">
-                                  <p>Lorem ipsum dolor sit amet...</p>
-                                </div>
-                                <div class="modal-footer"> <a data-dismiss="modal" class="btn btn-primary" href="#">Confirm</a> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
-                              </div>
+                                    </div>    
+                                </form>
+                            </div>         
+                        </div>
+                        <div class="widget-box">
+                            <div class="widget-title"><span class="icon"><i class="icon-user"></i></span>
+                                <h5>Our Partner (Box with Fix height)</h5>
                             </div>
-                          </div>
-                        
+                            <div class="widget-content nopadding fix_hgt">
+                                <ul class="recent-posts">
+                                    <li>
+                                        <div class="user-thumb"> <img width="40" height="40" alt="User" src="assets/img/demo/av1.jpg"> </div>
+                                        <div class="article-post"> <span class="user-info">John Deo</span>
+                                            <p>Web Desginer &amp; creative Front end developer</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="user-thumb"> <img width="40" height="40" alt="User" src="assets/img/demo/av2.jpg"> </div>
+                                        <div class="article-post"> <span class="user-info">John Deo</span>
+                                            <p>Web Desginer &amp; creative Front end developer</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="user-thumb"> <img width="40" height="40" alt="User" src="assets/img/demo/av4.jpg"> </div>
+                                        <div class="article-post"> <span class="user-info">John Deo</span>
+                                            <p>Web Desginer &amp; creative Front end developer</p>
+                                        </div>
+                                </ul>
+                            </div>
+                        </div>                  
+                    </div>
+                    <div class="span6">
                         <div class="widget-box">
                             <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
                                 <h5>Entrée en Stock</h5>
@@ -252,7 +211,7 @@
                                         <input type="hidden" name="id" id="id" value="0" />
                                         <label class="control-label"> Produit :</label>
                                         <div class="controls">
-                                            <select name="produit"> 
+                                            <select name="produit" class="span11"> 
                                                 <c:forEach var="produit" items="${listeProduit}">
                                                     <option value="<c:out value="${produit.id}"/>"> <c:out value="${produit.designation}" /> </option>
                                                 </c:forEach>
@@ -263,7 +222,7 @@
                                     <div class="control-group">
                                         <label class="control-label">Quantité Achetée :</label>
                                         <div class="controls">
-                                            <input type="number" class="span11" name="quantite" value="<c:out value="${approvisionnement.quantite}" />" required="" id="quantite" placeholder="Quantité" />
+                                            <input type="number" autocomplete="off" class="span11" name="quantite" value="<c:out value="${approvisionnement.quantite}" />" required="" id="quantite" placeholder="Quantité" />
                                             <span style="color: red" > <c:out value="${approvForm.erreurs['quantite']}"/> </span>
                                         </div>
                                     </div>
@@ -271,7 +230,7 @@
                                         <label class="control-label">P.U d'Achat :</label>
                                         <div class="controls">
                                             <div class="input-append">
-                                                <input type="number" placeholder="5.000" required="" value="<c:out value="${approvisionnement.prixAchatU}" />" name="prix" id="prix" class="span11">
+                                                <input type="number" placeholder="5.000" required="" value="<c:out value="${approvisionnement.prixAchatU}" />" name="prix" id="prix" class="span11"/>
                                                 <span class="add-on">$</span> </div><br>
                                                 <span style="color: red" > <c:out value="${approvForm.erreurs['prix']}"/> </span>
                                         </div>
@@ -280,52 +239,23 @@
                                     <div class="control-group">
                                         <label class="control-label">Date Fabrication :</label>
                                         <div class="controls">
-                                            <input type="date" name="fabrication" required="" value="<c:out value="${approvisionnement.dateFabrication}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
+                                            <input type="text" autocomplete="off" name="fabrication" required="" value="<c:out default="01-01-2020" value="${approvisionnement.dateFabrication}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11" />
                                         </div>
                                     </div>
                                     
                                     <div class="control-group">
                                         <label class="control-label">Date Expiration :</label>
                                         <div class="controls">
-                                            <input type="date" name="expiration" required="" value="<c:out value="${approvisionnement.dateExpiration}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
+                                            <input type="text" autocomplete="off" name="expiration" required="" value="<c:out default="01-01-2020" value="${approvisionnement.dateExpiration}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
                                         </div>
                                     </div>
-                                    
                                     <div class="form-actions">
-                                        <button type="submit" class="btn btn-success" name="btn" value="btnApprovisionnement">Enregistrer</button>
-                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                        <button type="submit" class="btn btn-success btn-small" name="btn" value="btnApprovisionnement">Enregistrer</button>
+                                        <button type="submit" class="btn btn-warning btn-small">Terminer</button>
                                     </div>
                                 </form>
                             </div>
-                        </div>                      
-                    </div>
-                    <div class="span6">
-                       <div class="widget-box">
-                            <div class="widget-title"><span class="icon"><i class="icon-user"></i></span>
-                                <h5>Our Partner (Box with Fix height)</h5>
-                            </div>
-                            <div class="widget-content nopadding fix_hgt">
-                                <ul class="recent-posts">
-                                    <li>
-                                        <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av1.jpg"> </div>
-                                        <div class="article-post"> <span class="user-info">John Deo</span>
-                                            <p>Web Desginer &amp; creative Front end developer</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av2.jpg"> </div>
-                                        <div class="article-post"> <span class="user-info">John Deo</span>
-                                            <p>Web Desginer &amp; creative Front end developer</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av4.jpg"> </div>
-                                        <div class="article-post"> <span class="user-info">John Deo</span>
-                                            <p>Web Desginer &amp; creative Front end developer</p>
-                                        </div>
-                                </ul>
-                            </div>
-                        </div>
+                        </div>                         
                     </div>                                      
                 </div>
                  <div class="row-fluid">
