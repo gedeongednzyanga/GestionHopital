@@ -56,3 +56,17 @@ function returnDataSoucategorie2(){
         };
     }
 }
+
+function returnDataService(){
+    var table = document.getElementById('table_service'),
+            rIndex;
+    for(let index =0; index < table.rows.length; index ++){
+        table.rows[index].onclick = function(){
+            rIndex = this.rowIndex;
+            document.getElementById('id').value = this.cells[1].textContent;
+            document.getElementById('designation').value = this.cells[2].textContent;
+            document.getElementById('description').value = this.cells[3].textContent;
+            document.getElementById('responsable').value = this.cells[4].textContent;
+        };
+    }
+}

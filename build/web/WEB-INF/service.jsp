@@ -151,7 +151,6 @@
                             <div class="widget-content nopadding">
                                 <form action="<c:url value="/Services" />" method="POST" class="form-horizontal">
                                     <div class="control-group">
-                                        
                                         <label class="control-label">Désignation :</label>
                                         <div class="controls">
                                             <input type="hidden" name="id" id="id" value="0" />
@@ -175,8 +174,8 @@
                                         </div>
                                     </div>
                                     <div class="form-actions">
-                                        <button type="submit" class="btn btn-success btn-small" name="btnSave" value="btnApprovisionnement">Enregistrer</button>
-                                        <button type="submit" class="btn btn-warning btn-small">Terminer</button>
+                                        <button type="submit" class="btn btn-success btn-small" name="btnSave" value="btnSave">Enregistrer</button>
+                                        <button type="submit" class="btn btn-info btn-small" name="btnSave" value="btnUpdate" >Modifier</button>
                                     </div>
                                 </form>
                             </div>
@@ -191,7 +190,7 @@
                                 <span class="label  label-info"><i class="icon icon-refresh"> </i></span>
                             </div>
                             <div class="widget-content nopadding">
-                                <table class="table table-bordered data-table">
+                                <table class="table table-bordered data-table" id="table_service">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -210,7 +209,9 @@
                                             <td> <c:out value="${service.designation}" /> </td>
                                             <td> <c:out value="${service.description}" /> </td>
                                             <td class="center"> <c:out value="${service.responsable}" /> </td>
-                                             <td class="taskOptions"><a href="#" class="tip-top" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
+                                            <td class="taskOptions"><a href="#" onclick="returnDataService()" class="tip-top" data-original-title="Modifier"><i class="icon-ok"></i></a> 
+                                                <a href="<c:url value="/Services?id=${service.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
+                                             </td>
                                         </tr>
                                     </c:forEach>          
                                 </tbody>
@@ -229,6 +230,7 @@
         <script src="<c:url value="/assets/js/jquery.min.js" />"></script>
         <script src="<c:url value="/assets/js/jquery.ui.custom.js"/>"></script>
         <script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
+        <script src="<c:url value="/assets/js/monScript.js"/>"></script>
         <script src="<c:url value="/assets/js/bootstrap-colorpicker.js"/>"></script>
         <script src="<c:url value="/assets/js/bootstrap-datepicker.js"/>"></script>
         <script src="<c:url value="/assets/js/jquery.toggle.buttons.js"/>"></script>

@@ -40,8 +40,15 @@ public class Services extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        if(request.getParameter("id") != null){
+            Service service = new Service();
+            Long id = Long.parseLong(request.getParameter("id"));
+            service.setId(id);
+            serviceDAO.operationIUD(3, service);
+        }
         load();
-         request.setAttribute(LISTE_SERVICE, listeservice);
+        request.setAttribute(LISTE_SERVICE, listeservice);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
 
@@ -50,17 +57,23 @@ public class Services extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
          ServiceForm form = new ServiceForm();
-       
          Service service = form.createService(request);
-        if(request.getParameter("btnSave") != null){
+        if("btnSave".equals(request.getParameter("btnSave"))){
             if(form.getErreurs().isEmpty()){
                 serviceDAO.operationIUD(1, service);
             }else{
                 request.setAttribute(FORM_SERVICE, form);
                 request.setAttribute(SERVICE, service);
             }  
+        }else if ("btnUpdate".equals(request.getParameter("btnSave"))){
+             if(form.getErreurs().isEmpty()){
+                serviceDAO.operationIUD(2, service);
+            }else{
+                request.setAttribute(FORM_SERVICE, form);
+                request.setAttribute(SERVICE, service);
+            }  
         }
-          load();
+        load();
         request.setAttribute(LISTE_SERVICE, listeservice);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
