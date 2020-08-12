@@ -26,17 +26,19 @@ public class Fournisseur extends HttpServlet {
     private static final String LISTE_FOURNISSEUR = "listeFournisseur";
     DAO<Fournisseurs> fournisseurDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getFournisseurDAO();
     List<Fournisseurs> listeFournisseur = fournisseurDAO.getAll();
+     void loadData(){
+       listeFournisseur.clear();
+    }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-       
+            throws ServletException, IOException {  
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+       // loadData();
         request.setAttribute(LISTE_FOURNISSEUR, listeFournisseur);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
@@ -45,7 +47,7 @@ public class Fournisseur extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+       // loadData();
         FournisseurForm form = new FournisseurForm();
         Fournisseurs fournisseurs = form.createFournisseur(request);
         if(form.getErreurs().isEmpty()){

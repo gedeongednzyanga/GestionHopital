@@ -70,6 +70,10 @@
         <servlet-name>Acceuil</servlet-name>
         <servlet-class>com.servlets.Acceuil</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Services</servlet-name>
+        <servlet-class>com.servlets.Services</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -113,6 +117,10 @@
     <servlet-mapping>
         <servlet-name>Acceuil</servlet-name>
         <url-pattern>/Acceuil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Services</servlet-name>
+        <url-pattern>/Services</url-pattern>
     </servlet-mapping>
     <session-config>
        

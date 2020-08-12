@@ -74,7 +74,7 @@
             <li> <a href="<c:url value="/Stock" />"><i class="icon icon-signal"></i> <span>Stock</span></a> </li>
             <li> <a href="<c:url value="/Achat" />"><i class="icon icon-inbox"></i> <span>Achats</span></a> </li>
             <li><a href="<c:url value="/Sorties" />"><i class="icon icon-th"></i> <span>Sorties</span></a></li>
-            <li><a href="<c:url value="/Patient" />"><i class="icon icon-user"></i> <span>Patient</span></a></li>
+            <li><a href="<c:url value="/Services" />"><i class="icon icon-user"></i> <span>Services</span></a></li>
             <li><a href="<c:url value="/Fournisseur" />"><i class="icon icon-group"></i> <span>Fournisseurs</span></a></li>
  
             <li class="content"> <span>Monthly Bandwidth Transfer</span>
@@ -102,85 +102,8 @@
         </div>
         <div class="container-fluid">
             <hr>
-            <button class="btn btn-info" data-target="#myModal" data-toggle="modal">Create</button>
-            <div id="myModal" class="modal fade modal">
-                <div class="modal-header">
-                    <button data-dismiss="modal" class="close" type="button">×</button>
-                    <h3>Catégories</h3>
-                </div>
-                <div class="modal-body">
-                    <div class="row-fluid">
-                        <div class="spam12">
-                            <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                                    <h5>Personal-info</h5>
-                                </div>
-                                <div class="widget-content nopadding">
-                                    <form action="<c:url value="/Fournisseur" />" method="POST" class="form-horizontal">
-                                        <div class="control-group">
-                                            <label class="control-label">Nom :</label>
-                                            <div class="controls">
-                                                <input type="hidden" name="id" value="0" />
-                                                <input type="text" name="nom" value="<c:out value="${fournisseur.nom}" />" class="span11" placeholder="First name" />
-                                                <span style="color:red"> <c:out value="${fournisseurForm.erreurs['nom']}" /> </span>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">Prénom :</label>
-                                            <div class="controls">
-                                                <input type="text" name="prenom" value="<c:out value="${fournisseur.prenom}" />" class="span11" placeholder="Last name" />
-                                                <span style="color:red"> <c:out value="${fournisseurForm.erreurs['prenom']}" /> </span>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">Téléphone :</label>
-                                            <div class="controls">
-                                                <input type="text" name="telephone" value="<c:out value="${fournisseur.telephone}" />" class="span11" placeholder="Enter Phone  Number" />
-                                                <span style="color:red"> <c:out value="${fournisseurForm.erreurs['telephone']}" /> </span>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">E-mail :</label>
-                                            <div class="controls">
-                                                <input type="text" name="mail" value="<c:out value="${fournisseur.mail}" />" class="span11" placeholder="Enter E-mail" />
-                                                <span style="color:red"> <c:out value="${fournisseurForm.erreurs['mail']}" /> </span>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">Site web :</label>
-                                            <div class="controls">
-                                                <input type="text" name="web" value="<c:out value="${fournisseur.siteWeb}"/>" class="span11" placeholder="Site web" />
-                                                <span style="color:red"> <c:out value="${fournisseurForm.erreurs['web']}" /> </span>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">Maison/Pharmacie :</label>
-                                            <div class="controls">
-                                                <input type="text"  name="maison" class="span11" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">Adresse :</label>
-                                            <div class="controls">
-                                                <textarea name="adresse" class="span11"> <c:out value="${fournisseur.adresse}" /> </textarea>
-                                                <span style="color:red"> <c:out value="${fournisseurForm.erreurs['adresse']}" /> </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-actions">
-                                            <button type="submit" class="btn btn-success"><i class="icon-ok"></i>
-                                                Enregistrer</button>
-                                            <button type="submit" class="btn btn-info"><i class="icon-edit"></i>
-                                                Modifier</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row-fluid">
-                <!--<div class="span5">
+                <div class="span5">
                     <div class="widget-box">
                         <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
                             <h5>Personal-info</h5>
@@ -191,48 +114,48 @@
                                     <label class="control-label">Nom :</label>
                                     <div class="controls">
                                         <input type="hidden" name="id" value="0" />
-                                        <input type="text" name="nom" value="<c:out value="${fournisseur.nom}" />" class="span11" placeholder="First name" />
+                                        <input type="text" name="nom" autocomplete="off" value="<c:out value="${fournisseur.nom}" />" class="span11" placeholder="First name" />
                                         <span style="color:red"> <c:out value="${fournisseurForm.erreurs['nom']}" /> </span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Prénom :</label>
                                     <div class="controls">
-                                        <input type="text" name="prenom" value="<c:out value="${fournisseur.prenom}" />" class="span11" placeholder="Last name" />
+                                        <input type="text" name="prenom" autocomplete="off" value="<c:out value="${fournisseur.prenom}" />" class="span11" placeholder="Last name" />
                                         <span style="color:red"> <c:out value="${fournisseurForm.erreurs['prenom']}" /> </span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Téléphone :</label>
                                     <div class="controls">
-                                        <input type="text" name="telephone" value="<c:out value="${fournisseur.telephone}" />" class="span11" placeholder="Enter Phone  Number" />
+                                        <input type="text" name="telephone" autocomplete="off" value="<c:out value="${fournisseur.telephone}" />" class="span11" placeholder="Enter Phone  Number" />
                                         <span style="color:red"> <c:out value="${fournisseurForm.erreurs['telephone']}" /> </span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">E-mail :</label>
                                     <div class="controls">
-                                        <input type="text" name="mail" value="<c:out value="${fournisseur.mail}" />" class="span11" placeholder="Enter E-mail" />
+                                        <input type="text" name="mail" autocomplete="off" value="<c:out value="${fournisseur.mail}" />" class="span11" placeholder="Enter E-mail" />
                                         <span style="color:red"> <c:out value="${fournisseurForm.erreurs['mail']}" /> </span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Site web :</label>
                                     <div class="controls">
-                                        <input type="text" name="web" value="<c:out value="${fournisseur.siteWeb}"/>" class="span11" placeholder="Site web" />
+                                        <input type="text" name="web" autocomplete="off" value="<c:out value="${fournisseur.siteWeb}"/>" class="span11" placeholder="Site web" />
                                         <span style="color:red"> <c:out value="${fournisseurForm.erreurs['web']}" /> </span>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Maison/Pharmacie :</label>
+                                    <label class="control-label">Référence :</label>
                                     <div class="controls">
-                                        <input type="text"  name="maison" class="span11" />
+                                        <input type="text"  autocomplete="off" name="maison" placeholder="Ex : nom pharmacie" class="span11" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Adresse :</label>
                                     <div class="controls">
-                                        <textarea name="adresse" class="span11"> <c:out value="${fournisseur.adresse}" /> </textarea>
+                                        <textarea name="adresse"  class="span11"> <c:out value="${fournisseur.adresse}" /> </textarea>
                                         <span style="color:red"> <c:out value="${fournisseurForm.erreurs['adresse']}" /> </span>
                                     </div>
                                 </div>
@@ -246,8 +169,8 @@
                         </div>
                     </div>
 
-                </div>-->
-                <div class="span12">
+                </div>
+                <div class="span7">
                     <div class="widget-box">
                         <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
                             <h5>Fournisseurs</h5>

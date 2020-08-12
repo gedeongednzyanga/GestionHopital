@@ -10,6 +10,7 @@
 <html>
     <head>
          <title>Gestion Hopital | Stock Médicament</title>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css"/>" />
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-responsive.min.css" />" />
@@ -76,7 +77,7 @@
             <li> <a href="<c:url value="/Stock" />"><i class="icon icon-signal"></i> <span>Stock</span></a> </li>
             <li> <a href="<c:url value="/Achat" />"><i class="icon icon-inbox"></i> <span>Achats</span></a> </li>
             <li><a href="<c:url value="/Sorties" />"><i class="icon icon-th"></i> <span>Sorties</span></a></li>
-            <li><a href="<c:url value="/Patient" />"><i class="icon icon-user"></i> <span>Patient</span></a></li>
+            <li><a href="<c:url value="/Services" />"><i class="icon icon-user"></i> <span>Services</span></a></li>
             <li><a href="<c:url value="/Fournisseur" />"><i class="icon icon-group"></i> <span>Fournisseurs</span></a></li>
  
             <li class="content"> <span>Monthly Bandwidth Transfer</span>
@@ -174,7 +175,7 @@
                                 <div class="control-group">
                                     <label class="control-label" for="souscategorie">Type de Produit :</label>
                                     <div class="controls">
-                                        <select id="souscategorie" name="souscategorie" required="">
+                                        <select id="souscategorie" name="souscategorie" required="" class="span11">
                                             <c:forEach var="souscategorie" items="${listeSousCategorie}">
                                                
                                                 <option value="<c:out value="${souscategorie.id}" />"> <c:out value="${souscategorie.designation}" /> 

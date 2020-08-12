@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<html>
    <head>
         <title>Gestion Hopital | Achat Médicament</title>
         <meta charset="UTF-8" />
@@ -77,7 +77,7 @@
             <li> <a href="<c:url value="/Stock" />"><i class="icon icon-signal"></i> <span>Stock</span></a> </li>
             <li> <a href="<c:url value="/Achat" />"><i class="icon icon-inbox"></i> <span>Achats</span></a> </li>
             <li><a href="<c:url value="/Sorties" />"><i class="icon icon-th"></i> <span>Sorties</span></a></li>
-            <li><a href="<c:url value="/Patient" />"><i class="icon icon-user"></i> <span>Patient</span></a></li>
+            <li><a href="<c:url value="/Services" />"><i class="icon icon-user"></i> <span>Services</span></a></li>
             <li><a href="<c:url value="/Fournisseur" />"><i class="icon icon-group"></i> <span>Fournisseurs</span></a></li>
  
             <li class="content"> <span>Monthly Bandwidth Transfer</span>
@@ -159,7 +159,7 @@
                                         </div>
                                         <div class="span5">
                                             <div class="control-group">
-                                                <label class="control-label">Date Achat :</label>
+                                                <label class="control-label"><b>Date Achat</b></label>
                                                 <div class="controls">
                                                     <input type="text" name="dateapprov" id="dateapprov" required="" value="<c:out value="${approvisionnement.dateApprov}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
                                                 </div>
@@ -196,6 +196,7 @@
                                         <div class="article-post"> <span class="user-info">John Deo</span>
                                             <p>Web Desginer &amp; creative Front end developer</p>
                                         </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>                  

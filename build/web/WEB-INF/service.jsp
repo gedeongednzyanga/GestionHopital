@@ -1,14 +1,15 @@
 <%-- 
-    Document   : achat
-    Created on : 1 juil. 2020, 13:53:54
+    Document   : service
+    Created on : 12 août 2020, 07:02:42
     Author     : GEDEON
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-   <head>
-        <title>Gestion Hopital | Achat Médicament</title>
+    <head>
+       <title>Gestion Hopital | Services</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css"/>" />
@@ -22,8 +23,7 @@
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-wysihtml5.css" />" />
         <link href="<c:url value="/assets/font-awesome/css/font-awesome.css" />" rel="stylesheet" />
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
-</head>
-    
+    </head>
     <body>
     <!--Header-part-->
         <div id="header">
@@ -102,10 +102,10 @@
         <div id="content">
             <div id="content-header">
                 <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
-                        Home</a> <a href="#" class="tip-bottom">Médicaments</a> <a href="#" class="current">Achat</a> </div>
+                        Home</a> <a href="#" class="tip-bottom">Services</a> </div>
                 <div class="row-fluid">
                     <div class="span4">
-                        <h1>Achat Produit</h1>
+                        <h1>Services</h1>
                     </div>
                     <div class="span8">
                         <div class="row-fluid">
@@ -136,118 +136,41 @@
                 <div class="row-fluid">
                     <div class="span6">
                         <div class="widget-box">
-                            <div class="widget-title"> <span class="icon"> <i class="icon-user"></i> </span>
-                              <h5>Fournisseurs</h5>
-                            </div>
                             <div class="widget-content"> 
-                                 <form action="<c:url value="/Achat" />" method="POST" class="">
-                                    <input type="hidden" name="id" id="id" value="0" />
-                                    <input type="hidden" name="utilisateur" id="utilisateur" value="<c:out value="${sessionScope.sessionUtilisateur.nom} ${sessionScope.sessionUtilisateur.prenom}" />" />
-                                    <div class="row-fluid">
-                                        <div class="span7">
-                                            <div class="control-group">
-                                                <label class="control-label"><b>Fournisseur</b></label>
-                                                <div class="controls">
-                                                    <select name="fournisseur" id="fournisseur" class="span11">
-                                                        <c:forEach var="fournisseur" items="${listeFournisseur}">
-                                                            <option value="<c:out value="${fournisseur.id}" />"> <c:out value="${fournisseur.nom} ${fournisseur.prenom}" /> </option>
-                                                        </c:forEach>
-                                                    </select>
-                                                    <a href="<c:url value="/Fournisseur" />" class="btn btn-warning btn-small">Créer <i class="icon icon-user"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="span5">
-                                            <div class="control-group">
-                                                <label class="control-label"><b>Date Achat</b></label>
-                                                <div class="controls">
-                                                    <input type="text" name="dateapprov" id="dateapprov" required="" value="<c:out value="${approvisionnement.dateApprov}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
-                                                </div>
-                                            </div>
-                                            <div class="pull-left">
-                                                <button type="submit" class="btn btn-success btn-small" name="btn" value="btnNouveauApprovisionnement">Enregistrer</button>
-                                                <button type="submit" class="btn btn-info btn-small">Modifier</button>
-                                            </div>
-                                        </div>
-                                    </div>    
-                                </form>
+                                <p>
+                                    <img src="<c:url value="/assets/img/demo/patient2.jpg" />" class="img-rounded" />
+                                </p>
                             </div>         
-                        </div>
-                        <div class="widget-box">
-                            <div class="widget-title"><span class="icon"><i class="icon-user"></i></span>
-                                <h5>Our Partner (Box with Fix height)</h5>
-                            </div>
-                            <div class="widget-content nopadding fix_hgt">
-                                <ul class="recent-posts">
-                                    <li>
-                                        <div class="user-thumb"> <img width="40" height="40" alt="User" src="assets/img/demo/av1.jpg"> </div>
-                                        <div class="article-post"> <span class="user-info">John Deo</span>
-                                            <p>Web Desginer &amp; creative Front end developer</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="user-thumb"> <img width="40" height="40" alt="User" src="assets/img/demo/av2.jpg"> </div>
-                                        <div class="article-post"> <span class="user-info">John Deo</span>
-                                            <p>Web Desginer &amp; creative Front end developer</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="user-thumb"> <img width="40" height="40" alt="User" src="assets/img/demo/av4.jpg"> </div>
-                                        <div class="article-post"> <span class="user-info">John Deo</span>
-                                            <p>Web Desginer &amp; creative Front end developer</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>                  
+                        </div>                     
                     </div>
                     <div class="span6">
                         <div class="widget-box">
                             <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                                <h5>Entrée en Stock</h5>
+                                <h5>Détail Service</h5>
                             </div>
                             <div class="widget-content nopadding">
                                 <form action="<c:url value="/Achat" />" method="POST" class="form-horizontal">
                                     <div class="control-group">
                                         <input type="hidden" name="id" id="id" value="0" />
-                                        <label class="control-label"> Produit :</label>
+                                        <label class="control-label">Désignation :</label>
                                         <div class="controls">
-                                            <select name="produit" class="span11"> 
-                                                <c:forEach var="produit" items="${listeProduit}">
-                                                    <option value="<c:out value="${produit.id}"/>"> <c:out value="${produit.designation}" /> </option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="control-group">
-                                        <label class="control-label">Quantité Achetée :</label>
-                                        <div class="controls">
-                                            <input type="number" autocomplete="off" class="span11" name="quantite" value="<c:out value="${approvisionnement.quantite}" />" required="" id="quantite" placeholder="Quantité" />
+                                            <input type="text" autocomplete="off" class="span11" name="designation" value="<c:out value="${approvisionnement.quantite}" />" required="" id="designation" placeholder="Désignation" />
                                             <span style="color: red" > <c:out value="${approvForm.erreurs['quantite']}"/> </span>
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label">P.U d'Achat :</label>
+                                        <label class="control-label">Détail Service :</label>
                                         <div class="controls">
-                                            <div class="input-append">
-                                                <input type="number" placeholder="5.000" required="" value="<c:out value="${approvisionnement.prixAchatU}" />" name="prix" id="prix" class="span11"/>
-                                                <span class="add-on">$</span> </div><br>
-                                                <span style="color: red" > <c:out value="${approvForm.erreurs['prix']}"/> </span>
+                                            <textarea required="" name="detail" placeholder="Détail Service" id="detail" class="span11"></textarea>
+                                             <span style="color: red" > <c:out value="${approvForm.erreurs['prix']}"/> </span>
                                         </div>
                                     </div>
-                                    
                                     <div class="control-group">
-                                        <label class="control-label">Date Fabrication :</label>
+                                        <input type="hidden" name="id" id="id" value="0" />
+                                        <label class="control-label">Résponsabe :</label>
                                         <div class="controls">
-                                            <input type="text" autocomplete="off" name="fabrication" required="" value="<c:out default="01-01-2020" value="${approvisionnement.dateFabrication}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11" />
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="control-group">
-                                        <label class="control-label">Date Expiration :</label>
-                                        <div class="controls">
-                                            <input type="text" autocomplete="off" name="expiration" required="" value="<c:out default="01-01-2020" value="${approvisionnement.dateExpiration}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
+                                            <input type="text" autocomplete="off" class="span11" name="responsable" value="<c:out value="${approvisionnement.quantite}" />" required="" id="responsable" placeholder="Résponsabe" />
+                                            <span style="color: red" > <c:out value="${approvForm.erreurs['quantite']}"/> </span>
                                         </div>
                                     </div>
                                     <div class="form-actions">
@@ -333,4 +256,3 @@
         </script>
     </body>
 </html>
-
