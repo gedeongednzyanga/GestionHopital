@@ -149,32 +149,33 @@
                                 <h5>Détail Service</h5>
                             </div>
                             <div class="widget-content nopadding">
-                                <form action="<c:url value="/Achat" />" method="POST" class="form-horizontal">
+                                <form action="<c:url value="/Services" />" method="POST" class="form-horizontal">
                                     <div class="control-group">
-                                        <input type="hidden" name="id" id="id" value="0" />
+                                        
                                         <label class="control-label">Désignation :</label>
                                         <div class="controls">
-                                            <input type="text" autocomplete="off" class="span11" name="designation" value="<c:out value="${approvisionnement.quantite}" />" required="" id="designation" placeholder="Désignation" />
-                                            <span style="color: red" > <c:out value="${approvForm.erreurs['quantite']}"/> </span>
+                                            <input type="hidden" name="id" id="id" value="0" />
+                                            <input type="text" autocomplete="off" class="span11" name="designation" value="<c:out value="${service.designation}" />" required="" id="designation" placeholder="Désignation" />
+                                            <br> <span style="color: red" > <c:out value="${serviceForm.erreurs['designation']}"/> </span>
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label">Détail Service :</label>
+                                        <label class="control-label">Déscription :</label>
                                         <div class="controls">
-                                            <textarea required="" name="detail" placeholder="Détail Service" id="detail" class="span11"></textarea>
-                                             <span style="color: red" > <c:out value="${approvForm.erreurs['prix']}"/> </span>
+                                            <textarea required="" name="description" placeholder="Déscription Service" id="description" class="span11"></textarea>
+                                            <br> <span style="color: red" > <c:out value="${serviceForm.erreurs['description']}"/> </span>
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <input type="hidden" name="id" id="id" value="0" />
                                         <label class="control-label">Résponsabe :</label>
                                         <div class="controls">
-                                            <input type="text" autocomplete="off" class="span11" name="responsable" value="<c:out value="${approvisionnement.quantite}" />" required="" id="responsable" placeholder="Résponsabe" />
-                                            <span style="color: red" > <c:out value="${approvForm.erreurs['quantite']}"/> </span>
+                                            <input type="text" autocomplete="off" class="span11" name="responsable" value="<c:out value="${service.responsable}" />" required="" id="responsable" placeholder="Résponsabe" />
+                                            <br><span style="color: red" > <c:out value="${serviceForm.erreurs['responsable']}"/> </span>
                                         </div>
                                     </div>
                                     <div class="form-actions">
-                                        <button type="submit" class="btn btn-success btn-small" name="btn" value="btnApprovisionnement">Enregistrer</button>
+                                        <button type="submit" class="btn btn-success btn-small" name="btnSave" value="btnApprovisionnement">Enregistrer</button>
                                         <button type="submit" class="btn btn-warning btn-small">Terminer</button>
                                     </div>
                                 </form>
@@ -186,7 +187,7 @@
                      <div class="spam12">
                          <div class="widget-box">
                             <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                                <h5>Liste Approvisionnements</h5>
+                                <h5>Services</h5>
                                 <span class="label  label-info"><i class="icon icon-refresh"> </i></span>
                             </div>
                             <div class="widget-content nopadding">
@@ -194,32 +195,21 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Produit</th>
-                                        <th>Quantité</th>
-                                        <th>Prix unitaire</th>
-                                        <th>Prix Total</th>
-                                        <th>Fabriqué le</th>
-                                        <th>Expiré le</th>
-                                        <th>Fournisseur</th>
-                                        <th>Date achat</th>
-                                        <th>Enregistré par</th>
-                                        <th>Options</th>
+                                        <th style="display: none">id</th>
+                                        <th>Services</th>
+                                        <th>Déscription</th>
+                                        <th>Responsable</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="achats" items="${listeAchat}">
+                                    <c:forEach var="service" items="${listeservice}">
                                         <tr class="gradeX">
-                                            <td> <c:out value="${achats.compteur}" /> </td>
-                                            <td style="display: none"> <c:out value="${achats.id}" /> </td>
-                                            <td> <c:out value="${achats.produit['designation']}" /> </td>
-                                            <td> <c:out value="${achats.quantite}" /> </td>
-                                            <td class="center"> <c:out value="${achats.prixAchatU}" /> </td>
-                                            <td class="center"> <c:out value="${achats.quantite * achats.prixAchatU}" /> </td>
-                                            <td> <c:out value="${achats.dateFabrication}" /> </td>
-                                            <td> <c:out value="${achats.dateExpiration}" /> </td>
-                                            <td> <c:out value="${achats.fournisseur['nom']} ${achats.fournisseur['prenom']}" /> </td>
-                                            <td> <c:out value="${achats.dateApprov}" /> </td>
-                                            <td> <c:out value="${achats.userSession} le ${achats.dateEnreg}" /> </td>
+                                            <td> <c:out value="${service.compteur}" /> </td>
+                                            <td style="display: none"> <c:out value="${service.id}" /> </td>
+                                            <td> <c:out value="${service.designation}" /> </td>
+                                            <td> <c:out value="${service.description}" /> </td>
+                                            <td class="center"> <c:out value="${service.responsable}" /> </td>
                                              <td class="taskOptions"><a href="#" class="tip-top" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
                                         </tr>
                                     </c:forEach>          

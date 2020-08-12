@@ -1,12 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.servlets;
 
+import com.DAO.DAO;
+import com.Factory.AbstractDAOFactory;
+import com.Factory.FactoryType;
+import com.beans.Service;
+import com.forms.ServiceForm;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,15 @@ import javax.servlet.http.HttpServletResponse;
 public class Services extends HttpServlet {
 
     private static final String VUE = "/WEB-INF/service.jsp";
+    private static final String FORM_SERVICE = "serviceForm";
+    private static final String SERVICE = "service";
+    private static final String LISTE_SERVICE = "listeservice";
+    DAO<Service> serviceDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getServiceDAO();
+    List<Service> listeservice = serviceDAO.getAll();
+    void load(){
+        listeservice.clear();
+        listeservice = serviceDAO.getAll();
+    }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,7 +40,8 @@ public class Services extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+        load();
+         request.setAttribute(LISTE_SERVICE, listeservice);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
 
@@ -38,6 +49,20 @@ public class Services extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+         ServiceForm form = new ServiceForm();
+       
+         Service service = form.createService(request);
+        if(request.getParameter("btnSave") != null){
+            if(form.getErreurs().isEmpty()){
+                serviceDAO.operationIUD(1, service);
+            }else{
+                request.setAttribute(FORM_SERVICE, form);
+                request.setAttribute(SERVICE, service);
+            }  
+        }
+          load();
+        request.setAttribute(LISTE_SERVICE, listeservice);
+        this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
     @Override
     public String getServletInfo() {

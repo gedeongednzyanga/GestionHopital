@@ -10,16 +10,18 @@ public class Service {
     private long id;
     private String designation;
     private String description;
-    private String resonsable;
+    private String responsable;
+    private int compteur;
 
     public Service() {
     }
 
-    public Service(long id, String designation, String description, String resonsable) {
+    public Service(int compteur, long id, String designation, String description, String responsable) {
+        this.compteur = compteur;
         this.id = id;
         this.designation = designation;
         this.description = description;
-        this.resonsable = resonsable;
+        this.responsable = responsable;
     }
     
 
@@ -47,11 +49,19 @@ public class Service {
         this.description = description;
     }
 
-    public String getResonsable() {
-        return resonsable;
+    public String getResponsable() {
+        return responsable;
     }
 
-    public void setResonsable(String resonsable) {
-        this.resonsable = resonsable;
+    public void setResponsable(String responsable) {
+        this.responsable = responsable;
+    }
+
+    public int getCompteur() {
+        return compteur;
+    }
+
+    public void setCompteur(int compteur) {
+        this.compteur = compteur;
     }
 }
