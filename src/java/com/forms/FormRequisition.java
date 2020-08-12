@@ -5,7 +5,6 @@
  */
 package com.forms;
 
-import com.beans.SortieMalade;
 import com.beans.SortieService;
 import java.sql.Date;
 import javax.servlet.ServletRequest;

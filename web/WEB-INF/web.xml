@@ -74,6 +74,10 @@
         <servlet-name>Services</servlet-name>
         <servlet-class>com.servlets.Services</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Terminer</servlet-name>
+        <servlet-class>com.servlets.Terminer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -121,6 +125,10 @@
     <servlet-mapping>
         <servlet-name>Services</servlet-name>
         <url-pattern>/Services</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Terminer</servlet-name>
+        <url-pattern>/Terminer</url-pattern>
     </servlet-mapping>
     <session-config>
        

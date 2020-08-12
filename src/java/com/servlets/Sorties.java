@@ -33,7 +33,6 @@ import javax.servlet.http.HttpSession;
 public class Sorties extends HttpServlet {
 
     private static final String VUE = "/WEB-INF/sorties.jsp" ;
-
     private static final String ATTR_FORM_SM = "sortieMForm";
     private static final String ATTR_SORTIEM = "sortiem";
     private static final String ATTR_MALADE ="malade";

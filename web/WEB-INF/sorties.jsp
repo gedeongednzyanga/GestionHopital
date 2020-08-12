@@ -129,284 +129,175 @@
         <div class="container-fluid">
             <hr>
             <div class="row-fluid">
+                    <div class="span6">
+                        <div class="widget-box">
+                            <div class="widget-title"> <span class="icon"> <i class="icon-user"></i> </span>
+                              <h5>Services</h5>
+                            </div>
+                            <div class="widget-content"> 
+                                 <form action="<c:url value="/Sorties" />" method="POST" class="">
+                                    <input type="hidden" name="id" id="id" value="0" />
+                                    <input type="hidden" name="utilisateur" id="utilisateur" value="<c:out value="${sessionScope.sessionUtilisateur.nom} ${sessionScope.sessionUtilisateur.prenom}" />" />
+                                    <div class="row-fluid">
+                                        <div class="span7">
+                                            <div class="control-group">
+                                                <label class="control-label"><b>Service</b></label>
+                                                <div class="controls">
+                                                    <select  name="service" id="service" required="" class="span11">
+                                                        <c:forEach var="service" items="${services}">
+                                                            <option value="<c:out value="${service.id}" />"> <c:out value="${service.designation}" /> </option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="span5">
+                                            <div class="control-group">
+                                                <label class="control-label"><b>Date Sorties</b></label>
+                                                <div class="controls">
+                                                    <input type="date" name="datesorties" id="datesorties" required="" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
+                                                </div>
+                                            </div>
+                                            <div class="pull-left">
+                                                <button type="submit" class="btn btn-success btn-small" name="factureRec" value="btnSave">Enregistrer</button>
+                                                <button type="submit" name="factureRec" class="btn btn-info btn-small">Modifier</button>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                </form>
+                            </div>         
+                        </div>
+                         <div class="widget-box">
+                            <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                                <h5>Détail Sortie/Ajouter Produit</h5>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <form action="<c:url value="/Sorties" />" method="POST" class="form-horizontal">
+                                    <div class="control-group">
+                                        <input type="hidden" name="id" id="id" value="0" />
+                                        <input type="hidden" name="serviceid" value="<c:out value="${sessionScope.sessionService.id}" />" />
+                                        <label class="control-label" for="souscategorie">Produit :</label>
+                                        <div class="controls">
+                                            <select id="produit" class="span11" name="produit" required="">
+                                                <c:forEach var="produit" items="${listeProduit}">
+                                                    <option value="<c:out value="${produit.id}" />"> <c:out value="${produit.designation} ${produit.dosage} (${produit.sousCategorie['designation']})" /> 
+                                                    </option>                                                                                                           
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="designation">Quantité :</label>
+                                        <div class="controls">
+                                            <input type="number" required="" class="span11" id="quantite" value="<c:out value="${sortiess.quantite}" />" name="quantite" autocomplete="off" placeholder="Quantité" />
+                                            <br><span style="color: red"><c:out value="${sortieSForm.erreurs['quantite']}" /></span>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="stockAlert">Reste Stock :</label>
+                                        <div class="controls">
+                                            <input type="number" readonly="" class="span11" value="<c:out default="0" value="${produit.stockAlert}" />" id="stockAlert" autocomplete="off" name="stockAlert" placeholder="Stock Alert" />
+                                            <br><span style="color: red"><c:out value="${produitForm.erreurs['stockAlert']}" /></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions ">
+                                        <button type="submit" name="btnSaveSS" value="saveSS" class="btn btn-success btn-small"><i class="icon-ok"></i> Ajouter</button> 
+                                        <button type="submit" name="btnSave" value="update" class="btn btn-info btn-small"><i class="icon-edit"></i> Modifier</button>
+                                        <a href="<c:url value="/Terminer" />" class="btn btn-warning btn-small"><i class="icon-edit"></i> Terminer</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>              
+                    </div>
+                   <div class="span6">
+                        <div class="widget-box">
+                             <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+                                 <h5>Panier du Service : <c:out value="${sessionScope.sessionService.designation}" /> </h5>
+                                 <span class="label label-info">Featured</span>
+                             </div>
+                             <div class="widget-content nopadding">
+                                 <table class="table table-bordered table-striped">
+                                     <thead>
+                                         <tr>
+                                             <th>#</th>
+                                             <th>Désignation</th>
+                                             <th>Quantité</th>
+                                             <th>Prix Unitaire</th>
+                                             <th>Prix Total</th>
+                                         </tr>
+                                     </thead>
+                                     <tbody>
+                                         <c:forEach var="panierService" items="${panierService}">
+                                             <tr>
+                                                 <td> <c:out value="${panierService.id}" /> </td>
+                                                 <td> <c:out value="${panierService.produit['designation']} ${panierService.produit['dosage']}" /> </td>
+                                                 <td> <c:out value="${panierService.quantite}" /> </td>
+                                                 <td> <c:out value="${panierService.prixVenteU}" /> </td>
+                                                 <td> <c:out value="${panierService.prixVenteU * panierService.quantite}" /> </td>
+                                             </tr>
+                                         </c:forEach>
+
+                                         <tr>
+                                             <td>#</td>
+                                             <td colspan="3"> <b>Total à payer</b> </td>
+                                             <td><b>12900</b></td>
+                                         </tr>
+                                     </tbody>
+                                 </table>
+                             </div>
+                         </div>
+                     </div>                                  
+                </div>
+            <div class="row-fluid">
                 <div class="span12">
                     <div class="widget-box">
-                        <div class="widget-title">
-                          <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#tab2">Sorties Services</a></li>
-                            <li><a data-toggle="tab" href="#tab3">Factures</a></li>
-                            <li><a data-toggle="tab" href="#tab4">Recquisitions</a></li>
-                          </ul>
+                        <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                            <h5>Liste Médicaments</h5>
+                            <span class="label  label-info"><i class="icon icon-refresh"> </i></span>
                         </div>
-                        <div class="widget-content tab-content">
-                            <div id="tab2" class="tab-pane active">
-                                 <div class="row-fluid">
-                                    <div class="span6">
-                                        <div class="widget-box">
-                                            <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                                                <h5>Détail Sortie</h5>
-                                            </div>
-                                            <div class="widget-content nopadding">
-                                                <form action="<c:url value="/Sorties" />" method="POST" class="form-horizontal">
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="souscategorie">Services :</label>
-                                                        <div class="controls">
-                                                            <input type="hidden" name="id" id="id" value="0" />
-                                                            <input type="hidden" name="utilisateur" value="<c:out value="${sessionScope.sessionUtilisateur.nom} ${sessionScope.sessionUtilisateur.prenom}" />" />
-                                                            <select id="service" name="service" required="">
-                                                                <c:forEach var="service" items="${services}">
-                                                                    <option value="<c:out value="${service.id}" />"> <c:out value="${service.designation}" /></option>
-                                                                </c:forEach>
-                                                            </select>
-                                                        </div> 
-                                                    </div>
-                                                    <div class="control-group">
-                                                        <label class="control-label">Date Sortie :</label>
-                                                        <div class="controls">
-                                                            <input type="date" name="datesorties" id="datesorties"  required="" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
-                                                        </div>
-                                                        <div class="controls">
-                                                            <button type="submit" name="factureRec" class="btn btn-warning btn-small">Créer Recquisition</button>
-                                                        </div> 
-                                                    </div>
-                                                </form>
-                                                <form action="<c:url value="/Sorties" />" method="POST" class="form-horizontal">
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="souscategorie">Produit :</label>
-                                                        <div class="controls">
-                                                            <input type="hidden" name="id" id="id" value="0" />
-                                                            <input type="hidden" name="serviceid" value="<c:out value="${sessionScope.sessionService.id}" />" />
-                                                            <select id="produit" name="produit" required="">
-                                                                <c:forEach var="produit" items="${listeProduit}">
-                                                                    <option value="<c:out value="${produit.id}" />"> <c:out value="${produit.designation} ${produit.dosage} (${produit.sousCategorie['designation']})" /> 
-                                                                    </option>                                                                                                           
-                                                                </c:forEach>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="designation">Quantité :</label>
-                                                        <div class="controls">
-                                                            <input type="number" required="" class="span11" id="quantite" value="<c:out value="${sortiess.quantite}" />" name="quantite" autocomplete="off" placeholder="Quantité" />
-                                                            <br><span style="color: red"><c:out value="${sortieSForm.erreurs['quantite']}" /></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="stockAlert">Reste Stock :</label>
-                                                        <div class="controls">
-                                                            <input type="number" readonly="" class="span11" value="<c:out default="0" value="${produit.stockAlert}" />" id="stockAlert" autocomplete="off" name="stockAlert" placeholder="Stock Alert" />
-                                                            <br><span style="color: red"><c:out value="${produitForm.erreurs['stockAlert']}" /></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-actions ">
-                                                        <button type="submit" name="btnSaveSS" value="saveSS" class="btn btn-success"><i class="icon-ok"></i> Ajouter</button> 
-                                                        <button type="submit" name="btnSave" value="update" class="btn btn-info"><i class="icon-edit"></i> Modifier</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                     <div class="span6">
-                                       <div class="widget-box">
-                                            <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-                                                <h5>Panier du Service : <c:out value="${sessionScope.sessionService.designation}" /> </h5>
-                                                <span class="label label-info">Featured</span>
-                                            </div>
-                                            <div class="widget-content nopadding">
-                                                <table class="table table-bordered table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Désignation</th>
-                                                            <th>Quantité</th>
-                                                            <th>Prix Unitaire</th>
-                                                            <th>Prix Total</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <c:forEach var="panierService" items="${panierService}">
-                                                            <tr>
-                                                                <td> <c:out value="${panierService.id}" /> </td>
-                                                                <td> <c:out value="${panierService.produit['designation']} ${panierService.produit['dosage']}" /> </td>
-                                                                <td> <c:out value="${panierService.quantite}" /> </td>
-                                                                <td> <c:out value="${panierService.prixVenteU}" /> </td>
-                                                                <td> <c:out value="${panierService.prixVenteU * panierService.quantite}" /> </td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                        
-                                                        <tr>
-                                                            <td>#</td>
-                                                            <td colspan="3"> <b>Total à payer</b> </td>
-                                                            <td><b>12900</b></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div class="row-fluid">
-                                    <div class="span12">
-                                        <div class="widget-box">
-                                            <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-                                                <h5>Liste Médicaments</h5>
-                                                <span class="label  label-info"><i class="icon icon-refresh"> </i></span>
-                                            </div>
-                                            <div class="widget-content nopadding">
-                                                <table class="table table-bordered data-table" id="table_produit">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th style="display:none">Id</th>
-                                                            <th>Désignation</th>
-                                                            <th>Dosage</th>
-                                                            <th>Forme</th>
-                                                            <th>Catégorie</th>
-                                                            <th>Stock Alert</th>
-                                                            <th>En Stock</th>
-                                                            <th>Prix U. vente</th>
-                                                            <th>Valeur en Stock</th>
-                                                            <th>Eneg./Modif. par</th>
-                                                            <th>Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <c:forEach var="produit" items="${listeProduit}" >
-                                                            <tr class="gradeX">
-                                                                <td> <c:out value="${produit.compteur}" /> </td>
-                                                                <td style="display:none"> <c:out value="${produit.id}" /> </td>
-                                                                <td> <c:out value="${produit.designation}" /> </td>
-                                                                <td><c:out value="${produit.dosage}" /></td>
-                                                                <td> <c:out value="${produit.sousCategorie['designation']}" /> </td>
-                                                                <td> <c:out value="${produit.categorie['designation']}" /> </td>
-                                                                <td> <c:out value="${produit.stockAlert}" /> </td>
-                                                                <td> <c:out value="${produit.stock}" /> </td>
-                                                                <td class="center"> <c:out value="${produit.prixVenteU}" /> </td>
-                                                                <td> <c:out value="${produit.prixVenteT}" /> </td>
-                                                                <td> <c:out value="${produit.utilisateur}" /> </td>
-                                                                <td class="taskOptions">
-                                                                    <a href="#" class="tip-top" onclick="retunDataProduct()" data-original-title="Modifier"><i class="icon-ok"></i></a> 
-                                                                    <a href="<c:url value="/Stock?id=${produit.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
-                                                                </td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab4" class="tab-pane">
-                                <div class="row-fluid">
-                                    <div class="span12">
-                                        <div class="widget-box">
-                                            <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-                                                <h5>Liste Médicaments</h5>
-                                                <span class="label  label-info"><i class="icon icon-refresh"> </i></span>
-                                            </div>
-                                            <div class="widget-content nopadding">
-                                                <table class="table table-bordered data-table" id="table_produit">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th style="display:none">Id</th>
-                                                            <th>Désignation</th>
-                                                            <th>Dosage</th>
-                                                            <th>Forme</th>
-                                                            <th>Catégorie</th>
-                                                            <th>Stock Alert</th>
-                                                            <th>En Stock</th>
-                                                            <th>Prix U. vente</th>
-                                                            <th>Valeur en Stock</th>
-                                                            <th>Eneg./Modif. par</th>
-                                                            <th>Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <c:forEach var="produit" items="${listeProduit}" >
-                                                            <tr class="gradeX">
-                                                                <td> <c:out value="${produit.compteur}" /> </td>
-                                                                <td style="display:none"> <c:out value="${produit.id}" /> </td>
-                                                                <td> <c:out value="${produit.designation}" /> </td>
-                                                                <td><c:out value="${produit.dosage}" /></td>
-                                                                <td> <c:out value="${produit.sousCategorie['designation']}" /> </td>
-                                                                <td> <c:out value="${produit.categorie['designation']}" /> </td>
-                                                                <td> <c:out value="${produit.stockAlert}" /> </td>
-                                                                <td> <c:out value="${produit.stock}" /> </td>
-                                                                <td class="center"> <c:out value="${produit.prixVenteU}" /> </td>
-                                                                <td> <c:out value="${produit.prixVenteT}" /> </td>
-                                                                <td> <c:out value="${produit.utilisateur}" /> </td>
-                                                                <td class="taskOptions">
-                                                                    <a href="#" class="tip-top" onclick="retunDataProduct()" data-original-title="Modifier"><i class="icon-ok"></i></a> 
-                                                                    <a href="<c:url value="/Stock?id=${produit.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
-                                                                </td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                 </div> 
-                            </div>                  
-                            <div id="tab3" class="tab-pane">
-                                 <div class="row-fluid">
-                                    <div class="span12">
-                                        <div class="widget-box">
-                                            <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-                                                <h5>Liste Médicaments</h5>
-                                                <span class="label  label-info"><i class="icon icon-refresh"> </i></span>
-                                            </div>
-                                            <div class="widget-content nopadding">
-                                                <table class="table table-bordered data-table" id="table_produit">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th style="display:none">Id</th>
-                                                            <th>Désignation</th>
-                                                            <th>Dosage</th>
-                                                            <th>Forme</th>
-                                                            <th>Catégorie</th>
-                                                            <th>Stock Alert</th>
-                                                            <th>En Stock</th>
-                                                            <th>Prix U. vente</th>
-                                                            <th>Valeur en Stock</th>
-                                                            <th>Eneg./Modif. par</th>
-                                                            <th>Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <c:forEach var="produit" items="${listeProduit}" >
-                                                            <tr class="gradeX">
-                                                                <td> <c:out value="${produit.compteur}" /> </td>
-                                                                <td style="display:none"> <c:out value="${produit.id}" /> </td>
-                                                                <td> <c:out value="${produit.designation}" /> </td>
-                                                                <td><c:out value="${produit.dosage}" /></td>
-                                                                <td> <c:out value="${produit.sousCategorie['designation']}" /> </td>
-                                                                <td> <c:out value="${produit.categorie['designation']}" /> </td>
-                                                                <td> <c:out value="${produit.stockAlert}" /> </td>
-                                                                <td> <c:out value="${produit.stock}" /> </td>
-                                                                <td class="center"> <c:out value="${produit.prixVenteU}" /> </td>
-                                                                <td> <c:out value="${produit.prixVenteT}" /> </td>
-                                                                <td> <c:out value="${produit.utilisateur}" /> </td>
-                                                                <td class="taskOptions">
-                                                                    <a href="#" class="tip-top" onclick="retunDataProduct()" data-original-title="Modifier"><i class="icon-ok"></i></a> 
-                                                                    <a href="<c:url value="/Stock?id=${produit.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
-                                                                </td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                 </div>     
-                            </div>
+                        <div class="widget-content nopadding">
+                            <table class="table table-bordered data-table" id="table_produit">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th style="display:none">Id</th>
+                                        <th>Désignation</th>
+                                        <th>Dosage</th>
+                                        <th>Forme</th>
+                                        <th>Catégorie</th>
+                                        <th>Stock Alert</th>
+                                        <th>En Stock</th>
+                                        <th>Prix U. vente</th>
+                                        <th>Valeur en Stock</th>
+                                        <th>Eneg./Modif. par</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="produit" items="${listeProduit}" >
+                                        <tr class="gradeX">
+                                            <td> <c:out value="${produit.compteur}" /> </td>
+                                            <td style="display:none"> <c:out value="${produit.id}" /> </td>
+                                            <td> <c:out value="${produit.designation}" /> </td>
+                                            <td><c:out value="${produit.dosage}" /></td>
+                                            <td> <c:out value="${produit.sousCategorie['designation']}" /> </td>
+                                            <td> <c:out value="${produit.categorie['designation']}" /> </td>
+                                            <td> <c:out value="${produit.stockAlert}" /> </td>
+                                            <td> <c:out value="${produit.stock}" /> </td>
+                                            <td class="center"> <c:out value="${produit.prixVenteU}" /> </td>
+                                            <td> <c:out value="${produit.prixVenteT}" /> </td>
+                                            <td> <c:out value="${produit.utilisateur}" /> </td>
+                                            <td class="taskOptions">
+                                                <a href="#" class="tip-top" onclick="retunDataProduct()" data-original-title="Modifier"><i class="icon-ok"></i></a> 
+                                                <a href="<c:url value="/Stock?id=${produit.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
     <!--Footer-part-->
