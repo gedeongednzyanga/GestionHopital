@@ -210,10 +210,11 @@
                         </div>              
                     </div>
                    <div class="span6">
-                        <div class="widget-box">
+                       <div style="height: 37.5em; overflow-y: scroll;">
+                           <div class="widget-box">
                              <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
                                  <h5>Panier du Service : <c:out value="${sessionScope.sessionService.designation}" /> </h5>
-                                 <span class="label label-info">Featured</span>
+                                  <a href="<c:url value="/Facture" />" class="btn btn-success btn-small pull-right">Facture</a>
                              </div>
                              <div class="widget-content nopadding">
                                  <table class="table table-bordered table-striped">
@@ -224,6 +225,7 @@
                                              <th>Quantité</th>
                                              <th>Prix Unitaire</th>
                                              <th>Prix Total</th>
+                                             <th>Action</th>
                                          </tr>
                                      </thead>
                                      <tbody>
@@ -234,18 +236,21 @@
                                                  <td> <c:out value="${panierService.quantite}" /> </td>
                                                  <td> <c:out value="${panierService.prixVenteU}" /> </td>
                                                  <td> <c:out value="${panierService.prixVenteU * panierService.quantite}" /> </td>
+                                                 <td class="taskOptions">      
+                                                    <a href="<c:url value="/Stock?id=${produit.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
+                                                </td>
                                              </tr>
                                          </c:forEach>
-
                                          <tr>
                                              <td>#</td>
                                              <td colspan="3"> <b>Total à payer</b> </td>
-                                             <td><b>12900</b></td>
+                                             <td colspan="2"><b>12900</b></td>
                                          </tr>
                                      </tbody>
                                  </table>
                              </div>
                          </div>
+                       </div>
                      </div>                                  
                 </div>
             <div class="row-fluid">

@@ -78,6 +78,10 @@
         <servlet-name>Terminer</servlet-name>
         <servlet-class>com.servlets.Terminer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Facture</servlet-name>
+        <servlet-class>com.servlets.Facture</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -129,6 +133,10 @@
     <servlet-mapping>
         <servlet-name>Terminer</servlet-name>
         <url-pattern>/Terminer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Facture</servlet-name>
+        <url-pattern>/Facture</url-pattern>
     </servlet-mapping>
     <session-config>
        

@@ -103,7 +103,7 @@
         <div class="container-fluid">
             <hr>
             <div class="row-fluid">
-                <div class="span5">
+                <div class="span6">
                     <div class="widget-box">
                         <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
                             <h5>Personal-info</h5>
@@ -159,18 +159,48 @@
                                         <span style="color:red"> <c:out value="${fournisseurForm.erreurs['adresse']}" /> </span>
                                     </div>
                                 </div>
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-success"><i class="icon-ok"></i>
+                                <div class="form-actions pull-right">
+                                    <button type="submit" class="btn btn-success btn-small"><i class="icon-ok"></i>
                                         Enregistrer</button>
-                                    <button type="submit" class="btn btn-info"><i class="icon-edit"></i>
+                                    <button type="submit" class="btn btn-info btn-small"><i class="icon-edit"></i>
                                         Modifier</button>
                                 </div>
                             </form>
                         </div>
                     </div>
-
                 </div>
-                <div class="span7">
+                 <div class="span6">
+                     <div class="widget-box">
+                         <div class="widget-title">
+                             <span class="icon"> <i class="icon-user"></i> </span>
+                             <h5>Infos Fournisseur</h5>
+                         </div>
+                         <div class="widget-content">
+                             <div class="row-fluid">
+                                 <div class="span5">
+                                     <center>
+                                         <img src="<c:url value="/assets/img/avatar.png" />" width="150" alt="Spplier Image" />
+                                         <h4>Gédéon Nzyanga</h4>
+                                     </center>
+                                         
+                                 </div>
+                                 <div class="span7">
+                                     <ul class="unstyled">
+                                         <li>  <h3> <i class="icon-user"></i> Gédéon Nzyanga </h3></li>
+                                         <li><h4><i class="icon-phone"></i> +243997235842 </h4></li>
+                                         <li><h4><i class="icon-envelope"></i> gedeonnzyanga@gmail.com </h4></li>
+                                         <li><h4> <i class="icon-globe"></i> <a href="">www.barbutoc.com</a> </h4></li>
+                                         <li><h4> <i class="icon-twitter"></i> Gédéon Nzyanga </h4></li>
+                                     </ul>
+                                     
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
                     <div class="widget-box">
                         <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
                             <h5>Fournisseurs</h5>
