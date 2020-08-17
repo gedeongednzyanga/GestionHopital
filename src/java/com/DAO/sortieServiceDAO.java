@@ -53,16 +53,60 @@ public class sortieServiceDAO extends DAO<SortieService>{
     @Override
     public List getAll() {
         ArrayList<SortieService> liste = new ArrayList<>();
+        int compt = 0;
         try{
-            ps = this.connect.prepareStatement("");
+            ps = this.connect.prepareStatement("CALL GET_FACTURATION()");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                System.out.println("Pas encore.");
+                compt++;
+                liste.add(new SortieService(compt, rs.getString("numfacture"), Long.parseLong(rs.getString("detail_id")), 
+                new serviceDAO().find(Integer.parseInt(rs.getString("ref_service"))),
+                rs.getString("user_session"), Integer.parseInt(rs.getString("sortie_quantite")), 
+                Double.parseDouble(rs.getString("sortie_pvu")), Float.parseFloat(rs.getString("pvt")),
+                Date.valueOf(rs.getString("date_sortie_s")),  Date.valueOf(rs.getString("date_enregist_s")),
+                new produitDAO().find(Integer.parseInt(rs.getString("ref_produit")))));
             }
-        }catch(Exception e){
+        }catch(SQLException e){
             System.out.println(e.getMessage());
         }
         return liste;
+    }
+    
+    public List facture(String facture) {
+        ArrayList<SortieService> liste = new ArrayList<>();
+        int compt = 0;
+        try{
+            ps = this.connect.prepareStatement("CALL GET_ONEFACTURATION (?)");
+            ps.setString(1, facture);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                compt++;
+                liste.add(new SortieService(compt, rs.getString("numfacture"), Long.parseLong(rs.getString("detail_id")), 
+                new serviceDAO().find(Integer.parseInt(rs.getString("ref_service"))),
+                rs.getString("user_session"), Integer.parseInt(rs.getString("sortie_quantite")), 
+                Double.parseDouble(rs.getString("sortie_pvu")), Float.parseFloat(rs.getString("pvt")),
+                Date.valueOf(rs.getString("date_sortie_s")),  Date.valueOf(rs.getString("date_enregist_s")),
+                new produitDAO().find(Integer.parseInt(rs.getString("ref_produit")))));
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return liste;
+    }
+    
+    public float sumValeur(String facture){
+        float somme =0;
+        try{
+            ps = this.connect.prepareStatement("SELECT SUM(pvt) as total FROM get_facturation WHERE numfacture = ?");
+            ps.setString(1, facture);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                somme = Float.parseFloat(rs.getString("total"));
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }   
+        return somme;
     }
     
     
@@ -75,8 +119,7 @@ public class sortieServiceDAO extends DAO<SortieService>{
             while(rs.next()){
                 liste.add(new SortieService(Long.parseLong(rs.getString("sortie_id")), new serviceDAO().find(Integer.parseInt(rs.getString("ref_service"))),
                 rs.getString("user_session"), Integer.parseInt(rs.getString("sortie_quantite")), Double.parseDouble(rs.getString("sortie_pvu")),
-                Date.valueOf(rs.getString("date_sortie_s")), new produitDAO().find(Integer.parseInt(rs.getString("ref_produit")))));
-                
+                Date.valueOf(rs.getString("date_sortie_s")), new produitDAO().find(Integer.parseInt(rs.getString("ref_produit")))));       
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());

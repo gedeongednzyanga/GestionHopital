@@ -136,18 +136,18 @@
                                             <tr>
                                                 <tr>
                                                     <td class="width30">Facture ID :</td>
-                                                    <td class="width70"><strong>TD-6546</strong></td>
+                                                    <td class="width70"><strong><c:out value="${numfacture}" /></strong></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Date sortie :</td>
-                                                    <td><strong>March 23, 2013</strong></td>
+                                                    <td><strong><c:out value="${datesortie}" /></strong></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Date facturation :</td>
-                                                    <td><strong>April 01, 2013</strong></td>
+                                                    <td><strong><c:out value="${datefacturation}" /></strong></td>
                                                 </tr>
                                                 <td class="width30">Service concerné :</td>
-                                                <td class="width70"><strong>Cliente Company name.</strong> <br> 501 Mafia Street., washington,
+                                                <td class="width70"><strong> <c:out value="${servicef}" /></strong> <br> 501 Mafia Street., washington,
                                                     <br> NYNC 3654 <br> Contact No: 123 456-7890 <br> Email: youremail@companyname.com </td>
                                             </tr>
                                         </tbody>
@@ -167,66 +167,36 @@
                                                 <th class="head0 right">Montant</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Firefox</td>
-                                                <td>Ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
-                                                </td>
-                                                <td class="right">2</td>
-                                                <td class="right">$150</td>
-                                                <td class="right"><strong>$300</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Chrome Plugin</td>
-                                                <td>Tro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt u eos et accusamus et iusto odio dignissimos ducimus deleniti atque</td>
-                                                <td class="right">1</td>
-                                                <td class="right">$1,200</td>
-                                                <td class="right"><strong>$1,2000</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Safari App</td>
-                                                <td>Rro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt u expedita distinctio</td>
-                                                <td class="right">2</td>
-                                                <td class="right">$850</td>
-                                                <td class="right"><strong>$1,700</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Opera App</td>
-                                                <td>Orro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut</td>
-                                                <td class="right">3</td>
-                                                <td class="right">$850</td>
-                                                <td class="right"><strong>$2,550</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Netscape Template</td>
-                                                <td>Vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</td>
-                                                <td class="right">5</td>
-                                                <td class="right">$50</td>
-                                                <td class="right"><strong>$250</strong></td>
-                                            </tr>
+                                         <tbody>
+                                            <c:forEach var="facture" items="${facture}" >
+                                                <tr class="gradeX">
+                                                    <td> <c:out value="${facture.compt}" /> </td>
+                                                    <td> <c:out value="${facture.produit['designation']}" /> </td>
+                                                    <td><c:out value="${facture.quantite}" /></td>
+                                                    <td> <strong> <c:out value="${facture.prixVenteU}" /> Fc </strong> </td>
+                                                    <td> <strong> <c:out value="${facture.prixtotal}" /> Fc</strong></td>
+                                                </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                     <table class="table table-bordered table-invoice-full">
                                         <tbody>
                                             <tr>
                                                 <td class="msg-invoice" width="85%">
-                                                    <h4>Payment method: </h4>
-                                                    <a href="#" class="tip-bottom" title="Wire Transfer">Wire transfer</a> | <a href="#" class="tip-bottom" title="Bank account">Bank account #</a> | <a href="#" class="tip-bottom" title="SWIFT code">SWIFT code </a>|
-                                                    <a href="#" class="tip-bottom" title="IBAN Billing address">IBAN Billing address </a>
+                                                    <h4>Montant Total </h4>
+                                                    
                                                 </td>
-                                                <td class="right"><strong>Subtotal</strong> <br>
-                                                    <strong>Tax (5%)</strong> <br>
-                                                    <strong>Discount</strong></td>
-                                                <td class="right"><strong>$7,000 <br>
-                            $600 <br>
-                            $50</strong></td>
+                                                <td class="right"><strong>Totaux</strong> <br>
+                                                    </strong></td>
+                                                <td class="right"><strong> <c:out value="${total}" /> Fc <br>
+                                                </strong></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="pull-right">
-                                        <h4><span>Amount Due:</span> $7,650.00</h4>
+                                        <h4><span> Valeur de la Sortie :</span> <c:out value="${total}" /> Fc </h4>
                                         <br>
-                                        <a class="btn btn-primary btn-large pull-right" href="">Pay Invoice</a>
+                                        <!--<a class="btn btn-primary btn-large pull-right" href="">Pay Invoice</a>-->
                                     </div>
                                 </div>
                             </div>

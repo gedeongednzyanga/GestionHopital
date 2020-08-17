@@ -266,36 +266,32 @@
                                     <tr>
                                         <th>#</th>
                                         <th style="display:none">Id</th>
-                                        <th>Désignation</th>
-                                        <th>Dosage</th>
-                                        <th>Forme</th>
-                                        <th>Catégorie</th>
-                                        <th>Stock Alert</th>
-                                        <th>En Stock</th>
-                                        <th>Prix U. vente</th>
-                                        <th>Valeur en Stock</th>
+                                        <th>Facture</th>
+                                        <th>Service</th>
+                                        <th>Médicament</th>
+                                        <th>Quantité</th>
+                                        <th>Prix Unitaire</th>
+                                        <th>Prix Total</th>
+                                        <th>Date Sortie</th>
+                                        <th>Date Enreg.</th>
                                         <th>Eneg./Modif. par</th>
-                                        <th>Actions</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="produit" items="${listeProduit}" >
+                                    <c:forEach var="sortie" items="${sortieStock}" >
                                         <tr class="gradeX">
-                                            <td> <c:out value="${produit.compteur}" /> </td>
-                                            <td style="display:none"> <c:out value="${produit.id}" /> </td>
-                                            <td> <c:out value="${produit.designation}" /> </td>
-                                            <td><c:out value="${produit.dosage}" /></td>
-                                            <td> <c:out value="${produit.sousCategorie['designation']}" /> </td>
-                                            <td> <c:out value="${produit.categorie['designation']}" /> </td>
-                                            <td> <c:out value="${produit.stockAlert}" /> </td>
-                                            <td> <c:out value="${produit.stock}" /> </td>
-                                            <td class="center"> <c:out value="${produit.prixVenteU}" /> </td>
-                                            <td> <c:out value="${produit.prixVenteT}" /> </td>
-                                            <td> <c:out value="${produit.utilisateur}" /> </td>
-                                            <td class="taskOptions">
-                                                <a href="#" class="tip-top" onclick="retunDataProduct()" data-original-title="Modifier"><i class="icon-ok"></i></a> 
-                                                <a href="<c:url value="/Stock?id=${produit.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
-                                            </td>
+                                            <td> <c:out value="${sortie.compt}" /> </td>
+                                            <td style="display:none"> <c:out value="${sortie.id}" /> </td>
+                                            <td> <a href="<c:url value="/Facture?facture=${sortie.facture}&ds=${sortie.dateSortie}&de=${sortie.dateenreg}&s=${sortie.service['designation']}" />"><c:out value="${sortie.facture}" /></a> </td>
+                                            <td> <c:out value="${sortie.service['designation']}" /> </td>
+                                            <td> <c:out value="${sortie.produit['designation']}" /> </td>
+                                            <td><c:out value="${sortie.quantite}" /></td>
+                                            <td> <c:out value="${sortie.prixVenteU}" /> </td>
+                                            <td> <c:out value="${sortie.prixtotal}" /> </td>
+                                            <td> <c:out value="${sortie.dateSortie}" /> </td>
+                                            <td> <c:out value="${sortie.dateenreg}" /> </td> 
+                                            <td> <c:out value="${sortie.usersession}" /> </td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

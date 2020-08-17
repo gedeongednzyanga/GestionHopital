@@ -45,6 +45,7 @@ public class Sorties extends HttpServlet {
     private static final String ATTR_SESSION_SERVICE = "sessionService";
     private static final String ATTR_PANIER_CLIENT = "panierClient";
     private static final String ATTR_PANIER_SERVICE = "panierService";
+    private static final String LISTE_SORTIE = "sortieStock";
     DAO<Malade> maladeDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getMaladeDAO();
     DAO<Produit> produitDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getProduitDAO();
     DAO<Service> serviceDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getServiceDAO();
@@ -55,7 +56,12 @@ public class Sorties extends HttpServlet {
     List<Service> listeService = serviceDAO.getAll();
     List<SortieMalade> panierClient;
     List<SortieService> panierService;
+    List<SortieService> sortieStock = sortieServiceDAO.getAll();
     Approvisionnement approvi = new approvisionnementDAO().getLastApprovionnement();
+     void load(){
+        sortieStock.clear();
+        sortieStock = sortieServiceDAO.getAll();
+    }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -67,10 +73,12 @@ public class Sorties extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
+        load();
         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         request.setAttribute(ATTR_MALADE, listeMalade);
         request.setAttribute(ATTR_SERVICE, listeService);
         request.setAttribute(ATTR_APPROVINNEMENT, approvi);
+        request.setAttribute(LISTE_SORTIE, sortieStock);
         
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
@@ -80,6 +88,7 @@ public class Sorties extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
         HttpSession session = request.getSession();
         
         if(request.getParameter("factureCreate") != null){
@@ -115,11 +124,13 @@ public class Sorties extends HttpServlet {
             request.setAttribute(ATTR_FORM_SS, form);
             request.setAttribute(ATTR_SORTIES, ssl);
         }
+        load();
         request.setAttribute(ATTR_PANIER_CLIENT, panierClient);
         request.setAttribute(ATTR_PANIER_SERVICE, panierService);
         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         request.setAttribute(ATTR_MALADE, listeMalade);
         request.setAttribute(ATTR_SERVICE, listeService);
+        request.setAttribute(LISTE_SORTIE, sortieStock);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
 

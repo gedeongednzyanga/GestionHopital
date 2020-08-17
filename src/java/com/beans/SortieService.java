@@ -15,6 +15,11 @@ public class SortieService extends Sortie{
     private String usersession;
     private int serviceid;
     private int produitId;
+    private float prixtotal;
+    private int compt =0;
+    private String facture;
+    private Date dateenreg;
+    
     public SortieService() {
     }
 
@@ -29,6 +34,17 @@ public class SortieService extends Sortie{
         this.id = id;
         this.service = service;
         this.usersession = usersession;
+        this.produit = produit;
+    }
+     public SortieService(int compt,String facture, long id, Service service, String usersession, int quantite, double prixVenteU, float prixtotal, Date dateSortie, Date dateenreg,Produit produit) {
+        super(quantite, prixVenteU, dateSortie);
+        this.compt = compt;
+        this.facture = facture;
+        this.id = id;
+        this.service = service;
+        this.usersession = usersession;
+        this.prixtotal = prixtotal;
+        this.dateenreg = dateenreg;
         this.produit = produit;
     }
 
@@ -78,6 +94,38 @@ public class SortieService extends Sortie{
 
     public void setProduit(Produit produit) {
         this.produit = produit;
+    }
+
+    public float getPrixtotal() {
+        return prixtotal;
+    }
+
+    public void setPrixtotal(float prixtotal) {
+        this.prixtotal = prixtotal;
+    }
+
+    public int getCompt() {
+        return compt;
+    }
+
+    public void setCompt(int compt) {
+        this.compt = compt;
+    }
+
+    public String getFacture() {
+        return facture;
+    }
+
+    public void setFacture(String facture) {
+        this.facture = facture;
+    }
+
+    public Date getDateenreg() {
+        return dateenreg;
+    }
+
+    public void setDateenreg(Date dateenreg) {
+        this.dateenreg = dateenreg;
     }
     
     

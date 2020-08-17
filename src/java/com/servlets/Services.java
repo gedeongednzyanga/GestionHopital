@@ -23,6 +23,7 @@ public class Services extends HttpServlet {
     private static final String FORM_SERVICE = "serviceForm";
     private static final String SERVICE = "service";
     private static final String LISTE_SERVICE = "listeservice";
+   
     DAO<Service> serviceDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getServiceDAO();
     List<Service> listeservice = serviceDAO.getAll();
     void load(){
