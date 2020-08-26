@@ -118,7 +118,7 @@
                             </div>
                              <div class="span8">
                                  <div class="list-header">
-                                     <span>Produits <span class="btn btn-mini btn-success" >Fiche de Stock</span> <br></span>
+                                     <span>Produits <a href="<c:url value="/Fiche" />"  class="btn btn-mini btn-success" >Fiche de Stock</a> <br></span>
                                      <li>Dernier entrée en Stock : <c:out value="${approvisionnement.quantite}" /> produits le <time><c:out value="${approvisionnement.date}" /> </time> </li>
                                     <li>Dernier sortie en Stock : 240 produits le <time>23-06-2020 </time></li>
     

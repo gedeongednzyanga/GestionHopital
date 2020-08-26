@@ -37,6 +37,14 @@ public class Produit {
         this.categorie = categorie;
     }
 
+    public Produit(long id, String designation, float prixVenteU, double prixVenteT, int compteur) {
+        this.id = id;
+        this.designation = designation;
+        this.prixVenteU = prixVenteU;
+        this.prixVenteT = prixVenteT;
+        this.compteur = compteur;
+    }
+
     public long getId() {
         return id;
     }

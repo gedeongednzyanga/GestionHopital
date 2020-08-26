@@ -161,7 +161,7 @@
                                             <div class="control-group">
                                                 <label class="control-label"><b>Date Achat</b></label>
                                                 <div class="controls">
-                                                    <input type="text" name="dateapprov" id="dateapprov" required="" value="<c:out value="${approvisionnement.dateApprov}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
+                                                    <input type="date" name="dateapprov" id="dateapprov" required="" value="<c:out value="${approvisionnement.dateApprov}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="span11">
                                                 </div>
                                             </div>
                                             <div class="pull-left">
@@ -240,14 +240,14 @@
                                     <div class="control-group">
                                         <label class="control-label">Date Fabrication :</label>
                                         <div class="controls">
-                                            <input type="text" autocomplete="off" name="fabrication" required="" value="<c:out default="01-01-2020" value="${approvisionnement.dateFabrication}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11" />
+                                            <input type="date" autocomplete="off" name="fabrication" required="" value="<c:out default="01-01-2020" value="${approvisionnement.dateFabrication}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="span11" />
                                         </div>
                                     </div>
                                     
                                     <div class="control-group">
                                         <label class="control-label">Date Expiration :</label>
                                         <div class="controls">
-                                            <input type="text" autocomplete="off" name="expiration" required="" value="<c:out default="01-01-2020" value="${approvisionnement.dateExpiration}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
+                                            <input type="date" autocomplete="off" name="expiration" required="" value="<c:out default="01-01-2020" value="${approvisionnement.dateExpiration}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="span11">
                                         </div>
                                     </div>
                                     <div class="form-actions">
@@ -297,7 +297,9 @@
                                             <td> <c:out value="${achats.fournisseur['nom']} ${achats.fournisseur['prenom']}" /> </td>
                                             <td> <c:out value="${achats.dateApprov}" /> </td>
                                             <td> <c:out value="${achats.userSession} le ${achats.dateEnreg}" /> </td>
-                                             <td class="taskOptions"><a href="#" class="tip-top" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
+                                             <td class="taskOptions">
+                                                 <a href="<c:url value="/Achat?id=${achats.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
+                                             </td>
                                         </tr>
                                     </c:forEach>          
                                 </tbody>

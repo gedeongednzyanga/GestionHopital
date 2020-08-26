@@ -1,7 +1,9 @@
 
 package com.DAO;
 
+import com.beans.FicheStock;
 import com.beans.Produit;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -77,5 +79,24 @@ public class produitDAO  extends DAO<Produit> {
             System.out.println(e.getMessage());
         }
         return listeProduit;
+    }
+    
+    public List getFiche(){
+        int compteur = 0;
+        ArrayList<FicheStock> fiche = new ArrayList<>();
+        try{
+            ps = this.connect.prepareStatement("CALL  GET_FICHESTOCK ()");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                compteur++;
+                fiche.add(new FicheStock(Integer.parseInt(rs.getString("quantitee")),Integer.parseInt(rs.getString("quantites")),
+                Integer.parseInt(rs.getString("quantiter")), Date.valueOf(rs.getString("dateperemption")), 
+                Long.parseLong(rs.getString("ref_prod")), rs.getString("produit_designation"), Float.parseFloat(rs.getString("prixu")), 
+                Float.parseFloat(rs.getString("prixtot")), compteur ));
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return fiche;
     }
 }

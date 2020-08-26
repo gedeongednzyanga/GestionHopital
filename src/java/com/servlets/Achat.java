@@ -35,7 +35,10 @@ public class Achat extends HttpServlet {
     List<Produit> listeProduit = produitDAO.getAll();
     List<Fournisseurs> listeFournisseur = fournisseurDAO.getAll();
     List<Approvisionnement> listeAchat = approvisionnementDAO.getAll();
-    
+    void load(){
+        listeAchat.clear();
+        listeAchat = approvisionnementDAO.getAll();
+    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -46,7 +49,7 @@ public class Achat extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+        load();
         request.setAttribute(ATTR_LISTEP, listeProduit);
         request.setAttribute(ATTR_LISTEF, listeFournisseur);
         request.setAttribute(ATTR_LISTE, listeAchat);
@@ -68,7 +71,7 @@ public class Achat extends HttpServlet {
             detailApprovisionnementDAO.operationIUD(1, approvisionnement);
             request.setAttribute(ATTR_APPROVISIONNEMENT, approvisionnement);
         }
-        
+        load();
         request.setAttribute(ATTR_APPROVFORM, form);
         request.setAttribute(ATTR_LISTEP, listeProduit);
         request.setAttribute(ATTR_LISTEF, listeFournisseur);
