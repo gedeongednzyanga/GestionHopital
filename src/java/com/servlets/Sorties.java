@@ -73,7 +73,17 @@ public class Sorties extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
+        if(request.getParameter("id") != null){
+            FormRequisition form = new FormRequisition();
+            SortieService ssl = form.addToRecquisition(request);
+            if(form.getErreurs().isEmpty()){
+                sortieServiceDAO.operationIUD(3, ssl);
+                panierService = new sortieServiceDAO().getPanier(Integer.parseInt(request.getParameter("serviceid")));
+            }
+        }
+        
         load();
+         request.setAttribute(ATTR_PANIER_SERVICE, panierService);
         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         request.setAttribute(ATTR_MALADE, listeMalade);
         request.setAttribute(ATTR_SERVICE, listeService);

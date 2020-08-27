@@ -147,8 +147,7 @@
                                                     <td><strong><c:out value="${datefacturation}" /></strong></td>
                                                 </tr>
                                                 <td class="width30">Service concerné :</td>
-                                                <td class="width70"><strong> <c:out value="${servicef}" /></strong> <br> 501 Mafia Street., washington,
-                                                    <br> NYNC 3654 <br> Contact No: 123 456-7890 <br> Email: youremail@companyname.com </td>
+                                                <td class="width70"><strong> <c:out value="${servicef}" /></strong> </td>
                                             </tr>
                                         </tbody>
 
@@ -179,20 +178,7 @@
                                             </c:forEach>
                                         </tbody>
                                     </table>
-                                    <table class="table table-bordered table-invoice-full">
-                                        <tbody>
-                                            <tr>
-                                                <td class="msg-invoice" width="85%">
-                                                    <h4>Montant Total </h4>
-                                                    
-                                                </td>
-                                                <td class="right"><strong>Totaux</strong> <br>
-                                                    </strong></td>
-                                                <td class="right"><strong> <c:out value="${total}" /> Fc <br>
-                                                </strong></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                   
                                     <div class="pull-right">
                                         <h4><span> Valeur de la Sortie :</span> <c:out value="${total}" /> Fc </h4>
                                         <br>

@@ -112,12 +112,14 @@ public class sortieServiceDAO extends DAO<SortieService>{
     
     public List getPanier(int id){
         ArrayList<SortieService> liste = new ArrayList<>();
+        int compt = 0;
         try{
             ps = this.connect.prepareStatement("CALL GET_ONESORTIESERVICE (?)");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                liste.add(new SortieService(Long.parseLong(rs.getString("sortie_id")), new serviceDAO().find(Integer.parseInt(rs.getString("ref_service"))),
+                compt++;
+                liste.add(new SortieService(compt, Long.parseLong(rs.getString("sortie_id")), new serviceDAO().find(Integer.parseInt(rs.getString("ref_service"))),
                 rs.getString("user_session"), Integer.parseInt(rs.getString("sortie_quantite")), Double.parseDouble(rs.getString("sortie_pvu")),
                 Date.valueOf(rs.getString("date_sortie_s")), new produitDAO().find(Integer.parseInt(rs.getString("ref_produit")))));       
             }

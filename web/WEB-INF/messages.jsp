@@ -1,16 +1,15 @@
 <%-- 
-    Document   : accueil
-    Created on : 24 juin 2020, 14:04:26
+    Document   : messages
+    Created on : 27 août 2020, 07:07:05
     Author     : GEDEON
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
+     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Gestion Hopital</title>
+        <title>Gestion Hopital | Chat</title>
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css" />" />
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-responsive.min.css" />" />
         <link rel="stylesheet" href="<c:url value="/assets/css/fullcalendar.css" />" />
@@ -46,7 +45,7 @@
                 <ul class="dropdown-menu">
                     <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> Nouveau message</a></li>
                     <li class="divider"></li>
-                    <li><a class="sInbox" title="" href="<c:url value="/Chat" />"><i class="icon-envelope"></i> Boîte de reception</a></li>
+                    <li><a class="sInbox" title="" href="#"><i class="icon-envelope"></i> Boîte de reception</a></li>
                     <li class="divider"></li>
                     <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> Brouillon</a></li>
                     <li class="divider"></li>
@@ -70,11 +69,11 @@
         <ul>
             <li class="active"><a href="<c:url value="/Acceuil" />"><i class="icon icon-home"></i> <span>Acceuil</span></a> </li>
             <li> <a href="<c:url value="/Stock" />"><i class="icon icon-signal"></i> <span>Stock</span></a> </li>
-            <li> <a href="<c:url value="/Achat" />"><i class="icon icon-shopping-cart"></i> <span>Achats</span></a> </li>
-            <li><a href="<c:url value="/Sorties" />"><i class="icon icon-check"></i> <span>Sorties</span></a></li>
-            <li><a href="<c:url value="/Services" />"><i class="icon icon-hospital"></i> <span>Services</span></a></li>
+            <li> <a href="<c:url value="/Achat" />"><i class="icon icon-inbox"></i> <span>Achats</span></a> </li>
+            <li><a href="<c:url value="/Sorties" />"><i class="icon icon-th"></i> <span>Sorties</span></a></li>
+            <li><a href="<c:url value="/Services" />"><i class="icon icon-user"></i> <span>Services</span></a></li>
             <li><a href="<c:url value="/Fournisseur" />"><i class="icon icon-group"></i> <span>Fournisseurs</span></a></li>
-             <li><a href="<c:url value="/Fournisseur" />"><i class="icon icon-user"></i> <span>Utilisateurs</span></a></li>
+ 
             <li class="content"> <span>Monthly Bandwidth Transfer</span>
                 <div class="progress progress-mini progress-danger active progress-striped">
                     <div style="width: 77%;" class="bar"></div>
@@ -104,33 +103,6 @@
 
         <!--Action boxes-->
         <div class="container-fluid">
-            <div class="quick-actions_homepage">
-                <ul class="quick-actions">
-                   
-                    <li class="bg_lg span3">
-                        <a href="<c:url value="/Stock" />"> <i class="icon-signal"></i> Stock</a>
-                    </li>
-                    <li class="bg_ls span3">
-                        <a href="<c:url value="/Achat" />"> <i class="icon-th-list"></i> Achats</a>
-                    </li>
-                     <li class="bg_lb span3">
-                         <a href="<c:url value="/Sorties" />"> <i class="icon-th-list"></i> Sorties</a>
-                    </li>
-                     <li class="bg_lo span3">
-                         <a href="<c:url value="/Services" />"> <i class="icon-th-list"></i> Services</a>
-                    </li>
-                     <li class="bg_lr span3">
-                         <a href="<c:url value="/Fournisseur" />"> <i class="icon-th-list"></i> Fournisseurs</a>
-                    </li>
-                     <li class="bg_ly span3">
-                        <a href="form-common.html"> <i class="icon-th-list"></i> Utilisateurs</a>
-                    </li>
-          
-                </ul>
-            </div>
-            <!--End-Action boxes-->
-
-            <!--Chart-box-->
             <div class="row-fluid">
                 <div class="widget-box">
                     <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
@@ -161,7 +133,54 @@
                     </div>
                 </div>
             </div>
-
+            <!--End-Chart-box-->
+            <hr />
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="widget-box widget-chat">
+                        <div class="widget-title bg_lb"> <span class="icon"> <i class="icon-comment"></i> </span>
+                            <h5>Chat Option</h5>
+                        </div>
+                        <div class="widget-content nopadding collapse in" id="collapseG4">
+                            <div class="chat-users panel-right2">
+                                <div class="panel-title">
+                                    <h5>Users en ligne</h5>
+                                </div>
+                                <div class="panel-content nopadding">
+                                    <ul class="contact-list">
+                                        <li id="user-Alex" class="online">
+                                            <a href=""><img alt="" src="<c:url value="/assets/img/demo/av1.jpg" />" /> <span>Alex</span></a>
+                                        </li>
+                                        <li id="user-Linda">
+                                            <a href=""><img alt="" src="img/demo/av2.jpg" />
+                                                <span>Linda</span></a>
+                                        </li>
+                                        <li id="user-John" class="online new">
+                                            <a href=""><img alt="" src="img/demo/av3.jpg" /> <span>John</span></a><span class="msg-count badge badge-info">3</span></li>
+                                        <li id="user-Mark" class="online">
+                                            <a href=""><img alt="" src="img/demo/av4.jpg" /> <span>Mark</span></a>
+                                        </li>
+                                        <li id="user-Maxi" class="online">
+                                            <a href=""><img alt="" src="img/demo/av5.jpg" /> <span>Maxi</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="chat-content panel-left2">
+                                <div class="chat-messages" id="chat-messages">
+                                    <div id="chat-messages-inner"></div>
+                                </div>
+                                <div class="chat-message well">
+                                    <button class="btn btn-success">Send</button>
+                                    <span class="input-box">
+                                        <input type="text" name="msg-box" id="msg-box" />
+                                    </span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     </div>
 
@@ -222,5 +241,4 @@
         }
     </script>
 </body>
-
 </html>

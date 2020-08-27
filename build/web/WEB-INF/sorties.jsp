@@ -104,26 +104,7 @@
                     <div class="span4">
                         <h1>Sorties en Stock</h1>
                     </div>
-                    <div class="span8">
-                        <div class="row-fluid">
-                            <div class="span4">
-                                <div class="list-header">
-                                    <ul class="unstyled">
-                                        <li>Alert Stock : <span class="badge badge-important">200 Produits</span> </li>
-                                        <li>Produit envoi d'expiration : <span class="badge badge-warning">230 Produits</span></li>
-                                        <li>Produits expirés : <span class="badge badge-inverse">200 Produits</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                             <div class="span8">
-                                 <div class="list-header">
-                                     <span>Produits <span class="btn btn-mini btn-success" >Fiche de Stock</span> <br></span>
-                                     <li>Dernier entrée en Stock : <c:out value="${approvisionnement.quantite}" /> produits le <time><c:out value="${approvisionnement.date}" /> </time> </li>
-                                    <li>Dernier sortie en Stock : 240 produits le <time>23-06-2020 </time></li>
-                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>                  
         </div>
         <div class="container-fluid">
@@ -221,6 +202,7 @@
                                      <thead>
                                          <tr>
                                              <th>#</th>
+                                             <th style="display: none;">Compteur</th>
                                              <th>Désignation</th>
                                              <th>Quantité</th>
                                              <th>Prix Unitaire</th>
@@ -231,19 +213,20 @@
                                      <tbody>
                                          <c:forEach var="panierService" items="${panierService}">
                                              <tr>
-                                                 <td> <c:out value="${panierService.id}" /> </td>
+                                                 <td> <c:out value="${panierService.compt}" /> </td>
+                                                 <td style="display: none;"> <c:out value="${panierService.id}" /> </td>
                                                  <td> <c:out value="${panierService.produit['designation']} ${panierService.produit['dosage']}" /> </td>
                                                  <td> <c:out value="${panierService.quantite}" /> </td>
                                                  <td> <c:out value="${panierService.prixVenteU}" /> </td>
                                                  <td> <c:out value="${panierService.prixVenteU * panierService.quantite}" /> </td>
                                                  <td class="taskOptions">      
-                                                    <a href="<c:url value="/Stock?id=${produit.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
+                                                    <a href="<c:url value="/Sorties?id=${panierService.id}&produit=${panierService.produit['id']}&quantite=${panierService.quantite}&serviceid=${sessionScope.sessionService.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
                                                 </td>
                                              </tr>
                                          </c:forEach>
                                          <tr>
                                              <td>#</td>
-                                             <td colspan="3"> <b>Total à payer</b> </td>
+                                             <td colspan="4"> <b>Total à payer</b> </td>
                                              <td colspan="2"><b>12900</b></td>
                                          </tr>
                                      </tbody>

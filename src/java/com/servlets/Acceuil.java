@@ -5,8 +5,12 @@
  */
 package com.servlets;
 
+import com.DAO.DAO;
+import com.Factory.AbstractDAOFactory;
+import com.Factory.FactoryType;
+import com.beans.Produit;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +23,17 @@ import javax.servlet.http.HttpServletResponse;
 public class Acceuil extends HttpServlet {
 
     private static final String ACCUEIL = "/WEB-INF/accueil.jsp";
-    
+    private static final String ATTR_PRODUIT_LISTE = "listeProduit";
+    DAO<Produit> produitDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getProduitDAO();
+    List<Produit> listeProduit = produitDAO.getAll();
+    void loadData(){
+       listeProduit.clear();
+//       listeCategorie.clear();
+//       listeSousCategorie.clear();
+//       listeCategorie = categorieDAO.getAll();
+//       listeSousCategorie = souscategorieDAO.getAll();
+       listeProduit = produitDAO.getAll();
+    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -30,6 +44,8 @@ public class Acceuil extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        loadData();
+        request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         this.getServletContext().getRequestDispatcher(ACCUEIL).forward(request, response);
     }
 

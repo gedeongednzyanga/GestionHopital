@@ -29,8 +29,9 @@ public class SortieService extends Sortie{
         this.usersession = usersession;
     }
 
-    public SortieService(long id, Service service, String usersession, int quantite, double prixVenteU, Date dateSortie, Produit produit) {
+    public SortieService(int compt, long id, Service service, String usersession, int quantite, double prixVenteU, Date dateSortie, Produit produit) {
         super(quantite, prixVenteU, dateSortie);
+        this.compt = compt;
         this.id = id;
         this.service = service;
         this.usersession = usersession;
