@@ -9,6 +9,7 @@
 <html>
    <head>
         <title>Gestion Hopital | Achat Médicament</title>
+        <link rel="icon" href="<c:url value="/assets/icon-img/favicon.ico" />">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css"/>" />

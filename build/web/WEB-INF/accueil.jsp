@@ -69,13 +69,13 @@
     <!--sidebar-menu-->
     <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
         <ul>
-            <li class="active"><a href="<c:url value="/Acceuil" />"><i class="icon icon-home"></i> <span>Acceuil</span></a> </li>
+            <li class="active"><a href="<c:url value="/Acceuil" />"><i class="icon icon-home"></i> <span>Accueil</span></a> </li>
             <li> <a href="<c:url value="/Stock" />"><i class="icon icon-signal"></i> <span>Stock</span></a> </li>
             <li> <a href="<c:url value="/Achat" />"><i class="icon icon-shopping-cart"></i> <span>Achats</span></a> </li>
             <li><a href="<c:url value="/Sorties" />"><i class="icon icon-check"></i> <span>Sorties</span></a></li>
             <li><a href="<c:url value="/Services" />"><i class="icon icon-hospital"></i> <span>Services</span></a></li>
             <li><a href="<c:url value="/Fournisseur" />"><i class="icon icon-group"></i> <span>Fournisseurs</span></a></li>
-             <li><a href="<c:url value="/Utilisateurs" />"><i class="icon icon-user"></i> <span>Utilisateurs</span></a></li>
+             <li><a href="<c:url value="/Utilisateurs" />"><i class="icon icon-user"></i> <span>Utilisateur</span></a></li>
             <li class="content"> <span>Monthly Bandwidth Transfer</span>
                 <div class="progress progress-mini progress-danger active progress-striped">
                     <div style="width: 77%;" class="bar"></div>
@@ -112,19 +112,19 @@
                         <a href="<c:url value="/Stock" />"> <i class="icon-signal"></i> Stock</a>
                     </li>
                     <li class="bg_ls span3">
-                        <a href="<c:url value="/Achat" />"> <i class="icon-th-list"></i> Achats</a>
+                        <a href="<c:url value="/Achat" />"> <i class="icon-shopping-cart"></i> Achats</a>
                     </li>
                      <li class="bg_lb span3">
-                         <a href="<c:url value="/Sorties" />"> <i class="icon-th-list"></i> Sorties</a>
+                         <a href="<c:url value="/Sorties" />"> <i class="icon-check"></i> Sorties</a>
                     </li>
                      <li class="bg_lo span3">
-                         <a href="<c:url value="/Services" />"> <i class="icon-th-list"></i> Services</a>
+                         <a href="<c:url value="/Services" />"> <i class="icon-hospital"></i> Services</a>
                     </li>
                      <li class="bg_lr span3">
-                         <a href="<c:url value="/Fournisseur" />"> <i class="icon-th-list"></i> Fournisseurs</a>
+                         <a href="<c:url value="/Fournisseur" />"> <i class="icon-group"></i> Fournisseurs</a>
                     </li>
                      <li class="bg_ly span3">
-                        <a href="form-common.html"> <i class="icon-th-list"></i> Utilisateurs</a>
+                        <a href="<c:url value="/Utilisateurs" />"> <i class="icon-user"></i> Utilisateur</a>
                     </li>
           
                 </ul>

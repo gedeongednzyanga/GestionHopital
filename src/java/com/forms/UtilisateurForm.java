@@ -27,9 +27,6 @@ public class UtilisateurForm extends AbstractForm {
         String prenom = getValeur(request, PRENOM);
         String username = getValeur(request, USERNAME);
         String motpasse = getValeur(request, MOTPASS);
-        String denregistre = getValeur(request, DENREG);
-        String dmodifier = getValeur(request, DMODIF);
-        String dsupprimer = getValeur(request, DSUPPR);
         String compte = getValeur(request, COMPTE);
         
         try{
@@ -68,9 +65,9 @@ public class UtilisateurForm extends AbstractForm {
         utilisateur.setMotdePasse(motpasse);
         
         utilisateur.setCompte(compte);
-        utilisateur.setdSave(Integer.parseInt(denregistre));
-        utilisateur.setdUpdate(Integer.parseInt(dmodifier));
-        utilisateur.setdDelete(Integer.parseInt(dsupprimer));
+        utilisateur.setdSave(0);
+        utilisateur.setdUpdate(0);
+        utilisateur.setdDelete(0);
         
         
         if(erreurs.isEmpty()){

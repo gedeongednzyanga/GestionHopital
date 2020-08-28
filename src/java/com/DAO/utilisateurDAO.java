@@ -64,14 +64,18 @@ public class utilisateurDAO extends DAO<Utilisateur> {
     @Override
     public List getAll() {
        ArrayList<Utilisateur> liste = new ArrayList<>();
+       int compt = 0;
        try{
            ps = this.connect.prepareStatement("CALL GET_UTILISATEUR()");
            ResultSet rs = ps.executeQuery();
            while(rs.next()){
-               liste.add(new Utilisateur(Long.parseLong(rs.getString("")), 
-                       rs.getString(""), rs.getString(""), rs.getString(""), 
-                       rs.getString(""), rs.getString(""), Integer.getInteger(rs.getString("")),
-                       Integer.parseInt(rs.getString("")), Integer.parseInt(rs.getString(""))));
+               compt++;
+               liste.add(new Utilisateur(compt, Long.parseLong(rs.getString("utilisateur_id")), 
+                       rs.getString("utilisateur_nom"), rs.getString("utilisateur_prenom"), 
+                       rs.getString("utilisateur_username"),rs.getString("utilisateur_compte"), 
+                       rs.getString("utilisateur_passe"), Integer.getInteger(rs.getString("dSave")),
+                       Integer.parseInt(rs.getString("dUpdate")), Integer.parseInt(rs.getString("dDelete")), 
+                       rs.getString("page"), rs.getString("profiluser")));
            }
        }catch(SQLException e){
            System.out.println(e.getMessage());
@@ -92,7 +96,7 @@ public class utilisateurDAO extends DAO<Utilisateur> {
                         rs.getString("utilisateur_username"), rs.getString("utilisateur_passe"), 
                         rs.getString("utilisateur_compte"), Integer.parseInt(rs.getString("dSave")), 
                         Integer.parseInt(rs.getString("dUpdate")), 
-                        Integer.parseInt(rs.getString("dDelete")));
+                        Integer.parseInt(rs.getString("dDelete")), rs.getString("page"), rs.getString("profiluser")); 
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());

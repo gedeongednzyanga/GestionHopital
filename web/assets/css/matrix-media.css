@@ -7,7 +7,14 @@ body {
 .successok{
     color:#459D1C;
 }
-
+#profil{
+    margin: 5px;
+    height: 100px;
+    width: 100px;
+}
+#profil, #identite{
+    display: inline-block;
+}
 
 #header {
 	background-color: #1f262d;

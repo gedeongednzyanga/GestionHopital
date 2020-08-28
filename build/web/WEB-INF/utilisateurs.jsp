@@ -10,6 +10,7 @@
 <html>
    <head>
         <title>Gestion Hopital | Users</title>
+        <link rel="icon" href="<c:url value="/assets/icon-img/favicon.ico" />">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css"/>" />
@@ -113,109 +114,131 @@
             </div>
             <div class="container-fluid">
                 <hr>
-                <div class="row-fluid">
-                    <form action="<c:url value="/Utilisateurs" />" method="POST" class="form-horizontal">
-                        <div class="span6">
-                            <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                                    <h5>Utilisateur</h5>
-                                </div>
-                                <div class="widget-content nopadding">
+                <div class="row-fluid">                   
+                    <div class="span6">
+                        <div class="widget-box">
+                            <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                                <h5>Utilisateur</h5>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <form action="<c:url value="/Utilisateurs" />" method="POST" class="form-horizontal">
+                                    <div class="control-group">
+                                        <input type="hidden" name="id" id="id" value="0" />
+                                        <label class="control-label"> Compte :</label>
+                                        <div class="controls">
+                                            <select name="compte" class="span11"> 
+                                                <option value="Administrateur"> Administrateur </option>
+                                                <option value="Administrateur"> Utilisateur </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Nom :</label>
+                                        <div class="controls">
+                                            <input type="text" autocomplete="off" class="span11" name="nom" value="<c:out value="${user.nom}" />" required="" id="nom" placeholder="Nom" />
+                                            <br><span style="color: red" > <c:out value="${userform.erreurs['nom']}"/> </span>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Prénom :</label>
+                                        <div class="controls">
+                                            <input type="text" autocomplete="off" class="span11" name="prenom" value="<c:out value="${user.prenom}" />" required="" id="prenom" placeholder="Prénom" />
+                                            <br><span style="color: red" > <c:out value="${userform.erreurs['prenom']}"/> </span>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Nom d'utilisateur :</label>
+                                        <div class="controls">
+                                            <input type="text" autocomplete="off" class="span11" name="username" value="<c:out value="${user.nomUtilisateur}" />" required="" id="username" placeholder="Nom d'utilisateur" />
+                                            <br><span style="color: red" > <c:out value="${userform.erreurs['username']}"/> </span>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Mot de passe :</label>
+                                        <div class="controls">
+                                            <input type="password" autocomplete="off" class="span11" name="motpass" value="<c:out value="${user.motdePasse}" />" required="" id="motpass" placeholder="Mot de passe" />
+                                            <br><span style="color: red" > <c:out value="${userform.erreurs['motpass']}"/> </span>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Profil Utilisateur :</label>
+                                        <div class="controls">
+                                          <input type="file" />
+                                        </div>
+                                    </div>
+                                     <div class="form-actions">
+                                        <button type="submit" class="btn btn-success btn-small" name="btnSave" value="save">Enregistrer</button>
+                                        <button type="submit" name="btnSave" value="update" class="btn btn-info btn-small">Modifier</button>
+                                        <span class="${empty userform.erreurs ? 'successok' : 'erreur'}">
+                                            ${userform.resultat}
+                                        </span>
+                                    </div>
+                                 </form>
+                            </div>
+                        </div>                         
+                    </div> 
+                    <div class="span6">
+                        <div class="widget-box">
+                            <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                                <h5>Autorisations</h5>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <form action="<c:url value="/Utilisateurs" />" method="POST" class="form-horizontal">
+                                    <div class="control-group">
+                                        <img src="<c:url value="/assets/img/avatar.png" />" id="profil" />
+                                        <div class="controls" id="identite">
+                                            <label> Gédéon Nzyanga</label>
+                                            <label>gedeon@</label> 
+                                            <label>Administrateur</label>  
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Actions : </label>
+                                        <div class="controls">
+                                          <label>
+                                            <input type="checkbox" name="denregistre" />
+                                            Enregistrer</label>
+                                          <label>
+                                            <input type="checkbox" name="dmodifier" />
+                                            Modifier</label>
+                                          <label>
+                                            <input type="checkbox" name="dsupprimer" />
+                                            Supprimer</label>
+                                         <label>
+                                            <input type="checkbox" name="radios" />
+                                            Imprimer</label>
+                                        </div>
+                                    </div>
 
-                                        <div class="control-group">
-                                            <input type="hidden" name="id" id="id" value="0" />
-                                            <label class="control-label"> Compte :</label>
-                                            <div class="controls">
-                                                <select name="compte" class="span11"> 
-                                                    <option value="Administrateur"> Administrateur </option>
-                                                    <option value="Administrateur"> Utilisateur </option>
-                                                </select>
-                                            </div>
+                                    <div class="control-group">
+                                        <input type="hidden" name="id" id="id" value="0" />
+                                        <label class="control-label"> Accès à :</label>
+                                        <div class="controls">
+                                            <select name="produit" class="span11"> 
+                                                <option value="Acceuil"> Acceuil </option>
+                                                <option value="Achat"> Achat </option>
+                                                <option value="Fournisseur"> Fournisseur </option>
+                                                <option value="Service"> Service </option>
+                                                <option value="Stock"> Stock </option>
+                                                <option value="Sortie"> Sortie </option>
+                                                <option value="Toutes les pages"> All pages </option>
+                                            </select>
                                         </div>
-
-                                        <div class="control-group">
-                                            <label class="control-label">Nom :</label>
-                                            <div class="controls">
-                                                <input type="text" autocomplete="off" class="span11" name="nom" value="<c:out value="${user.nom}" />" required="" id="nom" placeholder="Nom" />
-                                                <span style="color: red" > <c:out value="${userform.erreurs['nom']}"/> </span>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">Prénom :</label>
-                                            <div class="controls">
-                                                <input type="text" autocomplete="off" class="span11" name="prenom" value="<c:out value="${user.prenom}" />" required="" id="prenom" placeholder="Prénom" />
-                                                <span style="color: red" > <c:out value="${userform.erreurs['prenom']}"/> </span>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">Nom d'utilisateur :</label>
-                                            <div class="controls">
-                                                <input type="text" autocomplete="off" class="span11" name="username" value="<c:out value="${user.nomUtilisateur}" />" required="" id="username" placeholder="Nom d'utilisateur" />
-                                                <span style="color: red" > <c:out value="${userform.erreurs['username']}"/> </span>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">Mot de passe :</label>
-                                            <div class="controls">
-                                                <input type="password" autocomplete="off" class="span11" name="motpass" value="<c:out value="${user.motpass}" />" required="" id="motpass" placeholder="Mot de passe" />
-                                                <span style="color: red" > <c:out value="${userform.erreurs['motpass']}"/> </span>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>                         
-                        </div> 
-                        <div class="span6">
-                            <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                                    <h5>Autorisations</h5>
-                                </div>
-                                <div class="widget-content nopadding">
-
-                                        <div class="control-group">
-                                            <label class="control-label">Actions : </label>
-                                            <div class="controls">
-                                              <label>
-                                                <input type="checkbox" name="denregistre" />
-                                                Enregistrer</label>
-                                              <label>
-                                                <input type="checkbox" name="dmodifier" />
-                                                Modifier</label>
-                                              <label>
-                                                <input type="checkbox" name="dsupprimer" />
-                                                Supprimer</label>
-                                             <label>
-                                                <input type="checkbox" name="radios" />
-                                                Imprimer</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="control-group">
-                                            <input type="hidden" name="id" id="id" value="0" />
-                                            <label class="control-label"> Page :</label>
-                                            <div class="controls">
-                                                <select name="produit" class="span11"> 
-                                                    <c:forEach var="produit" items="${listeProduit}">
-                                                        <option value="<c:out value="${produit.id}"/>"> <c:out value="${produit.designation}" /> </option>
-                                                    </c:forEach>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-actions">
-                                            <button type="submit" class="btn btn-success btn-small" name="btn" value="btnApprovisionnement">Enregistrer</button>
-                                            <button type="submit" class="btn btn-info btn-small">Modifier</button>
-                                        </div>
-
-                                </div>
-                            </div>                         
-                        </div>  
-                    </form>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-success btn-small" name="btnSave" value="save">Enregistrer</button>
+                                        <button type="submit" name="btnSave" value="update" class="btn btn-info btn-small">Modifier</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>                         
+                    </div>   
                 </div>
                  <div class="row-fluid">
                      <div class="spam12">
                          <div class="widget-box">
                             <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                                <h5>Liste Approvisionnements</h5>
+                                <h5>Liste Utilisateurs</h5>
                                 <span class="label  label-info"><i class="icon icon-refresh"> </i></span>
                             </div>
                             <div class="widget-content nopadding">
@@ -223,22 +246,21 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Produit</th>
-                                        <th>Quantité</th>
-                                        <th>Prix unitaire</th>
-                                        <th>Prix Total</th>
-                                        <th>Fabriqué le</th>
-                                        <th>Expiré le</th>
-                                        <th>Fournisseur</th>
-                                        <th>Date achat</th>
-                                        <th>Enregistré par</th>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th>Compte</th>
+                                        <th>Nom d'utilisateur</th>
+                                        <th>Mot de passe</th>
+                                        <th>Photo</th>
+                                        <th>Accès à</th>
+                                        <th>Atorisations</th>
                                         <th>Options</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="achats" items="${listeAchat}">
+                                    <c:forEach var="utilisateur" items="${listeUtilisateur}">
                                         <tr class="gradeX">
-                                            <td> <c:out value="${achats.compteur}" /> </td>
+                                            <td> <c:out value="${utilisateur.compt}" /> </td>
                                             <td style="display: none"> <c:out value="${achats.id}" /> </td>
                                             <td> <c:out value="${achats.produit['designation']}" /> </td>
                                             <td> <c:out value="${achats.quantite}" /> </td>
@@ -247,13 +269,11 @@
                                             <td> <c:out value="${achats.dateFabrication}" /> </td>
                                             <td> <c:out value="${achats.dateExpiration}" /> </td>
                                             <td> <c:out value="${achats.fournisseur['nom']} ${achats.fournisseur['prenom']}" /> </td>
-                                            <td> <c:out value="${achats.dateApprov}" /> </td>
-                                            <td> <c:out value="${achats.userSession} le ${achats.dateEnreg}" /> </td>
                                              <td class="taskOptions">
                                                  <a href="<c:url value="/Achat?id=${achats.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
                                              </td>
                                         </tr>
-                                    </c:forEach>          
+                                    </c:forEach>       
                                 </tbody>
                             </table>
                             </div>

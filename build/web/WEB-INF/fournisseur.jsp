@@ -12,6 +12,7 @@
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gestion Hopital | Fournisseurs</title>
+        <link rel="icon" href="<c:url value="/assets/icon-img/favicon.ico" />">
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css" />" />
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-responsive.min.css" />" />
         <link rel="stylesheet" href="<c:url value="/assets/css/uniform.css" />" />

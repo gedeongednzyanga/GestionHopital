@@ -7,6 +7,7 @@ import com.Factory.FactoryType;
 import com.beans.Utilisateur;
 import com.forms.UtilisateurForm;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +22,13 @@ public class Utilisateurs extends HttpServlet {
     private static final String VUE = "/WEB-INF/utilisateurs.jsp";
     private static final String ATTR_FORM = "userform";
     private static final String ATTR_USER = "user";
+    private static final String ATTR_LISTE = "listeUtilisateur";
     DAO<Utilisateur> utilisateurDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getUtilisateurDAO();
-    
-   
+    List<Utilisateur> listeUtilisateur = utilisateurDAO.getAll();
+     void loadData(){
+         listeUtilisateur.clear();
+         listeUtilisateur = utilisateurDAO.getAll();
+     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,6 +40,8 @@ public class Utilisateurs extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        loadData();
+        request.setAttribute(ATTR_LISTE, listeUtilisateur);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
 
@@ -44,13 +51,16 @@ public class Utilisateurs extends HttpServlet {
         processRequest(request, response);
         UtilisateurForm form = new UtilisateurForm();
         Utilisateur user = form.createUser(request);
+        
         if(form.getErreurs().isEmpty()){
-             if("save".equals(request.getParameter("btnSave"))){
+            if("save".equals(request.getParameter("btnSave"))){
                  utilisateurDAO.operationIUD(1, user);
-             }else if ("update".equals(request.getParameter("btnSave"))){
+            }else if ("update".equals(request.getParameter("btnSave"))){
                  utilisateurDAO.operationIUD(2, user);
-             }            
-           }
+            }            
+        }
+        loadData();
+        request.setAttribute(ATTR_LISTE, listeUtilisateur);
         request.setAttribute(ATTR_FORM, form);
         request.setAttribute(ATTR_USER, user);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);

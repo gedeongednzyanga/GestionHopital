@@ -10,6 +10,7 @@
 <html>
     <head>
          <title>Gestion Hopital | Sortie Médicament</title>
+         <link rel="icon" href="<c:url value="/assets/icon-img/favicon.ico" />">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css"/>" />
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-responsive.min.css" />" />
