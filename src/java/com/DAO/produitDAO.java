@@ -72,8 +72,7 @@ public class produitDAO  extends DAO<Produit> {
                 listeProduit.add(new Produit(compteur, Long.parseLong(rs.getString("produit_id")), rs.getString("produit_designation"),
                     rs.getString("dosage"), Float.parseFloat(rs.getString("produit_pvu")), Double.parseDouble(rs.getString("pvt")),
                     Integer.parseInt(rs.getString("produit_sts")), Integer.parseInt(rs.getString("produit_stock")), 
-                    new sousCategorieDAO().find(Integer.parseInt(rs.getString("refSous_cat"))), rs.getString("user_session"),
-                new categorieDAO().find(Integer.parseInt(rs.getString("cat_id")))));
+                    new sousCategorieDAO().find(Integer.parseInt(rs.getString("refSous_cat"))), rs.getString("user_session")));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());

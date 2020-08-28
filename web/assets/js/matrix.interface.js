@@ -41,13 +41,13 @@ $(document).ready(function(){
 	
 	// === jQeury Gritter, a growl-like notifications === //
         var userSesson = $('#user_session').html();
-	$.gritter.add({
+	/*$.gritter.add({
             
 		title:	'Bienvenue '+ userSesson,
 		text:	'Vous avez 12 messages reçus.',
 		image: 	'assets/img/demo/envelope.png',
 		sticky: false
-	});	
+	});	*/
 	$('#gritter-notify .normal').click(function(){
 		$.gritter.add({
 			title:	'Normal notification',

@@ -16,14 +16,14 @@ public class Produit {
     private int stock = 0;
     private int souCatid;
     private SousCategorie sousCategorie;
-    private Categorie categorie;
+ 
     private String utilisateur;
     private int compteur;
     public Produit() {
     }
 
     public Produit( int compteur, long id, String designation, String dosage, float prixVenteU, double prixVenteT, int stockAlert, 
-            int stock, SousCategorie sousCategorie, String usersession, Categorie categorie) {
+            int stock, SousCategorie sousCategorie, String usersession) {
         this.compteur = compteur;
         this.id = id;
         this.designation = designation;
@@ -34,7 +34,7 @@ public class Produit {
         this.stock = stock;
         this.sousCategorie = sousCategorie;
         this.utilisateur = usersession;
-        this.categorie = categorie;
+       
     }
 
     public Produit(long id, String designation, float prixVenteU, double prixVenteT, int compteur) {
@@ -125,13 +125,7 @@ public class Produit {
         this.dosage = dosage;
     }
 
-    public Categorie getCategorie() {
-        return categorie;
-    }
-
-    public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
-    }
+   
 
     public int getCompteur() {
         return compteur;

@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gestion Hopital</title>
+        <link rel="icon" href="<c:url value="/assets/icon-img/favicon.ico" />">
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css" />" />
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-responsive.min.css" />" />
         <link rel="stylesheet" href="<c:url value="/assets/css/fullcalendar.css" />" />
@@ -74,7 +75,7 @@
             <li><a href="<c:url value="/Sorties" />"><i class="icon icon-check"></i> <span>Sorties</span></a></li>
             <li><a href="<c:url value="/Services" />"><i class="icon icon-hospital"></i> <span>Services</span></a></li>
             <li><a href="<c:url value="/Fournisseur" />"><i class="icon icon-group"></i> <span>Fournisseurs</span></a></li>
-             <li><a href="<c:url value="/Fournisseur" />"><i class="icon icon-user"></i> <span>Utilisateurs</span></a></li>
+             <li><a href="<c:url value="/Utilisateurs" />"><i class="icon icon-user"></i> <span>Utilisateurs</span></a></li>
             <li class="content"> <span>Monthly Bandwidth Transfer</span>
                 <div class="progress progress-mini progress-danger active progress-striped">
                     <div style="width: 77%;" class="bar"></div>

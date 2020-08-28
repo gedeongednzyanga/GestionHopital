@@ -28,6 +28,7 @@ public class Fournisseur extends HttpServlet {
     List<Fournisseurs> listeFournisseur = fournisseurDAO.getAll();
      void loadData(){
        listeFournisseur.clear();
+       listeFournisseur = fournisseurDAO.getAll();
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -38,7 +39,7 @@ public class Fournisseur extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-       // loadData();
+        loadData();
         request.setAttribute(LISTE_FOURNISSEUR, listeFournisseur);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
@@ -47,7 +48,7 @@ public class Fournisseur extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-       // loadData();
+        loadData();
         FournisseurForm form = new FournisseurForm();
         Fournisseurs fournisseurs = form.createFournisseur(request);
         if(form.getErreurs().isEmpty()){

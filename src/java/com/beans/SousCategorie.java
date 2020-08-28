@@ -22,11 +22,10 @@ public class SousCategorie {
         this.designation = designation;
         this.idcategorie = idcategorie;
     }
-     public SousCategorie(int compteur,long id, String designation, Categorie categorie) {
+     public SousCategorie(int compteur,long id, String designation) {
          this.compteur = compteur;
         this.id = id;
         this.designation = designation;
-        this.categorie = categorie;
     }
 
     public long getId() {

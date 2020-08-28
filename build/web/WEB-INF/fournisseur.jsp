@@ -106,7 +106,7 @@
                 <div class="span6">
                     <div class="widget-box">
                         <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                            <h5>Personal-info</h5>
+                            <h5>Infos Fournisseur</h5>
                         </div>
                         <div class="widget-content nopadding">
                             <form action="<c:url value="/Fournisseur" />" method="POST" class="form-horizontal">
@@ -115,55 +115,54 @@
                                     <div class="controls">
                                         <input type="hidden" name="id" value="0" />
                                         <input type="text" name="nom" autocomplete="off" value="<c:out value="${fournisseur.nom}" />" class="span11" placeholder="First name" />
-                                        <span style="color:red"> <c:out value="${fournisseurForm.erreurs['nom']}" /> </span>
+                                        <br><span style="color:red"> <c:out value="${fournisseurForm.erreurs['nom']}" /> </span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Prénom :</label>
                                     <div class="controls">
                                         <input type="text" name="prenom" autocomplete="off" value="<c:out value="${fournisseur.prenom}" />" class="span11" placeholder="Last name" />
-                                        <span style="color:red"> <c:out value="${fournisseurForm.erreurs['prenom']}" /> </span>
+                                         <br><span style="color:red"> <c:out value="${fournisseurForm.erreurs['prenom']}" /> </span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Téléphone :</label>
                                     <div class="controls">
                                         <input type="text" name="telephone" autocomplete="off" value="<c:out value="${fournisseur.telephone}" />" class="span11" placeholder="Enter Phone  Number" />
-                                        <span style="color:red"> <c:out value="${fournisseurForm.erreurs['telephone']}" /> </span>
+                                         <br><span style="color:red"> <c:out value="${fournisseurForm.erreurs['telephone']}" /> </span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">E-mail :</label>
                                     <div class="controls">
                                         <input type="text" name="mail" autocomplete="off" value="<c:out value="${fournisseur.mail}" />" class="span11" placeholder="Enter E-mail" />
-                                        <span style="color:red"> <c:out value="${fournisseurForm.erreurs['mail']}" /> </span>
+                                         <br><span style="color:red"> <c:out value="${fournisseurForm.erreurs['mail']}" /> </span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Site web :</label>
                                     <div class="controls">
                                         <input type="text" name="web" autocomplete="off" value="<c:out value="${fournisseur.siteWeb}"/>" class="span11" placeholder="Site web" />
-                                        <span style="color:red"> <c:out value="${fournisseurForm.erreurs['web']}" /> </span>
+                                         <br><span style="color:red"> <c:out value="${fournisseurForm.erreurs['web']}" /> </span>
                                     </div>
                                 </div>
-                                <div class="control-group">
-                                    <label class="control-label">Référence :</label>
-                                    <div class="controls">
-                                        <input type="text"  autocomplete="off" name="maison" placeholder="Ex : nom pharmacie" class="span11" />
-                                    </div>
-                                </div>
+                            
                                 <div class="control-group">
                                     <label class="control-label">Adresse :</label>
                                     <div class="controls">
                                         <textarea name="adresse"  class="span11"> <c:out value="${fournisseur.adresse}" /> </textarea>
-                                        <span style="color:red"> <c:out value="${fournisseurForm.erreurs['adresse']}" /> </span>
+                                        <br> <span style="color:red"> <c:out value="${fournisseurForm.erreurs['adresse']}" /> </span>
                                     </div>
                                 </div>
-                                <div class="form-actions pull-right">
+                                <div class="form-actions">
                                     <button type="submit" class="btn btn-success btn-small"><i class="icon-ok"></i>
                                         Enregistrer</button>
                                     <button type="submit" class="btn btn-info btn-small"><i class="icon-edit"></i>
                                         Modifier</button>
+                                    
+                                    <p class="${empty fournisseurForm.erreurs ? 'succes' : 'text-danger'}">
+                                        ${fournisseurForm.resultat}
+                                     </p>
                                 </div>
                             </form>
                         </div>
@@ -173,27 +172,18 @@
                      <div class="widget-box">
                          <div class="widget-title">
                              <span class="icon"> <i class="icon-user"></i> </span>
-                             <h5>Infos Fournisseur</h5>
+                             <h5>Image</h5>
                          </div>
                          <div class="widget-content">
                              <div class="row-fluid">
-                                 <div class="span5">
+                                 <div class="span12">
                                      <center>
-                                         <img src="<c:url value="/assets/img/avatar.png" />" width="150" alt="Spplier Image" />
-                                         <h4>Gédéon Nzyanga</h4>
-                                     </center>
-                                         
+                                         <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. 
+                                    </p>
+                                         <img src="<c:url value="/assets/img/fournisseur.jpg" />"  alt="Spplier Image" />                                     
+                                     </center>                                        
                                  </div>
-                                 <div class="span7">
-                                     <ul class="unstyled">
-                                         <li>  <h3> <i class="icon-user"></i> Gédéon Nzyanga </h3></li>
-                                         <li><h4><i class="icon-phone"></i> +243997235842 </h4></li>
-                                         <li><h4><i class="icon-envelope"></i> gedeonnzyanga@gmail.com </h4></li>
-                                         <li><h4> <i class="icon-globe"></i> <a href="">www.barbutoc.com</a> </h4></li>
-                                         <li><h4> <i class="icon-twitter"></i> Gédéon Nzyanga </h4></li>
-                                     </ul>
-                                     
-                                 </div>
+                                
                              </div>
                          </div>
                      </div>

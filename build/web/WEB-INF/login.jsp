@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
+        <link rel="icon" href="<c:url value="/assets/icon-img/favicon.ico" />">
         <link href="<c:url value="/assets/css/bootstrap.min.css" />" rel="stylesheet" type="text/css"/>
         <link href="<c:url value="/assets/css/bootstrap-responsive.min.css"/>" rel="stylesheet" type="text/css"/>
         <link href="<c:url value="/assets/css/matrix-login.css" />" rel="stylesheet" type="text/css"/>
@@ -22,7 +23,7 @@
     <div id="loginbox">
         <form id="loginform" class="form-vertical" action="<c:url value="/Login" />" method="POST">
             <div class="control-group normal_text">
-                <h3><img src="<c:url value="/assets/img/logo.png" />" alt="Logo" /></h3>
+                <h3><img src="<c:url value="/assets/icon-img/logo_medi.png" />" alt="Logo" /></h3>
             </div>
             <div class="control-group">
                 <div class="controls">

@@ -18,11 +18,11 @@ public class sousCategorieDAO extends DAO<SousCategorie> {
     @Override
     public SousCategorie operationIUD(int actionU, SousCategorie obj) {
        try{
-           PreparedStatement ps = this.connect.prepareStatement("CALL IUD_SOUSCATEGORIE (?,?,?,?)");
+           PreparedStatement ps = this.connect.prepareStatement("CALL IUD_SOUSCATEGORIE (?,?,?)");
            ps.setInt(1, actionU);
            ps.setLong(2, obj.getId());
            ps.setString(3, obj.getDesignation());
-           ps.setLong(4, obj.getIdcategorie());
+          
            ps.executeUpdate();
        }catch(SQLException e){
            System.out.println(e.getMessage());
@@ -56,8 +56,7 @@ public class sousCategorieDAO extends DAO<SousCategorie> {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 compteur++;
-                liste.add(new SousCategorie(compteur, Long.parseLong(rs.getString("sousCat_id")), rs.getString("sousCat_designation"), 
-                        new categorieDAO().find(Integer.parseInt(rs.getString("cat_id")))));
+                liste.add(new SousCategorie(compteur, Long.parseLong(rs.getString("sousCat_id")), rs.getString("sousCat_designation")));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());

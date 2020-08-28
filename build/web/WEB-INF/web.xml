@@ -90,6 +90,10 @@
         <servlet-name>Chat</servlet-name>
         <servlet-class>com.servlets.Chat</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Utilisateurs</servlet-name>
+        <servlet-class>com.servlets.Utilisateurs</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -153,6 +157,10 @@
     <servlet-mapping>
         <servlet-name>Chat</servlet-name>
         <url-pattern>/Chat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Utilisateurs</servlet-name>
+        <url-pattern>/Utilisateurs</url-pattern>
     </servlet-mapping>
     <session-config>
        
