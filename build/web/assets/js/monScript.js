@@ -70,3 +70,20 @@ function returnDataService(){
         };
     }
 }
+
+function returnDataFournisseur(){
+    var table = document.getElementById('table_fournisseur'),
+            rIndex;
+    for(let index =0; index < table.rows.length; index ++){
+        table.rows[index].onclick = function(){
+            rIndex = this.rowIndex;
+            document.getElementById('id').value = this.cells[1].textContent;
+            document.getElementById('nom').value = this.cells[2].textContent;
+            document.getElementById('prenom').value = this.cells[3].textContent;
+            document.getElementById('phone').value = this.cells[4].textContent;
+            document.getElementById('email').value = this.cells[5].textContent;
+            document.getElementById('web').value = this.cells[7].textContent;
+            document.getElementById('addresse').value = this.cells[6].textContent;
+        };
+    }
+}

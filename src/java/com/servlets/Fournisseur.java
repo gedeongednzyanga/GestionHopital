@@ -39,6 +39,11 @@ public class Fournisseur extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        if(request.getParameter("id") != null){
+            Fournisseurs fournisseurs = new Fournisseurs ();
+            fournisseurs.setId(Long.parseLong(request.getParameter("id")));
+            fournisseurDAO.operationIUD(3, fournisseurs);
+        }
         loadData();
         request.setAttribute(LISTE_FOURNISSEUR, listeFournisseur);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
@@ -48,12 +53,17 @@ public class Fournisseur extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        loadData();
+       
         FournisseurForm form = new FournisseurForm();
         Fournisseurs fournisseurs = form.createFournisseur(request);
         if(form.getErreurs().isEmpty()){
-            fournisseurDAO.operationIUD(1, fournisseurs);
+            if("save".equals(request.getParameter("btnSave"))){
+                fournisseurDAO.operationIUD(1, fournisseurs);
+            }else if("update".equals(request.getParameter("btnSave"))){
+                fournisseurDAO.operationIUD(2, fournisseurs);
+            }
         }
+        loadData();
         request.setAttribute(FORM_FOURNISSEUR, form);
         request.setAttribute(FOURNISSEUR, fournisseurs);
         request.setAttribute(LISTE_FOURNISSEUR, listeFournisseur);

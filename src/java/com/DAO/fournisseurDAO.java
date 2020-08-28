@@ -55,11 +55,13 @@ public class fournisseurDAO extends DAO<Fournisseurs>{
     @Override
     public List getAll() {
         ArrayList<Fournisseurs> liste = new ArrayList<>();
+        int compt =0;
         try{
             ps = this.connect.prepareStatement("CALL GET_FOURNISSEURS ()");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                liste.add(new Fournisseurs(Long.parseLong(rs.getString("fournisseur_id")), 
+                compt++;
+                liste.add(new Fournisseurs(compt,Long.parseLong(rs.getString("fournisseur_id")), 
                         rs.getString("fournisseur_nom"), rs.getString("fournisseur_prenom"), 
                         rs.getString("fournisseur_adresse"), rs.getString("fournisseur_telephone"), 
                         rs.getString("fournisseur_mail"), rs.getString("fournisseur_website")));

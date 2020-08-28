@@ -1,6 +1,13 @@
 body {
 	background:#2E363F;
 }
+.erreur{
+    color:red;
+}
+.successok{
+    color:#459D1C;
+}
+
 
 #header {
 	background-color: #1f262d;

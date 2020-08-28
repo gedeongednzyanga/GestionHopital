@@ -14,11 +14,13 @@ public class Fournisseurs {
     private String telephone;
     private String mail;
     private String siteWeb;
+    private int compt;
 
     public Fournisseurs() {
     }
 
-    public Fournisseurs(long id, String nom, String prenom, String adresse, String telephone, String mail, String siteWeb) {
+    public Fournisseurs(int compt, long id, String nom, String prenom, String adresse, String telephone, String mail, String siteWeb) {
+        this.compt = compt;
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -82,6 +84,14 @@ public class Fournisseurs {
 
     public void setSiteWeb(String siteWeb) {
         this.siteWeb = siteWeb;
+    }
+
+    public int getCompt() {
+        return compt;
+    }
+
+    public void setCompt(int compt) {
+        this.compt = compt;
     }
     
 }
