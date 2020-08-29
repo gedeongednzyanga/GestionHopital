@@ -177,6 +177,9 @@
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success btn-small" name="btnSave" value="btnSave">Enregistrer</button>
                                         <button type="submit" class="btn btn-info btn-small" name="btnSave" value="btnUpdate" >Modifier</button>
+                                        <span class="${empty serviceForm.erreurs ? 'successok' : 'erreur'}">
+                                            ${serviceForm.resultat}
+                                        </span>
                                     </div>
                                 </form>
                             </div>
@@ -188,7 +191,7 @@
                          <div class="widget-box">
                             <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
                                 <h5>Services</h5>
-                                <span class="label  label-info"><i class="icon icon-refresh"> </i></span>
+                               
                             </div>
                             <div class="widget-content nopadding">
                                 <table class="table table-bordered data-table" id="table_service">
@@ -228,22 +231,15 @@
             <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in">Themedesigner.in</a> </div>
         </div>
     <!--end-Footer-part-->
-        <script src="<c:url value="/assets/js/jquery.min.js" />"></script>
-        <script src="<c:url value="/assets/js/jquery.ui.custom.js"/>"></script>
-        <script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
-        <script src="<c:url value="/assets/js/monScript.js"/>"></script>
-        <script src="<c:url value="/assets/js/bootstrap-colorpicker.js"/>"></script>
-        <script src="<c:url value="/assets/js/bootstrap-datepicker.js"/>"></script>
-        <script src="<c:url value="/assets/js/jquery.toggle.buttons.js"/>"></script>
-        <script src="<c:url value="/assets/js/masked.js"/>"></script>
-        <script src="<c:url value="/assets/js/jquery.uniform.js"/>"></script>
-        <script src="<c:url value="/assets/js/select2.min.js"/>"></script>
-        <script src="<c:url value="/assets/js/matrix.js"/>"></script>
-        <script src="<c:url value="/assets/js/matrix.form_common.js"/>"></script>
-        <script src="<c:url value="/assets/js/wysihtml5-0.3.0.js"/>"></script>
-        <script src="<c:url value="/assets/js/jquery.peity.min.js"/>"></script>
-        <script src="<c:url value="/assets/js/bootstrap-wysihtml5.js"/>"></script>
-       
+         <script src="<c:url value="/assets/js/jquery.min.js" />"></script>
+        <script src="<c:url value="/assets/js/jquery.ui.custom.js" />"></script>
+        <script src="<c:url value="/assets/js/bootstrap.min.js" />"></script>
+        <script src="<c:url value="/assets/js/monScript.js" />"></script>
+        <script src="<c:url value="/assets/js/jquery.uniform.js" />"></script>
+        <script src="<c:url value="/assets/js/select2.min.js" />"></script>
+        <script src="<c:url value="/assets/js/jquery.dataTables.min.js" />"></script>
+        <script src="<c:url value="/assets/js/matrix.js" />"></script>
+        <script src="<c:url value="/assets/js/matrix.tables.js" />"></script>
         <script>
             $('.textarea_editor').wysihtml5();
         </script>

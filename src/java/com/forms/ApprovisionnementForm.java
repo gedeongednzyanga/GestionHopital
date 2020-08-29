@@ -37,6 +37,11 @@ public class ApprovisionnementForm extends AbstractForm {
             getErreur(CHAMP_ID, e.getMessage());
         }
         approvisionnement.setId(Long.parseLong(id));
+        try{
+            validateDate(Date.valueOf(deteapprov));
+        }catch(Exception e){
+            getErreur(CHAMP_DATE, e.getMessage());
+        }
         approvisionnement.setDateApprov(Date.valueOf(deteapprov));
         
         try{
@@ -55,6 +60,8 @@ public class ApprovisionnementForm extends AbstractForm {
          
         return approvisionnement;
     }
+    
+    
     public Approvisionnement createApprovisionnement (HttpServletRequest request){
         
         Approvisionnement approvisionnement =new Approvisionnement();
@@ -84,7 +91,17 @@ public class ApprovisionnementForm extends AbstractForm {
             getErreur(CHAMP_PRIX, e.getMessage());
         }
         approvisionnement.setPrixAchatU(Double.parseDouble(prix));
+        try{
+            validateDate(Date.valueOf(fabrication));
+        }catch(Exception e){
+            getErreur(CHAMP_DFABRICATION, e.getMessage());
+        }
         approvisionnement.setDateFabrication(Date.valueOf(fabrication));
+        try{
+            validateDate2(Date.valueOf(expiration));
+        }catch(Exception e){
+            getErreur(CHAMP_DEXPIRATION, e.getMessage());
+        }
         approvisionnement.setDateExpiration(Date.valueOf(expiration));
         approvisionnement.setIdProduit(Integer.parseInt(produit));
         

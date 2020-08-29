@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Gestion Hopital</title>
+        <title>Gestion Hopital | Accueil</title>
         <link rel="icon" href="<c:url value="/assets/icon-img/favicon.ico" />">
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css" />" />
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-responsive.min.css" />" />

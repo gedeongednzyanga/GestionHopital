@@ -130,6 +130,9 @@
                                                             <option value="<c:out value="${service.id}" />"> <c:out value="${service.designation}" /> </option>
                                                         </c:forEach>
                                                     </select>
+                                                    <span class="${empty sortieSForm.erreurs ? 'successok' : 'erreur'}">
+                                                        ${sortieSForm.resultat}
+                                                    </span>
                                                 </div> 
                                             </div>
                                         </div>
@@ -137,7 +140,8 @@
                                             <div class="control-group">
                                                 <label class="control-label"><b>Date Sorties</b></label>
                                                 <div class="controls">
-                                                    <input type="date" name="datesorties" id="datesorties" required="" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
+                                                    <input type="date" name="datesorties" id="datesorties" value="<c:out value="${sorties.dateSortie}" />" required="" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">
+                                                    <br> <span style="color: red" > <c:out value="${sortieSForm.erreurs['datesorties']}"/> </span>
                                                 </div>
                                             </div>
                                             <div class="pull-left">
@@ -184,8 +188,11 @@
                                     </div>
                                     <div class="form-actions ">
                                         <button type="submit" name="btnSaveSS" value="saveSS" class="btn btn-success btn-small"><i class="icon-ok"></i> Ajouter</button> 
-                                        <button type="submit" name="btnSave" value="update" class="btn btn-info btn-small"><i class="icon-edit"></i> Modifier</button>
+                                        
                                         <a href="<c:url value="/Terminer" />" class="btn btn-warning btn-small"><i class="icon-edit"></i> Terminer</a>
+                                        <span class="${empty sortieSForm.erreurs ? 'successok' : 'erreur'}">
+                                            ${sortieSForm.resultat}
+                                        </span>
                                     </div>
                                 </form>
                             </div>
@@ -196,7 +203,7 @@
                            <div class="widget-box">
                              <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
                                  <h5>Panier du Service : <c:out value="${sessionScope.sessionService.designation}" /> </h5>
-                                  <a href="<c:url value="/Facture" />" class="btn btn-success btn-small pull-right">Facture</a>
+                                  
                              </div>
                              <div class="widget-content nopadding">
                                  <table class="table table-bordered table-striped">

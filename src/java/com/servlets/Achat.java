@@ -37,7 +37,11 @@ public class Achat extends HttpServlet {
     List<Approvisionnement> listeAchat = approvisionnementDAO.getAll();
     void load(){
         listeAchat.clear();
+        listeFournisseur.clear();
+        listeProduit.clear();
+        listeProduit = produitDAO.getAll();
         listeAchat = approvisionnementDAO.getAll();
+        listeFournisseur = fournisseurDAO.getAll();
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -64,11 +68,15 @@ public class Achat extends HttpServlet {
         ApprovisionnementForm form = new ApprovisionnementForm();
         if("btnNouveauApprovisionnement".equals(request.getParameter("btn"))){
             Approvisionnement approvisionnement = form.nouveauApprovisionnement(request);
-            approvisionnementDAO.operationIUD(1, approvisionnement);
+            if(form.getErreurs().isEmpty()){
+                approvisionnementDAO.operationIUD(1, approvisionnement);
+            }
             request.setAttribute(ATTR_APPROVISIONNEMENT, approvisionnement);
         }else if ("btnApprovisionnement".equals(request.getParameter("btn"))){
             Approvisionnement approvisionnement = form.createApprovisionnement(request);
-            detailApprovisionnementDAO.operationIUD(1, approvisionnement);
+            if(form.getErreurs().isEmpty()){
+                detailApprovisionnementDAO.operationIUD(1, approvisionnement);
+            }
             request.setAttribute(ATTR_APPROVISIONNEMENT, approvisionnement);
         }
         load();

@@ -25,10 +25,11 @@ public class Utilisateurs extends HttpServlet {
     private static final String ATTR_LISTE = "listeUtilisateur";
     DAO<Utilisateur> utilisateurDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getUtilisateurDAO();
     List<Utilisateur> listeUtilisateur = utilisateurDAO.getAll();
-     void loadData(){
-         listeUtilisateur.clear();
-         listeUtilisateur = utilisateurDAO.getAll();
-     }
+    
+    void load(){
+        listeUtilisateur.clear();
+        listeUtilisateur = utilisateurDAO.getAll();
+    }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,7 +41,14 @@ public class Utilisateurs extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        loadData();
+       
+        if(request.getParameter("id") != null){
+            Utilisateur user = new Utilisateur();
+            user.setId(Long.parseLong(request.getParameter("id")));
+            utilisateurDAO.operationIUD(3, user);
+        }
+        
+        load();
         request.setAttribute(ATTR_LISTE, listeUtilisateur);
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
     }
@@ -59,7 +67,7 @@ public class Utilisateurs extends HttpServlet {
                  utilisateurDAO.operationIUD(2, user);
             }            
         }
-        loadData();
+        load();
         request.setAttribute(ATTR_LISTE, listeUtilisateur);
         request.setAttribute(ATTR_FORM, form);
         request.setAttribute(ATTR_USER, user);

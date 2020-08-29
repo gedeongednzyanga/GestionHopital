@@ -176,10 +176,8 @@
                                     <label class="control-label" for="souscategorie">Type de Produit :</label>
                                     <div class="controls">
                                         <select id="souscategorie" name="souscategorie" required="" class="span11">
-                                            <c:forEach var="souscategorie" items="${listeSousCategorie}">
-                                               
-                                                <option value="<c:out value="${souscategorie.id}" />"> <c:out value="${souscategorie.designation}" /> 
-                                                    (<c:out value="${souscategorie.categorie['designation']}" /> ) </option>
+                                            <c:forEach var="souscategorie" items="${listeSousCategorie}"> 
+                                                <option value="<c:out value="${souscategorie.id}" />"> <c:out value="${souscategorie.designation}" /> </option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -187,18 +185,20 @@
                                 <div class="form-actions ">
                                     <button type="submit" name="btnSave" value="save" class="btn btn-success"><i class="icon-ok"></i> Enregistrer</button> 
                                     <button type="submit" name="btnSave" value="update" class="btn btn-info"><i class="icon-edit"></i> Modifier</button>
+                                     <span class="${empty produitForm.erreurs ? 'successok' : 'erreur'}">
+                                        ${produitForm.resultat}
+                                    </span>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <div class="span6">
-                    
+                <div class="span6">     
                     <div class="widget-box">
                         <div class="widget-title">
                           <ul class="nav nav-tabs">
                             <li class="active" ><a data-toggle="tab" href="#tab1">Produit</a></li>                     
-                            <li><a data-toggle="tab" href="#tab2">Catégorie</a></li>
+                            <li><a data-toggle="tab" href="#tab2">Catégories</a></li>
                           </ul>
                         </div>
                         <div class="widget-content tab-content">
@@ -215,10 +215,10 @@
                                 <div style="height: 290px">
                                     <form action="<c:url value="/SousCategories" />" method="POST" class="form-horizontal">
                                       <div class="control-group">
-                                          <label class="control-label" for="desigation">Sous-Catégorie :</label>
+                                          <label class="control-label" for="desigation">Catégorie :</label>
                                           <div class="controls">
                                               <input type="hidden" name="idcat" id="idcat" value="0" />
-                                              <input type="text" class="span11" id="designationsc" autocomplete="off" value="<c:out value="${souscategorie.designation}"/>" name="designation" placeholder="Désignation Sous-Catégorie" /><br>
+                                              <input type="text" class="span11" id="designationsc" autocomplete="off" value="<c:out value="${souscategorie.designation}"/>" name="designation" placeholder="Désignation" /><br>
                                               <span style="color: red"> <c:out value="${sousCategorieForm.erreurs['designation']}" /> </span>
                                           </div>
                                       </div>
@@ -260,7 +260,7 @@
                                     <div id="myModal2" class="modal fade">
                                         <div class="modal-header">
                                             <button data-dismiss="modal" class="close" type="button">×</button>
-                                            <h3>Sous-Catégories</h3>
+                                            <h2>Catégories</h2>
                                         </div>
                                         <div class="modal-body">
                                             <div class="row-fluid">
@@ -268,10 +268,9 @@
                                                     <table class="table table-striped table-bordered" id="table_scategories2">
                                                         <thead>
                                                           <tr>
-                                                              <th class="identify">#</th>
+                                                            <th class="identify">#</th>
                                                             <th>Id</th>
                                                             <th>Catégorie</th>
-                                                            <th>Sous-Catégorie</th>
                                                             <th>Opts</th>
                                                           </tr>
                                                         </thead>
@@ -280,7 +279,6 @@
                                                                 <tr>
                                                                     <td> <c:out value="${souscategorie.compteur}" /> </td>
                                                                     <td class="identify"> <c:out value="${souscategorie.id}" /> </td>
-                                                                    <td class="taskDesc"><c:out value="${souscategorie.categorie['designation']}" /> </td>
                                                                     <td class="taskStatus"><span class="in-progress"><c:out value="${souscategorie.designation}" /></span></td>
                                                                     <td class="taskOptions"><a href="#" class="tip-top" data-dismiss="modal" onclick="returnDataSoucategorie2()" data-original-title="Update"><i class="icon-ok"></i></a> 
                                                                         <a href="<c:url value="/SousCategories?id=${souscategorie.id}" />" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a>
@@ -334,8 +332,8 @@
                                             <td> <c:out value="${produit.sousCategorie['designation']}" /> </td>
                                             <td> <c:out value="${produit.stockAlert}" /> </td>
                                             <td> <c:out value="${produit.stock}" /> </td>
-                                            <td class="center"> <c:out value="${produit.prixVenteU}" /> </td>
-                                            <td> <c:out value="${produit.prixVenteT}" /> </td>
+                                            <td class="center"> <c:out value="${produit.prixVenteU}" />Fc </td>
+                                            <td> <c:out value="${produit.prixVenteT}" />Fc </td>
                                             <td> <c:out value="${produit.utilisateur}" /> </td>
                                             <td class="taskOptions">
                                                 <a href="#" class="tip-top" onclick="retunDataProduct()" data-original-title="Modifier"><i class="icon-ok"></i></a> 

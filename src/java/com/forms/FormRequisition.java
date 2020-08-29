@@ -34,8 +34,18 @@ public class FormRequisition extends AbstractForm {
         ss.setId(Long.parseLong(id));
         ss.setServiceid(Integer.parseInt(service));
         ss.setUsersession(user);
+        try{
+            validateDate(Date.valueOf(dsortie));
+        }catch(Exception e){
+            getErreur(CHAMP_DSORTIE, e.getMessage());
+        }
         ss.setDateSortie(Date.valueOf(dsortie));
         
+        if(erreurs.isEmpty()){
+            resultat = "Panier créé avec succès !!!";
+        }else{
+            resultat = "Echec d'enregistrement.";
+        }
         return ss;   
     }
     
@@ -54,6 +64,11 @@ public class FormRequisition extends AbstractForm {
         }
         ss.setQuantite(Integer.parseInt(quantite));
         
+        if(erreurs.isEmpty()){
+            resultat = "Bien enregistrer !!!";
+        }else{
+            
+        }
         return ss;   
     }
 }

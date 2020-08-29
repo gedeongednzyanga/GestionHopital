@@ -1,6 +1,8 @@
 
 package com.forms;
 
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletRequest;
@@ -57,5 +59,19 @@ public abstract class AbstractForm {
         if(quantite < 0){
             throw new Exception ("La quantite ne doit pas être inférieure à zéro.");
         }
+    }
+    
+    protected void validateDate(Date date) throws Exception {
+       Date today = new Date();
+       if(date.getTime() > today.getTime()){
+           throw new Exception("Date incorrecte.");
+       }
+    }
+    
+    protected void validateDate2(Date date) throws Exception {
+       Date today = new Date();
+       if(date.getTime() <= today.getTime()){
+           throw new Exception("Date incorrecte.");
+       }
     }
 }

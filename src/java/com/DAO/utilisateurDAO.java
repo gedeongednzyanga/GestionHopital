@@ -73,7 +73,7 @@ public class utilisateurDAO extends DAO<Utilisateur> {
                liste.add(new Utilisateur(compt, Long.parseLong(rs.getString("utilisateur_id")), 
                        rs.getString("utilisateur_nom"), rs.getString("utilisateur_prenom"), 
                        rs.getString("utilisateur_username"),rs.getString("utilisateur_compte"), 
-                       rs.getString("utilisateur_passe"), Integer.getInteger(rs.getString("dSave")),
+                       rs.getString("utilisateur_passe"), Integer.parseInt(rs.getString("dSave")),
                        Integer.parseInt(rs.getString("dUpdate")), Integer.parseInt(rs.getString("dDelete")), 
                        rs.getString("page"), rs.getString("profiluser")));
            }

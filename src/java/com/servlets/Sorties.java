@@ -60,7 +60,11 @@ public class Sorties extends HttpServlet {
     Approvisionnement approvi = new approvisionnementDAO().getLastApprovionnement();
      void load(){
         sortieStock.clear();
+        listeService.clear();
+        listeProduit.clear();
+        listeProduit = produitDAO.getAll();
         sortieStock = sortieServiceDAO.getAll();
+        listeService = serviceDAO.getAll();
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -83,7 +87,7 @@ public class Sorties extends HttpServlet {
         }
         
         load();
-         request.setAttribute(ATTR_PANIER_SERVICE, panierService);
+        request.setAttribute(ATTR_PANIER_SERVICE, panierService);
         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         request.setAttribute(ATTR_MALADE, listeMalade);
         request.setAttribute(ATTR_SERVICE, listeService);
@@ -120,8 +124,12 @@ public class Sorties extends HttpServlet {
         }else if(request.getParameter("factureRec") != null){
             FormRequisition formR = new FormRequisition();
             SortieService ss = formR.createRequisition(request);
-            new sortieServiceDAO().createRequisition(1, ss);
-            session.setAttribute(ATTR_SESSION_SERVICE, serviceDAO.find(Integer.parseInt(request.getParameter("service"))));
+            if(formR.getErreurs().isEmpty()){
+                new sortieServiceDAO().createRequisition(1, ss);
+                session.setAttribute(ATTR_SESSION_SERVICE, serviceDAO.find(Integer.parseInt(request.getParameter("service"))));
+            }
+            request.setAttribute(ATTR_FORM_SS, formR);
+            request.setAttribute(ATTR_SORTIES, ss);
 
         }else if(request.getParameter("btnSaveSS") != null){
             FormRequisition form = new FormRequisition();

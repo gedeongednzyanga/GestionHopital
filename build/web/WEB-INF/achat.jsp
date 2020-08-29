@@ -155,6 +155,9 @@
                                                         </c:forEach>
                                                     </select>
                                                     <a href="<c:url value="/Fournisseur" />" class="btn btn-warning btn-small">Créer <i class="icon icon-user"></i></a>
+                                                    <span class="${empty sortieSForm.erreurs ? 'successok' : 'erreur'}">
+                                                        ${sortieSForm.resultat}
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -163,6 +166,7 @@
                                                 <label class="control-label"><b>Date Achat</b></label>
                                                 <div class="controls">
                                                     <input type="date" name="dateapprov" id="dateapprov" required="" value="<c:out value="${approvisionnement.dateApprov}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="span11">
+                                                    <br> <span style="color: red" > <c:out value="${approvForm.erreurs['dateapprov']}"/> </span>
                                                 </div>
                                             </div>
                                             <div class="pull-left">
@@ -225,7 +229,7 @@
                                         <label class="control-label">Quantité Achetée :</label>
                                         <div class="controls">
                                             <input type="number" autocomplete="off" class="span11" name="quantite" value="<c:out value="${approvisionnement.quantite}" />" required="" id="quantite" placeholder="Quantité" />
-                                            <span style="color: red" > <c:out value="${approvForm.erreurs['quantite']}"/> </span>
+                                            <br><span style="color: red" > <c:out value="${approvForm.erreurs['quantite']}"/> </span>
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -233,7 +237,7 @@
                                         <div class="controls">
                                             <div class="input-append">
                                                 <input type="number" placeholder="5.000" required="" value="<c:out value="${approvisionnement.prixAchatU}" />" name="prix" id="prix" class="span11"/>
-                                                <span class="add-on">$</span> </div><br>
+                                                <span class="add-on">Fc</span> </div><br>
                                                 <span style="color: red" > <c:out value="${approvForm.erreurs['prix']}"/> </span>
                                         </div>
                                     </div>
@@ -242,6 +246,7 @@
                                         <label class="control-label">Date Fabrication :</label>
                                         <div class="controls">
                                             <input type="date" autocomplete="off" name="fabrication" required="" value="<c:out default="01-01-2020" value="${approvisionnement.dateFabrication}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="span11" />
+                                            <br><span style="color: red" > <c:out value="${approvForm.erreurs['fabrication']}"/> </span>
                                         </div>
                                     </div>
                                     
@@ -249,11 +254,15 @@
                                         <label class="control-label">Date Expiration :</label>
                                         <div class="controls">
                                             <input type="date" autocomplete="off" name="expiration" required="" value="<c:out default="01-01-2020" value="${approvisionnement.dateExpiration}" />" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="span11">
+                                            <br><span style="color: red" > <c:out value="${approvForm.erreurs['expiration']}"/> </span>
                                         </div>
                                     </div>
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success btn-small" name="btn" value="btnApprovisionnement">Enregistrer</button>
-                                        <button type="submit" class="btn btn-warning btn-small">Terminer</button>
+                                        <button type="reset" class="btn btn-warning btn-small">Terminer</button>
+                                        <span class="${empty approvForm.erreurs ? 'successok' : 'erreur'}">
+                                            ${approvForm.resultat}
+                                        </span>
                                     </div>
                                 </form>
                             </div>
@@ -291,8 +300,8 @@
                                             <td style="display: none"> <c:out value="${achats.id}" /> </td>
                                             <td> <c:out value="${achats.produit['designation']}" /> </td>
                                             <td> <c:out value="${achats.quantite}" /> </td>
-                                            <td class="center"> <c:out value="${achats.prixAchatU}" /> </td>
-                                            <td class="center"> <c:out value="${achats.quantite * achats.prixAchatU}" /> </td>
+                                            <td class="center"> <c:out value="${achats.prixAchatU}" />Fc </td>
+                                            <td class="center"> <c:out value="${achats.quantite * achats.prixAchatU}" />Fc </td>
                                             <td> <c:out value="${achats.dateFabrication}" /> </td>
                                             <td> <c:out value="${achats.dateExpiration}" /> </td>
                                             <td> <c:out value="${achats.fournisseur['nom']} ${achats.fournisseur['prenom']}" /> </td>

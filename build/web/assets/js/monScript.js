@@ -41,7 +41,7 @@ function returnDataSoucategorie(){
         table.rows[index].onclick = function(){
             rIndex = this.rowIndex;
             document.getElementById('idcat').value = this.cells[1].textContent;
-            document.getElementById('designationsc').value = this.cells[3].textContent;
+            document.getElementById('designationsc').value = this.cells[2].textContent;
         };
     }
 }
@@ -52,7 +52,7 @@ function returnDataSoucategorie2(){
         table.rows[index].onclick = function(){
             rIndex = this.rowIndex;
             document.getElementById('idcat').value = this.cells[1].textContent;
-            document.getElementById('designationsc').value = this.cells[3].textContent;
+            document.getElementById('designationsc').value = this.cells[2].textContent;
         };
     }
 }
@@ -84,6 +84,24 @@ function returnDataFournisseur(){
             document.getElementById('email').value = this.cells[5].textContent;
             document.getElementById('web').value = this.cells[7].textContent;
             document.getElementById('addresse').value = this.cells[6].textContent;
+        };
+    }
+}
+
+function returnDataUtilisateur(){
+    var table = document.getElementById('table_utilisateur'),
+            rIndex;
+    for(let index =0; index < table.rows.length; index ++){
+        table.rows[index].onclick = function(){
+            rIndex = this.rowIndex;
+            document.getElementById('id').value = this.cells[1].textContent;
+            document.getElementById('nom').value = this.cells[2].textContent;
+            document.getElementById('prenom').value = this.cells[3].textContent;
+            document.getElementById('username').value = this.cells[5].textContent;
+            document.getElementById('motpass').value = this.cells[6].textContent;
+            document.getElementById('noms').textContent = this.cells[2].textContent+" "+this.cells[3].textContent;
+            document.getElementById('usernames').textContent = this.cells[5].textContent;
+            document.getElementById('comptes').textContent = this.cells[4].textContent;
         };
     }
 }

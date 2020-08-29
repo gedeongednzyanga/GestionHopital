@@ -187,9 +187,9 @@
                                     <div class="control-group">
                                         <img src="<c:url value="/assets/img/avatar.png" />" id="profil" />
                                         <div class="controls" id="identite">
-                                            <label> Gédéon Nzyanga</label>
-                                            <label>gedeon@</label> 
-                                            <label>Administrateur</label>  
+                                            <label id="noms"> Gédéon Nzyanga</label>
+                                            <label id="usernames">gedeon@</label> 
+                                            <label id="comptes">Administrateur</label>  
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -242,16 +242,16 @@
                                 <span class="label  label-info"><i class="icon icon-refresh"> </i></span>
                             </div>
                             <div class="widget-content nopadding">
-                                <table class="table table-bordered data-table">
+                                <table class="table table-bordered data-table" id="table_utilisateur">
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th style="display:none">Id</th>
                                         <th>Nom</th>
                                         <th>Prénom</th>
                                         <th>Compte</th>
                                         <th>Nom d'utilisateur</th>
-                                        <th>Mot de passe</th>
-                                        <th>Photo</th>
+                                        <th style="display:none">Mot de passe</th>
                                         <th>Accès à</th>
                                         <th>Atorisations</th>
                                         <th>Options</th>
@@ -261,17 +261,20 @@
                                     <c:forEach var="utilisateur" items="${listeUtilisateur}">
                                         <tr class="gradeX">
                                             <td> <c:out value="${utilisateur.compt}" /> </td>
-                                            <td style="display: none"> <c:out value="${achats.id}" /> </td>
-                                            <td> <c:out value="${achats.produit['designation']}" /> </td>
-                                            <td> <c:out value="${achats.quantite}" /> </td>
-                                            <td class="center"> <c:out value="${achats.prixAchatU}" /> </td>
-                                            <td class="center"> <c:out value="${achats.quantite * achats.prixAchatU}" /> </td>
-                                            <td> <c:out value="${achats.dateFabrication}" /> </td>
-                                            <td> <c:out value="${achats.dateExpiration}" /> </td>
-                                            <td> <c:out value="${achats.fournisseur['nom']} ${achats.fournisseur['prenom']}" /> </td>
-                                             <td class="taskOptions">
-                                                 <a href="<c:url value="/Achat?id=${achats.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
-                                             </td>
+                                            <td style="display:none"> <c:out value="${utilisateur.id}" /> </td>
+                                            <td> <c:out value="${utilisateur.nom}" /> </td>
+                                            <td> <c:out value="${utilisateur.prenom}" /> </td>
+                                            <td> <c:out value="${utilisateur.compte}" /> </td>
+                                            <td class="center"> <c:out value="${utilisateur.nomUtilisateur}" /> </td>
+                                            <td  style="display:none"> <c:out value="${utilisateur.motdePasse}" /> </td>
+                                           
+                                            <td> <c:out value="${utilisateur.page}" /> </td>
+                                            
+                                            <td> <c:out value="${utilisateur.dSave}, ${utilisateur.dUpdate}, ${utilisateur.dDelete}" /> </td>
+                                            <td class="taskOptions">
+                                                <a href="#" onclick="returnDataUtilisateur()" class="tip-top" data-original-title="Modifier"><i class="icon-edit"></i></a>
+                                                <a href="<c:url value="/Utilisateurs?id=${utilisateur.id}" />" class="tip-top" data-original-title="Supprimer"><i class="icon-remove"></i></a>
+                                            </td>
                                         </tr>
                                     </c:forEach>       
                                 </tbody>
@@ -288,20 +291,14 @@
         </div>
     <!--end-Footer-part-->
         <script src="<c:url value="/assets/js/jquery.min.js" />"></script>
-        <script src="<c:url value="/assets/js/jquery.ui.custom.js"/>"></script>
-        <script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
-        <script src="<c:url value="/assets/js/bootstrap-colorpicker.js"/>"></script>
-        <script src="<c:url value="/assets/js/bootstrap-datepicker.js"/>"></script>
-        <script src="<c:url value="/assets/js/jquery.toggle.buttons.js"/>"></script>
-        <script src="<c:url value="/assets/js/masked.js"/>"></script>
-        <script src="<c:url value="/assets/js/jquery.uniform.js"/>"></script>
-        <script src="<c:url value="/assets/js/select2.min.js"/>"></script>
-        <script src="<c:url value="/assets/js/matrix.js"/>"></script>
-        <script src="<c:url value="/assets/js/matrix.form_common.js"/>"></script>
-        <script src="<c:url value="/assets/js/wysihtml5-0.3.0.js"/>"></script>
-        <script src="<c:url value="/assets/js/jquery.peity.min.js"/>"></script>
-        <script src="<c:url value="/assets/js/bootstrap-wysihtml5.js"/>"></script>
-       
+        <script src="<c:url value="/assets/js/jquery.ui.custom.js" />"></script>
+        <script src="<c:url value="/assets/js/bootstrap.min.js" />"></script>
+        <script src="<c:url value="/assets/js/monScript.js" />"></script>
+        <script src="<c:url value="/assets/js/jquery.uniform.js" />"></script>
+        <script src="<c:url value="/assets/js/select2.min.js" />"></script>
+        <script src="<c:url value="/assets/js/jquery.dataTables.min.js" />"></script>
+        <script src="<c:url value="/assets/js/matrix.js" />"></script>
+        <script src="<c:url value="/assets/js/matrix.tables.js" />"></script>
         <script>
             $('.textarea_editor').wysihtml5();
         </script>

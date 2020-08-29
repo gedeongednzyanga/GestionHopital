@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/src/java/com/forms/SousCategorieForm.java</file>
-            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/web/WEB-INF/stock.jsp</file>
-            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/src/java/com/beans/SousCategorie.java</file>
-            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/src/java/com/DAO/sousCategorieDAO.java</file>
-            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/src/java/com/beans/Produit.java</file>
-            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/src/java/com/DAO/produitDAO.java</file>
-            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/web/assets/js/matrix.interface.js</file>
+            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/web/WEB-INF/utilisateurs.jsp</file>
+            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/web/assets/js/monScript.js</file>
+            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/src/java/com/beans/Utilisateur.java</file>
+            <file>file:/C:/Users/GEDEON/Documents/NetBeansProjects/GestionHopital/src/java/com/servlets/Utilisateurs.java</file>
         </group>
     </open-files>
 </project-private>

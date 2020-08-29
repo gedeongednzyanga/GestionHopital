@@ -25,24 +25,19 @@ public class Stock extends HttpServlet {
     
     private static final String VUE = "/WEB-INF/stock.jsp";
     private static final String ATTR_SOUSCAT_LISTE = "listeSousCategorie";
-    private static final String ATTR_CAT_LISTE = "listeCategorie";
     private static final String ATTR_PRODUIT ="produit";
     private static final String ATTR_PRODUIT_FORM ="produitForm";
     private static final String ATTR_PRODUIT_LISTE = "listeProduit";
     private static final String ATTR_APPROVINNEMENT = "approvisionnement";
     DAO<Produit> produitDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getProduitDAO();
-   // DAO<Categorie> categorieDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getCategorieDAO();
     DAO<SousCategorie> souscategorieDAO = AbstractDAOFactory.getFactory(FactoryType.MySQL).getSouscategorieDAO();
     List<Produit> listeProduit = produitDAO.getAll();
-   // List<Categorie> listeCategorie= categorieDAO.getAll();
     List<SousCategorie> listeSousCategorie = souscategorieDAO.getAll();
     Approvisionnement approvi = new approvisionnementDAO().getLastApprovionnement();
    
     void loadData(){
        listeProduit.clear();
-      //listeCategorie.clear();
        listeSousCategorie.clear();
-      // listeCategorie = categorieDAO.getAll();
        listeSousCategorie = souscategorieDAO.getAll();
        listeProduit = produitDAO.getAll();
     }
@@ -58,7 +53,7 @@ public class Stock extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //Attributs
-        loadData();
+       
         if(request.getParameter("id") != null){
             Produit produit = new Produit();
             Long id = Long.parseLong(request.getParameter("id"));
@@ -66,7 +61,7 @@ public class Stock extends HttpServlet {
             produitDAO.operationIUD(3, produit);
         }
         
-        //request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
+         loadData();
         request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
         request.setAttribute(ATTR_APPROVINNEMENT, approvi);

@@ -51,7 +51,7 @@ public class SousCategories extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        loadData();
+       
         //Attributs
         if(request.getParameter("id") != null){
             SousCategorie souscategorie = new SousCategorie();
@@ -59,6 +59,7 @@ public class SousCategories extends HttpServlet {
             souscategorie.setId(id);
             souscategorieDAO.operationIUD(3, souscategorie);
         }
+         loadData();
         request.setAttribute(ATTR_CAT_LISTE, listeCategorie);
         request.setAttribute(ATTR_SOUSCAT_LISTE, listeSousCategorie);
         request.setAttribute(ATTR_PRODUIT_LISTE, listeProduit);
