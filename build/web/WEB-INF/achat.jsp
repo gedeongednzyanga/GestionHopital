@@ -186,19 +186,19 @@
                                 <ul class="recent-posts">
                                     <li>
                                         <div class="user-thumb"> <img width="40" height="40" alt="User" src="assets/img/demo/av1.jpg"> </div>
-                                        <div class="article-post"> <span class="user-info">John Deo</span>
+                                        <div class="article-post"> <span class="user-info">Gédéon Nzyanga</span>
                                             <p>Web Desginer &amp; creative Front end developer</p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="user-thumb"> <img width="40" height="40" alt="User" src="assets/img/demo/av2.jpg"> </div>
-                                        <div class="article-post"> <span class="user-info">John Deo</span>
+                                        <div class="article-post"> <span class="user-info">Gédéon Nzyanga</span>
                                             <p>Web Desginer &amp; creative Front end developer</p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="user-thumb"> <img width="40" height="40" alt="User" src="assets/img/demo/av4.jpg"> </div>
-                                        <div class="article-post"> <span class="user-info">John Deo</span>
+                                        <div class="article-post"> <span class="user-info">Gédéon Nzyanga</span>
                                             <p>Web Desginer &amp; creative Front end developer</p>
                                         </div>
                                     </li>
@@ -339,6 +339,7 @@
         <script src="<c:url value="/assets/js/wysihtml5-0.3.0.js"/>"></script>
         <script src="<c:url value="/assets/js/jquery.peity.min.js"/>"></script>
         <script src="<c:url value="/assets/js/bootstrap-wysihtml5.js"/>"></script>
+         <script src="<c:url value="/assets/js/matrix.tables.js" />"></script>
        
         <script>
             $('.textarea_editor').wysihtml5();
